@@ -1,0 +1,332 @@
+Productos a consultar para Mi portafolio: (/Portafolio/PortafolioProfesorUnidades?productoID=2316,
+/Portafolio/PortafolioProfesorUnidades?productoID=2322,
+/Portafolio/PortafolioProfesorUnidades?productoID=2317,
+/Portafolio/PortafolioProfesorUnidades?productoID=2323,
+/Portafolio/PortafolioProfesorUnidades?productoID=2318,
+/Portafolio/PortafolioProfesorUnidades?productoID=2324,
+/Portafolio/PortafolioProfesorUnidades?productoID=2319,
+/Portafolio/PortafolioProfesorUnidades?productoID=2325,
+/Portafolio/PortafolioProfesorUnidades?productoID=2320,
+/Portafolio/PortafolioProfesorUnidades?productoID=2326,
+/Portafolio/PortafolioProfesorUnidades?productoID=2321,
+/Portafolio/PortafolioProfesorUnidades?productoID=2327,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2220,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2186,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2270,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2267,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2181,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2187,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2184,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2182,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2265,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2273,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2183,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2268,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2180,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2274,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2271,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2185,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2266,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2275,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2272,
+/Portafolio/PortafolioProfesorSantillanaVaContigoUnidades?productoID=2269
+)
+Consultar para Mis documentos:
+(
+https://digital.santillana.com.pe/Documentos/SantiVaContigoDocs)
+debo de entrar a cada carpeta <div id="row">
+    <div id="col-sm-12">
+        
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2322"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 1.er grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2323"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 2.do grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2324"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 3.er grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2325"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 4.to grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2326"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 5.to grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2327"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 6.to grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2186"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 1.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2187"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 2.do grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2273"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 3.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2274"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 4.to grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2275"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Comunicaci&#243;n 5.to grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2316"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 1.er grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2317"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 2.do grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2318"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 3.er grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2319"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 4.to grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2320"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 5.to grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2321"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 6.to grado - Primaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2220"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 1.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2181"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 2.do grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2265"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 3.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2180"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 4.to grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2266"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Matem&#225;tica 5.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2267"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Ciencia y Tecnolog&#237;a 1.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2270"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Ciencias Sociales 1.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2182"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Ciencia y Tecnolog&#237;a 2.do grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2184"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Ciencias Sociales 2.do grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2183"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Ciencias Sociales 3.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2271"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Ciencias Sociales 4.to grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2272"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Ciencias Sociales 5.to grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2268"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Qu&#237;mica 3.er grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2185"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">Biolog&#237;a 4.to grado - Secundaria</p>
+                </div>
+                <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                    <a href="/Documentos/Contenido?productoID=2269"><div class="fileimage hasfile"></div></a>
+                    <p class="titulo-contenido">F&#237;sica 5.to grado - Secundaria</p>
+                </div>
+
+        
+    </div>
+</div> al final temrina entrando a https://digital.santillana.com.pe/Documentos/Contenido?productoID=2322
+y después 
+
+se carga el HTML con esta info <div id="col-sm-12">
+        
+                                    <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                        <a href="/Documentos/Archivo?productoID=2322&amp;archivoID=22">
+                            <div class="fileimage hasfile"></div>
+                        </a>
+                        <p class="titulo-contenido">Proyecto integrador</p>
+                    </div>
+                    <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                        <a href="/Documentos/Archivo?productoID=2322&amp;archivoID=61">
+                            <div class="fileimage hasfile"></div>
+                        </a>
+                        <p class="titulo-contenido">Atlas del mundo</p>
+                    </div>
+                    <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                        <a href="/Documentos/Archivo?productoID=2322&amp;archivoID=62">
+                            <div class="fileimage hasfile"></div>
+                        </a>
+                        <p class="titulo-contenido">Fiestas del Perú</p>
+                    </div>
+                    <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                        <a href="/Documentos/Archivo?productoID=2322&amp;archivoID=63">
+                            <div class="fileimage hasfile"></div>
+                        </a>
+                        <p class="titulo-contenido">Manual de uso de Santillana Digital</p>
+                    </div>
+                    <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                        <a href="/Documentos/Archivo?productoID=2322&amp;archivoID=65">
+                            <div class="fileimage hasfile"></div>
+                        </a>
+                        <p class="titulo-contenido">Programa de educación emocional</p>
+                    </div>
+                    <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                        <a href="/Documentos/Archivo?productoID=2322&amp;archivoID=66">
+                            <div class="fileimage hasfile"></div>
+                        </a>
+                        <p class="titulo-contenido">Manual de uso del LibroMedia</p>
+                    </div>
+                    <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                        <a href="/Documentos/Archivo?productoID=2322&amp;archivoID=67">
+                            <div class="fileimage hasfile"></div>
+                        </a>
+                        <p class="titulo-contenido">Lecturas</p>
+                    </div>
+                    <div class="col-sm-3 text-center responsive" style="min-width:250px">
+                        <a href="/Documentos/Archivo?productoID=2322&amp;archivoID=68">
+                            <div class="fileimage hasfile"></div>
+                        </a>
+                        <p class="titulo-contenido">Alimentos nativos del Perú</p>
+                    </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div> aca debería de entrar igual a cada carpeta https://digital.santillana.com.pe/Documentos/Archivo?productoID=2322&archivoID=22 y descargar los archivos 
+
+
+
+
+
+<div class="col-lg-12">
+        
+
+            
+
+                <div class="col-lg-3 text-center responsive" style="min-width:250px">
+                <!-- <div class="fila-contenidos"> -->
+                    <a href="https://digital.santillana.com.pe/api/accesoblob/contenido/5x6we/2020-privado/PortafolioDigital/SantiVaContigo/primaria/comunicacion/primero/doc_prof/Instructivoprofesor.pdf" target="_blank">
+                        <div class="fileimage pdf"></div>
+                    </a>
+                <p class="titulo-contenido">Instructivo del proyecto integrador</p>
+                <!-- </div> -->
+            </div>
+            <div class="col-lg-3 text-center responsive" style="min-width:250px">
+                <!-- <div class="fila-contenidos"> -->
+                    <a href="https://digital.santillana.com.pe/api/accesoblob/contenido/5x6we/2020-privado/PortafolioDigital/SantiVaContigo/primaria/comunicacion/primero/doc_prof/PROYECTO1(Estu).pdf" target="_blank">
+                        <div class="fileimage pdf"></div>
+                    </a>
+                <p class="titulo-contenido">Proyecto integrador 1: Yo y mi mundo (alumno)</p>
+                <!-- </div> -->
+            </div>
+            <div class="col-lg-3 text-center responsive" style="min-width:250px">
+                <!-- <div class="fila-contenidos"> -->
+                    <a href="https://digital.santillana.com.pe/api/accesoblob/contenido/5x6we/2020-privado/PortafolioDigital/SantiVaContigo/primaria/comunicacion/primero/doc_prof/PROYECTO1(Prof).pdf" target="_blank">
+                        <div class="fileimage pdf"></div>
+                    </a>
+                <p class="titulo-contenido">Proyecto integrador 1: Yo y mi mundo (docente)</p>
+                <!-- </div> -->
+            </div>
+</div> quiero que se descargue tal cual por ejemplo carpetas subcarpetas y sus archivos, para todos los 
+
+SantiVaContigoDocs (Mis documentos) 
+
+
+quiero una barra de progreso y saber en que parte se ecuntra
+
+
+Se envía una cookie par ahacer las petciones, cuando ejecute el script quiero que me pidas el cookie y yo pego y procedes
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
