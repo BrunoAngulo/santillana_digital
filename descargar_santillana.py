@@ -8,9 +8,8 @@ import os
 import re
 import sys
 import time
-import getpass
 from pathlib import Path
-from urllib.parse import urljoin, urlparse, parse_qs
+from urllib.parse import urljoin, urlparse
 
 try:
     import requests
@@ -40,6 +39,7 @@ def sanitize_name(name: str) -> str:
 
 def build_session(cookie_str: str) -> requests.Session:
     session = requests.Session()
+    # Enviar cookie como header directo para evitar problemas de parseo
     session.headers.update({
         "User-Agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -47,14 +47,22 @@ def build_session(cookie_str: str) -> requests.Session:
             "Chrome/124.0.0.0 Safari/537.36"
         ),
         "Referer": BASE_URL,
+        "Cookie": cookie_str.strip(),
     })
-    # Parsear cookies del string pegado (formato: key=value; key2=value2)
-    for part in cookie_str.split(";"):
-        part = part.strip()
-        if "=" in part:
-            key, _, value = part.partition("=")
-            session.cookies.set(key.strip(), value.strip(), domain="digital.santillana.com.pe")
     return session
+
+
+def verificar_sesion(session: requests.Session) -> bool:
+    """Comprueba que la cookie da acceso autenticado."""
+    try:
+        resp = session.get(DOCS_URL, timeout=15, allow_redirects=True)
+        # Si redirige a login, la sesión no es válida
+        if "login" in resp.url.lower() or "account" in resp.url.lower():
+            return False
+        # Si el HTML contiene la lista de productos, es válida
+        return "productoID" in resp.text or "titulo-contenido" in resp.text
+    except requests.RequestException:
+        return False
 
 
 def get_soup(session: requests.Session, url: str) -> BeautifulSoup | None:
@@ -166,18 +174,30 @@ def descargar_archivo(session: requests.Session, url: str, destino: Path) -> boo
 
 def main():
     print("=" * 60)
-    print("  Descargador de Santillana Digital - SantiVaContigoDocs")
     print("=" * 60)
-    print("\nPega tu cookie de sesión (se ocultará al escribir).")
-    print("Puedes obtenerla desde DevTools > Application > Cookies.")
-    print("Formato: .AspNet.ApplicationCookie=...; otra=valor\n")
+    print()
+    print("Pega tu cookie de sesión completa y presiona Enter.")
+    print("(DevTools → Application → Cookies → Copiar todo el header)")
+    print()
 
-    cookie_str = getpass.getpass("Cookie: ")
-    if not cookie_str.strip():
+    cookie_str = input("Cookie > ").strip()
+    if not cookie_str:
         print("No se ingresó ninguna cookie. Saliendo.")
         sys.exit(1)
 
+    print("\nVerificando sesión...", end=" ", flush=True)
     session = build_session(cookie_str)
+
+    if not verificar_sesion(session):
+        print("FALLO")
+        print("\n[ERROR] La cookie no da acceso a Santillana Digital.")
+        print("  Posibles causas:")
+        print("  - La sesión expiró (vuelve a loguearte y copia las cookies de nuevo)")
+        print("  - Copiaste solo una cookie y faltan las demás")
+        print("  - Hay un espacio o carácter extra al pegar")
+        sys.exit(1)
+
+    print("OK\n")
 
     # ── Nivel 1: productos ──────────────────────────────────────────
     productos = obtener_productos(session)
