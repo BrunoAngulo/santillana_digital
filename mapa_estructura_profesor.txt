@@ -1,0 +1,2311 @@
+SantillanaDigital_Docs/
+├── Comunicación 1.er grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   ├── Instructivo del proyecto integrador.pdf
+│   │   ├── Proyecto integrador 1 Yo y mi mundo (alumno).pdf
+│   │   └── Proyecto integrador 1 Yo y mi mundo (docente).pdf
+│   ├── Atlas del mundo/
+│   │   └── Atlas del mundo.pdf
+│   ├── Fiestas del Perú/
+│   │   └── Fiestas del Perú.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso del Libromedia.pdf
+│   ├── Lecturas/
+│   │   └── Lecturas amigas 1.html
+│   └── Alimentos nativos del Perú/
+│       └── Alimentos nativos del Perú.pdf
+├── Comunicación 2.do grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   ├── Instructivo del proyecto integrador.pdf
+│   │   ├── Proyecto integrador 2 Comunidades en todos lados (alumno).pdf
+│   │   └── Proyecto integrador 2 Comunidades en todos lados (docente).pdf
+│   ├── Atlas del mundo/
+│   │   └── Atlas del mundo.pdf
+│   ├── Fiestas del Perú/
+│   │   └── Fiestas del Perú.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso del Libromedia.pdf
+│   ├── Lecturas/
+│   │   └── Lecturas amigas 2.html
+│   └── Alimentos nativos del Perú/
+│       └── Alimentos nativos del Perú.pdf
+├── Comunicación 3.er grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   ├── Instructivo del proyecto integrador.pdf
+│   │   ├── Proyecto integrador 3Superhérores del cambio global (alumno).pdf
+│   │   └── Proyecto integrador 3 Superhéroes del cambio global (docente).pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso del Libromedia.pdf
+│   └── Lecturas/
+│       └── Lecturas amigas 3.html
+├── Comunicación 4.to grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   ├── Instructivo del proyecto integrador.pdf
+│   │   ├── Proyecto integrador 4 Exploradores del entorno (alumno).pdf
+│   │   └── Proyecto integrador 4 Exploradores del entorno (docente).pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso del Libromedia.pdf
+│   └── Lecturas/
+│       └── Lecturas amigas 4.html
+├── Comunicación 5.to grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   ├── Instructivo del proyecto integrador.pdf
+│   │   ├── Proyecto integrador 5 Hábitats en el jardín del colegio (alumno).pdf
+│   │   └── Proyecto integrador 5 Hábitats en el jardín del colegio (docente).pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso del Libromedia.pdf
+│   └── Lecturas/
+│       └── Lecturas amigas 5.html
+├── Comunicación 6.to grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   ├── Instructivo del proyecto integrador.pdf
+│   │   ├── Proyecto integrador 6 Poema para los hérores (alumno).pdf
+│   │   └── Proyecto integrador 6 Poema para los héroes (docente).pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso del Libromedia.pdf
+│   └── Lecturas/
+│       └── Lecturas amigas 6.html
+├── Comunicación 1.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa Curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia lectora 1.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   └── Plan de mejora U8. Respuestas.pdf
+│   └── Guía metodológica/
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+├── Comunicación 2.do grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa Curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia lectora 2.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   └── Plan de mejora U8. Respuestas.pdf
+│   └── Guía metodológica/
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+├── Comunicación 3.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa Curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   └── Propósitos de aprendizaje U8.pdf
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia lectora 2.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   └── Plan de mejora U8. Respuestas.pdf
+│   └── Guía metodológica/
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+├── Comunicación 4.to grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa Curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia lectora 2.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   └── Plan de mejora U8. Respuestas.pdf
+│   └── Guía metodológica/
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+├── Comunicación 5.to grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa Curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia lectora 2.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   └── Plan de mejora U8. Respuestas.pdf
+│   └── Guía metodológica/
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+├── Matemática 1.er grado - Primaria/
+│   ├── Pautas para el trabajo con material concreto/
+│   │   ├── Unidad 01 Cálculo de números hasta el 9.docx
+│   │   ├── Unidad 01 Situaciones de adición.docx
+│   │   ├── Unidad 01 Sustracción con números hasta el 9.docx
+│   │   ├── Unidad 02 Adición con números hasta el 29.docx
+│   │   ├── Unidad 02 Comparación y orden hasta el 29.docx
+│   │   ├── Unidad 02 Ubicación y recorrido de objetos y personas.docx
+│   │   ├── Unidad 03 Gráfico de barras.docx
+│   │   ├── Unidad 03 Las decenas.docx
+│   │   ├── Unidad 03 Sustracción hasta el 49.docx
+│   │   ├── Unidad 04 Patrones aditivos.docx
+│   │   ├── Unidad 04 Siempre a veces nunca.docx
+│   │   ├── Unidad 04 Valor posicional.docx
+│   │   ├── Unidad 05 Comparación y orden de números hasta el 89.docx
+│   │   ├── Unidad 05 Pictogramas horizontales.docx
+│   │   ├── Unidad 05 Sustracción con números hasta el 89.docx
+│   │   ├── Unidad 06 Descomposición de números hasta el 99.docx
+│   │   ├── Unidad 06 Igualdad y equilibrio.docx
+│   │   ├── Unidad 06 Números hasta el 99.docx
+│   │   ├── Unidad 07 Adición con canjes.docx
+│   │   ├── Unidad 07 Igualdad y equilibrio.docx
+│   │   ├── Unidad 07 Sustracción con canjes.docx
+│   │   ├── Unidad 08 Gráfico de barras.docx
+│   │   ├── Unidad 08 La centena.docx
+│   │   └── Unidad 08 Masa de objetos.docx
+│   ├── Actividades evaluativas y metacognitivas - Tomo I/
+│   │   ├── U01 - Actividad evaluativa 1.pdf
+│   │   ├── U01 - Actividad evaluativa 2.pdf
+│   │   ├── U01 - Actividad evaluativa 3.pdf
+│   │   ├── U01 - Actividad evaluativa 4.pdf
+│   │   ├── U01 - Actividad evaluativa 5.pdf
+│   │   ├── U01 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 1.pdf
+│   │   ├── U02 - Actividad evaluativa 2.pdf
+│   │   ├── U02 - Actividad evaluativa 3.pdf
+│   │   ├── U02 - Actividad evaluativa 4.pdf
+│   │   ├── U02 - Actividad evaluativa 5.pdf
+│   │   ├── U02 - Actividad metacognitiva 1.pdf
+│   │   ├── U03 - Actividad evaluativa 1.pdf
+│   │   ├── U03 - Actividad evaluativa 2.pdf
+│   │   ├── U03 - Actividad evaluativa 3.pdf
+│   │   ├── U03 - Actividad evaluativa 4.pdf
+│   │   ├── U03 - Actividad evaluativa 5.pdf
+│   │   ├── U03 - Actividad metacognitiva 1.pdf
+│   │   ├── U04 - Actividad evaluativa 1.pdf
+│   │   ├── U04 - Actividad evaluativa 2.pdf
+│   │   ├── U04 - Actividad evaluativa 3.pdf
+│   │   └── U04 - Actividad metacognitiva 1.pdf
+│   ├── Actividades evaluativas y metacognitivas - Tomo II/
+│   │   ├── U05 - Actividad evaluativa 1.pdf
+│   │   ├── U05 - Actividad evaluativa 2.pdf
+│   │   ├── U05 - Actividad evaluativa 3.pdf
+│   │   ├── U05 - Actividad evaluativa 4.pdf
+│   │   ├── U05 - Actividad evaluativa 5.pdf
+│   │   ├── U05 - Actividad evaluativa 6.pdf
+│   │   ├── U05 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 1.pdf
+│   │   ├── U06 - Actividad evaluativa 2.pdf
+│   │   ├── U06 - Actividad evaluativa 3.pdf
+│   │   ├── U06 - Actividad evaluativa 4.pdf
+│   │   ├── U06 - Actividad evaluativa 5.pdf
+│   │   ├── U06 - Actividad evaluativa 6.pdf
+│   │   ├── U06 - Actividad evaluativa 7.pdf
+│   │   ├── U06 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 8.pdf
+│   │   ├── U07 - Actividad evaluativa 1.pdf
+│   │   ├── U07 - Actividad evaluativa 2.pdf
+│   │   ├── U07 - Actividad evaluativa 3.pdf
+│   │   ├── U07 - Actividad evaluativa 4.pdf
+│   │   ├── U07 - Actividad evaluativa 5.pdf
+│   │   ├── U07 - Actividad evaluativa 6.pdf
+│   │   ├── U07 - Actividad metacognitiva 1.pdf
+│   │   ├── U08 - Actividad evaluativa 1.pdf
+│   │   ├── U08 - Actividad evaluativa 2.pdf
+│   │   ├── U08 - Actividad evaluativa 3.pdf
+│   │   ├── U08 - Actividad evaluativa 4.pdf
+│   │   ├── U08 - Actividad evaluativa 5.pdf
+│   │   ├── U08 - Actividad evaluativa 6.pdf
+│   │   ├── U08 - Actividad evaluativa 7.pdf
+│   │   ├── U08 - Actividad metacognitiva 1.pdf
+│   │   └── U08 - Actividad evaluativa 8.pdf
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   ├── Cálculo mental 1.pdf
+│   │   └── Cálculo mental 1 (Solucionario).pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   ├── Problemas 2.pdf
+│   │   └── Problemas 2 (Solucionario).pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   ├── Números y operaciones 3.pdf
+│   │   └── Números y operaciones 3 (Solucionario).pdf
+│   ├── Proyecto integrador/
+│   │   ├── Proyecto integrador 1 Yo y mi mundo (alumno).pdf
+│   │   ├── Proyecto integrador 1 Yo y mi mundo (docente).pdf
+│   │   └── Instructivo del proyecto integrador.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Aprender con sentido/
+│   │   ├── Mi relación con Jesús.pdf
+│   │   ├── Lugares para compartir.pdf
+│   │   ├── Sumar para cuidar el planeta.pdf
+│   │   └── Aprovechamos el tiempo.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso de LibroMedia.pdf
+│   ├── Fichas de R.M., estrategias y más/
+│   │   ├── Unidad 01 R.M. (alumno).pdf
+│   │   ├── Unidad 01 R.M. (docente).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 02 R.M. (alumno).pdf
+│   │   ├── Unidad 02 R.M. (docente).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 03 R.M. (alumno).pdf
+│   │   ├── Unidad 03 R.M. (docente).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 03 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 03 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 03 Día del Logro.pdf
+│   │   ├── Unidad 04 R.M. (alumno).pdf
+│   │   ├── Unidad 04 R.M. (docente).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 05 R.M. (alumno).pdf
+│   │   ├── Unidad 05 R.M. (docente).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 06 R.M. (alumno).pdf
+│   │   ├── Unidad 06 R.M. (docente).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 06 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 06 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 07 R.M. (alumno).pdf
+│   │   ├── Unidad 07 R.M. (docente).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 07 Día del Logro.pdf
+│   │   ├── Unidad 08 R.M. (alumno).pdf
+│   │   ├── Unidad 08 R.M. (docente).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 2 (alumno).pdf
+│   │   └── Unidad 08 Instrumento de evaluación 2 (docente).pdf
+│   ├── Fichas de Refuerzo/
+│   │   ├── U01 Ficha 1.pdf
+│   │   ├── U01 Ficha 1 (solucionario).pdf
+│   │   ├── U02 Ficha 2.pdf
+│   │   ├── U02 Ficha 2 (solucionario).pdf
+│   │   ├── U03 Ficha 3.pdf
+│   │   ├── U03 Ficha 3 (solucionario).pdf
+│   │   ├── U04 Ficha 4.pdf
+│   │   ├── U04 Ficha 4 (solucionario).pdf
+│   │   ├── U05 Ficha 5.pdf
+│   │   ├── U05 Ficha 5 (solucionario).pdf
+│   │   ├── U06 Ficha 6.pdf
+│   │   ├── U06 Ficha 6 (solucionario).pdf
+│   │   ├── U07 Ficha 7.pdf
+│   │   ├── U07 Ficha 7 (solucionario).pdf
+│   │   ├── U08 Ficha 8.pdf
+│   │   └── U08 Ficha 8 (solucionario).pdf
+│   └── Respuestarios/
+│       ├── Respuestario U01.pdf
+│       ├── Respuestario U02.pdf
+│       ├── Respuestario U03.pdf
+│       ├── Respuestario U04.pdf
+│       ├── Respuestario U05.pdf
+│       ├── Respuestario U06.pdf
+│       ├── Respuestario U07.pdf
+│       └── Respuestario U08.pdf
+├── Matemática 2.do grado - Primaria/
+│   ├── Pautas para el trabajo con material concreto/
+│   │   ├── Unidad 01 Clasificación.docx
+│   │   ├── Unidad 01 Números hasta el 99.docx
+│   │   ├── Unidad 01 Valor posicional.docx
+│   │   ├── Unidad 02 Aproximación a la decena más cercana.docx
+│   │   ├── Unidad 02 Código de flechas.docx
+│   │   ├── Unidad 02 Propiedad conmutativa.docx
+│   │   ├── Unidad 03 Comparación y orden de números hasta el 999.docx
+│   │   ├── Unidad 03 Figuras geométricas.docx
+│   │   ├── Unidad 03 Números hasta el 999.docx
+│   │   ├── Unidad 04 Adición con canjes hasta el 999.docx
+│   │   ├── Unidad 04 Nociones de seguro posible e imposible.docx
+│   │   ├── Unidad 04 Sustracción con canjes hasta el 999.docx
+│   │   ├── Unidad 05 Multiplicación por 2 y por 3.docx
+│   │   ├── Unidad 05 Patrones.docx
+│   │   ├── Unidad 05 Relación entre adición y sustracción.docx
+│   │   ├── Unidad 06 Años meses y días de la semana.docx
+│   │   ├── Unidad 06 Multiplicación por 5 por 10 y por 1.docx
+│   │   ├── Unidad 06 Pictogramas horizontales.docx
+│   │   ├── Unidad 07 El kilogramo.docx
+│   │   ├── Unidad 07 Multiplicación de números de dos cifras por números de una cifra.docx
+│   │   ├── Unidad 07 Problemas con multiplicación.docx
+│   │   ├── Unidad 08 El litro.docx
+│   │   ├── Unidad 08 Mitad de un número de dos cifras.docx
+│   │   └── Unidad 08 Patrones.docx
+│   ├── Actividades evaluativas y metacognitivas - Tomo I/
+│   │   ├── U01 - Actividad evaluativa 1.pdf
+│   │   ├── U01 - Actividad evaluativa 2.pdf
+│   │   ├── U01 - Actividad evaluativa 3.pdf
+│   │   ├── U01 - Actividad evaluativa 4.pdf
+│   │   ├── U01 - Actividad evaluativa 5.pdf
+│   │   ├── U01 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 1.pdf
+│   │   ├── U02 - Actividad evaluativa 2.pdf
+│   │   ├── U02 - Actividad evaluativa 3.pdf
+│   │   ├── U02 - Actividad evaluativa 4.pdf
+│   │   ├── U02 - Actividad evaluativa 5.pdf
+│   │   ├── U02 - Actividad evaluativa 6.pdf
+│   │   ├── U02 - Actividad evaluativa 7.pdf
+│   │   ├── U02 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 8.pdf
+│   │   ├── U03 - Actividad evaluativa 1.pdf
+│   │   ├── U03 - Actividad evaluativa 2.pdf
+│   │   ├── U03 - Actividad evaluativa 3.pdf
+│   │   ├── U03 - Actividad evaluativa 4.pdf
+│   │   ├── U03 - Actividad metacognitiva 1.pdf
+│   │   ├── U04 - Actividad evaluativa 1.pdf
+│   │   ├── U04 - Actividad evaluativa 2.pdf
+│   │   ├── U04 - Actividad evaluativa 3.pdf
+│   │   ├── U04 - Actividad evaluativa 4.pdf
+│   │   ├── U04 - Actividad evaluativa 5.pdf
+│   │   ├── U04 - Actividad evaluativa 6.pdf
+│   │   ├── U04 - Actividad evaluativa 7.pdf
+│   │   ├── U04 - Actividad evaluativa 8.pdf
+│   │   ├── U04 - Actividad metacognitiva 1.pdf
+│   │   └── U04 - Actividad evaluativa 9.pdf
+│   ├── Actividades evaluativas y metacognitivas - Tomo II/
+│   │   ├── U05 - Actividad evaluativa 1.pdf
+│   │   ├── U05 - Actividad evaluativa 2.pdf
+│   │   ├── U05 - Actividad evaluativa 3.pdf
+│   │   ├── U05 - Actividad evaluativa 4.pdf
+│   │   ├── U05 - Actividad evaluativa 5.pdf
+│   │   ├── U05 - Actividad evaluativa 6.pdf
+│   │   ├── U05 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 1.pdf
+│   │   ├── U06 - Actividad evaluativa 2.pdf
+│   │   ├── U06 - Actividad evaluativa 3.pdf
+│   │   ├── U06 - Actividad evaluativa 4.pdf
+│   │   ├── U06 - Actividad evaluativa 5.pdf
+│   │   ├── U06 - Actividad evaluativa 6.pdf
+│   │   ├── U06 - Actividad evaluativa 7.pdf
+│   │   ├── U06 - Actividad evaluativa 8.pdf
+│   │   ├── U06 - Actividad evaluativa 9.pdf
+│   │   ├── U06 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 10.pdf
+│   │   ├── U07 - Actividad evaluativa 1.pdf
+│   │   ├── U07 - Actividad evaluativa 2.pdf
+│   │   ├── U07 - Actividad evaluativa 3.pdf
+│   │   ├── U07 - Actividad evaluativa 4.pdf
+│   │   ├── U07 - Actividad evaluativa 5.pdf
+│   │   ├── U07 - Actividad evaluativa 6.pdf
+│   │   ├── U07 - Actividad evaluativa 7.pdf
+│   │   ├── U07 - Actividad evaluativa 8.pdf
+│   │   ├── U07 - Actividad metacognitiva 1.pdf
+│   │   ├── U08 - Actividad evaluativa 1.pdf
+│   │   ├── U08 - Actividad evaluativa 2.pdf
+│   │   ├── U08 - Actividad evaluativa 3.pdf
+│   │   ├── U08 - Actividad evaluativa 4.pdf
+│   │   ├── U08 - Actividad metacognitiva 1.pdf
+│   │   ├── U08 - Actividad evaluativa 6.pdf
+│   │   └── U08 - Actividad evaluativa 5.pdf
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   ├── Cálculo mental 2.pdf
+│   │   └── Cálculo mental 2 (Solucionario).pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   ├── Problemas 4.pdf
+│   │   └── Problemas 4 (Solucionario).pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   ├── Números y operaciones 2.pdf
+│   │   └── Números y operaciones 2 (Solucionario).pdf
+│   ├── Proyecto integrador/
+│   │   ├── Proyecto integrador 2 Comunidades en todos lados (alumno).pdf
+│   │   ├── Proyecto integrador 2 Comunidades en todos lados (docente).pdf
+│   │   └── Instructivo del proyecto integrador.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Aprender con sentido/
+│   │   ├── Los recuerdos familiares.pdf
+│   │   ├── Sumamos decisiones inteligentes en internet.pdf
+│   │   ├── Multiplicar buenas acciones.pdf
+│   │   └── Cuidamos nuestro hogar.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso de LibroMedia.pdf
+│   ├── Fichas de R.M., estrategias y más/
+│   │   ├── Unidad 01 R.M. (alumno).pdf
+│   │   ├── Unidad 01 R.M. (docente).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 02 R.M. (alumno).pdf
+│   │   ├── Unidad 02 R.M. (docente).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 03 R.M. (alumno).pdf
+│   │   ├── Unidad 03 R.M. (docente).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 03 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 03 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 03 Día del Logro.pdf
+│   │   ├── Unidad 04 R.M. (alumno).pdf
+│   │   ├── Unidad 04 R.M. (docente).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 05 R.M. (alumno).pdf
+│   │   ├── Unidad 05 R.M. (docente).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 06 R.M. (alumno).pdf
+│   │   ├── Unidad 06 R.M. (docente).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 07 R.M. (alumno).pdf
+│   │   ├── Unidad 07 R.M. (docente).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 07 Día del Logro.pdf
+│   │   ├── Unidad 08 R.M. (alumno).pdf
+│   │   ├── Unidad 08 R.M. (docente).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 2 (alumno).pdf
+│   │   └── Unidad 08 Instrumento de evaluación 2 (docente).pdf
+│   ├── Fichas de Refuerzo/
+│   │   ├── U01 Ficha 1.pdf
+│   │   ├── U01 Ficha 1 (solucionario).pdf
+│   │   ├── U02 Ficha 2.pdf
+│   │   ├── U02 Ficha 2 (solucionario).pdf
+│   │   ├── U03 Ficha 3.pdf
+│   │   ├── U03 Ficha 3 (solucionario).pdf
+│   │   ├── U04 Ficha 4.pdf
+│   │   ├── U04 Ficha 4 (solucionario).pdf
+│   │   ├── U05 Ficha 1.pdf
+│   │   ├── U05 Ficha 1 (solucionario).pdf
+│   │   ├── U06 Ficha 2.pdf
+│   │   ├── U06 Ficha 2 (solucionario).pdf
+│   │   ├── U07 Ficha 3.pdf
+│   │   ├── U07 Ficha 3 (solucionario).pdf
+│   │   ├── U08 Ficha 4.pdf
+│   │   └── U08 Ficha 4 (solucionario).pdf
+│   └── Respuestarios/
+│       ├── Respuestario U01.pdf
+│       ├── Respuestario U02.pdf
+│       ├── Respuestario U03.pdf
+│       ├── Respuestario U04.pdf
+│       ├── Respuestario U05.pdf
+│       ├── Respuestario U06.pdf
+│       ├── Respuestario U07.pdf
+│       └── Respuestario U08.pdf
+├── Matemática 3.er grado - Primaria/
+│   ├── Pautas para el trabajo con material concreto/
+│   │   ├── Unidad 01 Números de tres cifras.docx
+│   │   ├── Unidad 01 Ubicación y desplazamiento en croquis y planos.docx
+│   │   ├── Unidad 01 Valor posicional con números de cuatro cifras.docx
+│   │   ├── Unidad 02 Adición con números hasta de cuatro cifras.docx
+│   │   ├── Unidad 02 Localización de puntos en el plano cartesiano.docx
+│   │   ├── Unidad 02 Problemas aritméticos.docx
+│   │   ├── Unidad 03 Doble, triple y cuádruple.docx
+│   │   ├── Unidad 03 Problemas aritméticos.docx
+│   │   ├── Unidad 03 Relación entre la adición y la multiplicación.docx
+│   │   ├── Unidad 04 Patrones geométricos.docx
+│   │   ├── Unidad 04 Problemas aritméticos de multiplicación.docx
+│   │   ├── Unidad 04 Propiedades de la multiplicación.docx
+│   │   ├── Unidad 05 División exacta e inexacta.docx
+│   │   ├── Unidad 05 Metro, centímetro y milímetro.docx
+│   │   ├── Unidad 05 Reparto equitativo.docx
+│   │   ├── Unidad 06 Comparación y relación de orden.docx
+│   │   ├── Unidad 06 Patrones aditivos.docx
+│   │   ├── Unidad 06 Sustracción.docx
+│   │   ├── Unidad 07 Comparación y relación de orden.docx
+│   │   ├── Unidad 07 Cuerpos geométricos.docx
+│   │   ├── Unidad 07 Representación de fracciones.docx
+│   │   ├── Unidad 08 Adición de fracciones homogéneas.docx
+│   │   ├── Unidad 08 Sucesos seguros, posibles e imposibles.docx
+│   │   └── Unidad 08 Sustracción de fracciones homogéneas.docx
+│   ├── Actividades evaluativas y metacognitivas - Tomo I/
+│   │   ├── U01 - Actividad evaluativa 1.pdf
+│   │   ├── U01 - Actividad evaluativa 2.pdf
+│   │   ├── U01 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 1.pdf
+│   │   ├── U02 - Actividad evaluativa 2.pdf
+│   │   ├── U02 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 3.pdf
+│   │   ├── U03 - Actividad evaluativa 1.pdf
+│   │   ├── U03 - Actividad evaluativa 2.pdf
+│   │   ├── U03 - Actividad metacognitiva 1.pdf
+│   │   ├── U04 - Actividad evaluativa 1.pdf
+│   │   ├── U04 - Actividad evaluativa 2.pdf
+│   │   ├── U04 - Actividad metacognitiva 1.pdf
+│   │   └── U04 - Actividad evaluativa 3.pdf
+│   ├── Actividades evaluativas y metacognitivas - Tomo II/
+│   │   ├── U05 - Actividad evaluativa 1.pdf
+│   │   ├── U05 - Actividad evaluativa 2.pdf
+│   │   ├── U05 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 1.pdf
+│   │   ├── U06 - Actividad evaluativa 2.pdf
+│   │   ├── U06 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 3.pdf
+│   │   ├── U07 - Actividad evaluativa 1.pdf
+│   │   ├── U07 - Actividad evaluativa 2.pdf
+│   │   ├── U07 - Actividad evaluativa 3.pdf
+│   │   ├── U07 - Actividad metacognitiva 1.pdf
+│   │   ├── U08 - Actividad evaluativa 1.pdf
+│   │   ├── U08 - Actividad evaluativa 2.pdf
+│   │   ├── U08 - Actividad metacognitiva 1.pdf
+│   │   └── U08 - Actividad evaluativa 3.pdf
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   ├── Cálculo mental 3.pdf
+│   │   └── Cálculo mental 3 (Solucionario).pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   ├── Problemas 7.pdf
+│   │   └── Problemas 7 (Solucionario).pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   ├── Números y operaciones 7.pdf
+│   │   └── Números y operaciones 7 (Solucionario).pdf
+│   ├── Proyecto integrador/
+│   │   ├── Proyecto integrador 3 Superhéroes del cambio global (alumno).pdf
+│   │   ├── Proyecto integrador 3 Superhéroes del cambio global (docente).pdf
+│   │   └── Instructivo del proyecto integrador.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Aprender con sentido/
+│   │   ├── Multiplicar el bien.pdf
+│   │   ├── Tiempo para hablar con Jesús.pdf
+│   │   ├── ¡Podemos ser confiables!.pdf
+│   │   └── ¡Las diferencias importan!.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso de LibroMedia.pdf
+│   ├── Fichas de R.M., estrategias y más/
+│   │   ├── Unidad 01 R.M. (alumno).pdf
+│   │   ├── Unidad 01 R.M. (docente).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 01 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 01 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 02 R.M. (alumno).pdf
+│   │   ├── Unidad 02 R.M. (docente).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 03 R.M. (alumno).pdf
+│   │   ├── Unidad 03 R.M. (docente).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 03 Día del Logro.pdf
+│   │   ├── Unidad 04 R.M. (alumno).pdf
+│   │   ├── Unidad 04 R.M. (docente).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 05 R.M. (alumno).pdf
+│   │   ├── Unidad 05 R.M. (docente).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 06 R.M. (alumno).pdf
+│   │   ├── Unidad 06 R.M. (docente).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 07 R.M. (alumno).pdf
+│   │   ├── Unidad 07 R.M. (docente).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 07 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 07 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 07 Día del Logro.pdf
+│   │   ├── Unidad 08 R.M. (alumno).pdf
+│   │   ├── Unidad 08 R.M. (docente).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 2 (alumno).pdf
+│   │   └── Unidad 08 Instrumento de evaluación 2 (docente).pdf
+│   ├── Fichas de Refuerzo/
+│   │   ├── U01 Ficha 1.pdf
+│   │   ├── U01 Ficha 1 (solucionario).pdf
+│   │   ├── U01 Ficha 2.pdf
+│   │   ├── U01 Ficha 2 (solucionario).pdf
+│   │   ├── U02 Ficha 3.pdf
+│   │   ├── U02 Ficha 3 (solucionario).pdf
+│   │   ├── U02 Ficha 4.pdf
+│   │   ├── U02 Ficha 4 (solucionario).pdf
+│   │   ├── U03 Ficha 5.pdf
+│   │   ├── U03 Ficha 5 (solucionario).pdf
+│   │   ├── U03 Ficha 6.pdf
+│   │   ├── U03 Ficha 6 (solucionario).pdf
+│   │   ├── U04 Ficha 7.pdf
+│   │   ├── U04 Ficha 7 (solucionario).pdf
+│   │   ├── U04 Ficha 8.pdf
+│   │   ├── U04 Ficha 8 (solucionario).pdf
+│   │   ├── U05 Ficha 1.pdf
+│   │   ├── U05 Ficha 1 (solucionario).pdf
+│   │   ├── U05 Ficha 2.pdf
+│   │   ├── U05 Ficha 2 (solucionario).pdf
+│   │   ├── U06 Ficha 3.pdf
+│   │   ├── U06 Ficha 3 (solucionario).pdf
+│   │   ├── U06 Ficha 4.pdf
+│   │   ├── U06 Ficha 4 (solucionario).pdf
+│   │   ├── U07 Ficha 5.pdf
+│   │   ├── U07 Ficha 5 (solucionario).pdf
+│   │   ├── U07 Ficha 6.pdf
+│   │   ├── U07 Ficha 6 (solucionario).pdf
+│   │   ├── U08 Ficha 7.pdf
+│   │   ├── U08 Ficha 7 (solucionario).pdf
+│   │   ├── U08 Ficha 8.pdf
+│   │   └── U08 Ficha 8 (solucionario).pdf
+│   └── Respuestarios/
+│       ├── Respuestario U01.pdf
+│       ├── Respuestario U02.pdf
+│       ├── Respuestario U03.pdf
+│       ├── Respuestario U04.pdf
+│       ├── Respuestario U05.pdf
+│       ├── Respuestario U06.pdf
+│       ├── Respuestario U07.pdf
+│       └── Respuestario U08.pdf
+├── Matemática 4.to grado - Primaria/
+│   ├── Pautas para el trabajo con material concreto/
+│   │   ├── Unidad 01 Aproximación por redondeo.docx
+│   │   ├── Unidad 01 Comparación y relación de orden.docx
+│   │   ├── Unidad 01 Números de cinco cifras.docx
+│   │   ├── Unidad 02 Igualdades numéricas.docx
+│   │   ├── Unidad 02 Localización de puntos en el plano.docx
+│   │   ├── Unidad 02 Sustracción con números hasta de cinco cifras.docx
+│   │   ├── Unidad 03 Pertenencia y subconjuntos.docx
+│   │   ├── Unidad 03 Polígonos.docx
+│   │   ├── Unidad 03 Problemas aritméticos.docx
+│   │   ├── Unidad 04 División exacta e inexacta.docx
+│   │   ├── Unidad 04 Traslación.docx
+│   │   ├── Unidad 04 Unidades de medida de tiempo.docx
+│   │   ├── Unidad 05 Fracciones equivalentes.docx
+│   │   ├── Unidad 05 Fracciones propias e impropias.docx
+│   │   ├── Unidad 05 Moda y media aritmética.docx
+│   │   ├── Unidad 06 Adición y sustracción de fracciones homogéneas.docx
+│   │   ├── Unidad 06 Gráfico de barras agrupadas.docx
+│   │   ├── Unidad 06 Tiempo en horas y minutos.docx
+│   │   ├── Unidad 07 Ocurrencia de un suceso.docx
+│   │   ├── Unidad 07 Sustracción de fracciones heterogéneas.docx
+│   │   ├── Unidad 07 Unidades de medida de masa.docx
+│   │   ├── Unidad 08 Comparación y relación de orden.docx
+│   │   ├── Unidad 08 Expresión decimal.docx
+│   │   └── Unidad 08 Vista desde diferentes posiciones.docx
+│   ├── Actividades evaluativas y metacognitivas - Tomo I/
+│   │   ├── U01 - Actividad evaluativa 1.pdf
+│   │   ├── U01 - Actividad evaluativa 2.pdf
+│   │   ├── U01 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 1.pdf
+│   │   ├── U02 - Actividad evaluativa 2.pdf
+│   │   ├── U02 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 3.pdf
+│   │   ├── U03 - Actividad evaluativa 1.pdf
+│   │   ├── U03 - Actividad evaluativa 2.pdf
+│   │   ├── U03 - Actividad metacognitiva 1.pdf
+│   │   ├── U04 - Actividad evaluativa 1.pdf
+│   │   ├── U04 - Actividad evaluativa 2.pdf
+│   │   └── U04 - Actividad metacognitiva 1.pdf
+│   ├── Actividades evaluativas y metacognitivas - Tomo II/
+│   │   ├── U05 - Actividad evaluativa 1.pdf
+│   │   ├── U05 - Actividad evaluativa 2.pdf
+│   │   ├── U05 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 1.pdf
+│   │   ├── U06 - Actividad evaluativa 2.pdf
+│   │   ├── U06 - Actividad evaluativa 3.pdf
+│   │   ├── U06 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 4.pdf
+│   │   ├── U07 - Actividad evaluativa 1.pdf
+│   │   ├── U07 - Actividad evaluativa 2.pdf
+│   │   ├── U07 - Actividad metacognitiva 1.pdf
+│   │   ├── U08 - Actividad evaluativa 1.pdf
+│   │   ├── U08 - Actividad evaluativa 2.pdf
+│   │   ├── U08 - Actividad evaluativa 3.pdf
+│   │   └── U08 - Actividad metacognitiva 1.pdf
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   ├── Cálculo mental 4.pdf
+│   │   └── Cálculo mental 4 (Solucionario).pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   ├── Problemas 8.pdf
+│   │   └── Problemas 8 (Solucionario).pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   ├── Números y operaciones 8.pdf
+│   │   └── Números y operaciones 8 (Solucionario).pdf
+│   ├── Proyecto integrador/
+│   │   ├── Proyecto integrador 4 Exploradores del entorno (alumno).pdf
+│   │   ├── Proyecto integrador 4 Exploradores del entorno (docente).pdf
+│   │   └── Instructivo del proyecto integrador.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Aprender con sentido/
+│   │   ├── Calcular los daños ambientales.pdf
+│   │   ├── Cómo invertimos el tiempo.pdf
+│   │   ├── Formamos un equipo con Jesús.pdf
+│   │   └── Los vínculos emocionales.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso de LibroMedia.pdf
+│   ├── Fichas de R.M., estrategias y más/
+│   │   ├── Unidad 01 R.M. (alumno).pdf
+│   │   ├── Unidad 01 R.M. (docente).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 02 R.M. (alumno).pdf
+│   │   ├── Unidad 02 R.M. (docente).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 02 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 02 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 03 R.M. (alumno).pdf
+│   │   ├── Unidad 03 R.M. (docente).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 03 Día del Logro.pdf
+│   │   ├── Unidad 04 R.M. (alumno).pdf
+│   │   ├── Unidad 04 R.M. (docente).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 05 R.M. (alumno).pdf
+│   │   ├── Unidad 05 R.M. (docente).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 06 R.M. (alumno).pdf
+│   │   ├── Unidad 06 R.M. (docente).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 07 R.M. (alumno).pdf
+│   │   ├── Unidad 07 R.M. (docente).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 07 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 07 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 07 Día del Logro.pdf
+│   │   ├── Unidad 08 R.M. (alumno).pdf
+│   │   ├── Unidad 08 R.M. (docente).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 2 (alumno).pdf
+│   │   └── Unidad 08 Instrumento de evaluación 2 (docente).pdf
+│   ├── Fichas de Refuerzo/
+│   │   ├── U01 Ficha 1.pdf
+│   │   ├── U01 Ficha 1 (solucionario).pdf
+│   │   ├── U01 Ficha 2.pdf
+│   │   ├── U01 Ficha 2 (solucionario).pdf
+│   │   ├── U02 Ficha 3.pdf
+│   │   ├── U02 Ficha 3 (solucionario).pdf
+│   │   ├── U02 Ficha 4.pdf
+│   │   ├── U02 Ficha 4 (solucionario).pdf
+│   │   ├── U03 Ficha 5.pdf
+│   │   ├── U03 Ficha 5 (solucionario).pdf
+│   │   ├── U03 Ficha 6.pdf
+│   │   ├── U03 Ficha 6 (solucionario).pdf
+│   │   ├── U04 Ficha 7.pdf
+│   │   ├── U04 Ficha 7 (solucionario).pdf
+│   │   ├── U04 Ficha 8.pdf
+│   │   ├── U04 Ficha 8 (solucionario).pdf
+│   │   ├── U05 Ficha 1.pdf
+│   │   ├── U05 Ficha 1 (solucionario).pdf
+│   │   ├── U05 Ficha 2.pdf
+│   │   ├── U05 Ficha 2 (solucionario).pdf
+│   │   ├── U06 Ficha 3.pdf
+│   │   ├── U06 Ficha 3 (solucionario).pdf
+│   │   ├── U06 Ficha 4.pdf
+│   │   ├── U06 Ficha 4 (solucionario).pdf
+│   │   ├── U07 Ficha 5.pdf
+│   │   ├── U07 Ficha 5 (solucionario).pdf
+│   │   ├── U07 Ficha 6.pdf
+│   │   ├── U07 Ficha 6 (solucionario).pdf
+│   │   ├── U08 Ficha 7.pdf
+│   │   ├── U08 Ficha 7 (solucionario).pdf
+│   │   ├── U08 Ficha 8.pdf
+│   │   └── U08 Ficha 8 (solucionario).pdf
+│   └── Respuestarios/
+│       ├── Respuestario U01.pdf
+│       ├── Respuestario U02.pdf
+│       ├── Respuestario U03.pdf
+│       ├── Respuestario U04.pdf
+│       ├── Respuestario U05.pdf
+│       ├── Respuestario U06.pdf
+│       ├── Respuestario U07.pdf
+│       └── Respuestario U08.pdf
+├── Matemática 5.to grado - Primaria/
+│   ├── Pautas para el trabajo con material concreto/
+│   │   ├── Unidad 01 Ecuaciones.docx
+│   │   ├── Unidad 01 Formación de la centena de millar.docx
+│   │   ├── Unidad 01 Problemas aritméticos.docx
+│   │   ├── Unidad 02 Problemas con ecuaciones.docx
+│   │   ├── Unidad 02 Propiedades de la multiplicación.docx
+│   │   ├── Unidad 02 Tabla de frecuencias.docx
+│   │   ├── Unidad 03 Criterios de divisibilidad.docx
+│   │   ├── Unidad 03 Intersección y unión de conjuntos.docx
+│   │   ├── Unidad 03 Pictogramas.docx
+│   │   ├── Unidad 04 Ángulos de un triángulo y un cuadrilátero.docx
+│   │   ├── Unidad 04 Fracciones equivalentes.docx
+│   │   ├── Unidad 04 Representación de fracciones.docx
+│   │   ├── Unidad 05 Adición y sustracción de fracciones heterogéneas.docx
+│   │   ├── Unidad 05 Adición y sustracción de fracciones homogéneas.docx
+│   │   ├── Unidad 05 Gráfico de barras agrupadas.docx
+│   │   ├── Unidad 06 Comparación y relación de orden.docx
+│   │   ├── Unidad 06 Experimentos aleatorios y deterministas.docx
+│   │   ├── Unidad 06 Patrones multiplicativos.docx
+│   │   ├── Unidad 07 División de dos números naturales.docx
+│   │   ├── Unidad 07 Probabilidad y diagrama de árbol.docx
+│   │   ├── Unidad 07 Unidades de longitud.docx
+│   │   ├── Unidad 08 Razón y proporción.docx
+│   │   ├── Unidad 08 Vistas de una construcción.docx
+│   │   └── Unidad 08 Volumen de un prisma.docx
+│   ├── Actividades evaluativas y metacognitivas - Tomo I/
+│   │   ├── U01 - Actividad evaluativa 1.pdf
+│   │   ├── U01 - Actividad evaluativa 2.pdf
+│   │   ├── U01 - Actividad evaluativa 3.pdf
+│   │   ├── U01 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 1.pdf
+│   │   ├── U02 - Actividad evaluativa 2.pdf
+│   │   ├── U02 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 3.pdf
+│   │   ├── U03 - Actividad evaluativa 1.pdf
+│   │   ├── U03 - Actividad evaluativa 2.pdf
+│   │   ├── U03 - Actividad metacognitiva 1.pdf
+│   │   ├── U04 - Actividad evaluativa 1.pdf
+│   │   ├── U04 - Actividad evaluativa 2.pdf
+│   │   ├── U04 - Actividad metacognitiva 1.pdf
+│   │   └── U04 - Actividad evaluativa 3.pdf
+│   ├── Actividades evaluativas y metacognitivas - Tomo II/
+│   │   ├── U05 - Actividad evaluativa 1.pdf
+│   │   ├── U05 - Actividad evaluativa 2.pdf
+│   │   ├── U05 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 1.pdf
+│   │   ├── U06 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 2.pdf
+│   │   ├── U07 - Actividad evaluativa 1.pdf
+│   │   ├── U07 - Actividad evaluativa 2.pdf
+│   │   ├── U07 - Actividad evaluativa 3.pdf
+│   │   ├── U07 - Actividad metacognitiva 1.pdf
+│   │   ├── U08 - Actividad evaluativa 1.pdf
+│   │   ├── U08 - Actividad evaluativa 2.pdf
+│   │   ├── U08 - Actividad metacognitiva 1.pdf
+│   │   └── U08 - Actividad evaluativa 3.pdf
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   ├── Cálculo mental 5.pdf
+│   │   └── Cálculo mental 5 (Solucionario).pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   ├── Problemas 10.pdf
+│   │   └── Problemas 10 (Solucionario).pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   ├── Números y operaciones 9.pdf
+│   │   └── Números y operaciones 9 (Solucionario).pdf
+│   ├── Proyecto integrador/
+│   │   ├── Proyecto integrador 5 Hábitats en el jardín del colegio (alumno).pdf
+│   │   ├── Proyecto integrador 5 Hábitats en el jardín del colegio (docente).pdf
+│   │   └── Instructivo del proyecto integrador.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Aprender con sentido/
+│   │   ├── Compartir lo que tenemos.pdf
+│   │   ├── Usar la tecnología para ayudar.pdf
+│   │   ├── Hablar siempre con Jesús.pdf
+│   │   └── Marcamos límites.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso de LibroMedia.pdf
+│   ├── Fichas de R.M., estrategias y más/
+│   │   ├── Unidad 01 R.M. (alumno).pdf
+│   │   ├── Unidad 01 R.M. (docente).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 02 R.M. (alumno).pdf
+│   │   ├── Unidad 02 R.M. (docente).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 03 R.M. (alumno).pdf
+│   │   ├── Unidad 03 R.M. (docente).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 03 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 03 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 03 Día del Logro.pdf
+│   │   ├── Unidad 04 R.M. (alumno).pdf
+│   │   ├── Unidad 04 R.M. (docente).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 05 R.M. (alumno).pdf
+│   │   ├── Unidad 05 R.M. (docente).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 06 R.M. (alumno).pdf
+│   │   ├── Unidad 06 R.M. (docente).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 07 R.M. (alumno).pdf
+│   │   ├── Unidad 07 R.M. (docente).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 07 Día del Logro.pdf
+│   │   ├── Unidad 08 R.M. (alumno).pdf
+│   │   ├── Unidad 08 R.M. (docente).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 08 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 08 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 2 (alumno).pdf
+│   │   └── Unidad 08 Instrumento de evaluación 2 (docente).pdf
+│   ├── Fichas de Refuerzo/
+│   │   ├── U01 Ficha 1.pdf
+│   │   ├── U01 Ficha 1 (solucionario).pdf
+│   │   ├── U01 Ficha 2.pdf
+│   │   ├── U01 Ficha 2 (solucionario).pdf
+│   │   ├── U02 Ficha 3.pdf
+│   │   ├── U02 Ficha 3 (solucionario).pdf
+│   │   ├── U02 Ficha 4.pdf
+│   │   ├── U02 Ficha 4 (solucionario).pdf
+│   │   ├── U03 Ficha 5.pdf
+│   │   ├── U03 Ficha 5 (solucionario).pdf
+│   │   ├── U03 Ficha 6.pdf
+│   │   ├── U03 Ficha 6 (solucionario).pdf
+│   │   ├── U04 Ficha 7.pdf
+│   │   ├── U04 Ficha 7 (solucionario).pdf
+│   │   ├── U04 Ficha 8.pdf
+│   │   ├── U04 Ficha 8 (solucionario).pdf
+│   │   ├── U05 Ficha 9.pdf
+│   │   ├── U05 Ficha 9 (solucionario).pdf
+│   │   ├── U05 Ficha 10.pdf
+│   │   ├── U05 Ficha 10 (solucionario).pdf
+│   │   ├── U06 Ficha 11.pdf
+│   │   ├── U06 Ficha 11 (solucionario).pdf
+│   │   ├── U06 Ficha 12.pdf
+│   │   ├── U06 Ficha 12 (solucionario).pdf
+│   │   ├── U07 Ficha 13.pdf
+│   │   ├── U07 Ficha 13 (solucionario).pdf
+│   │   ├── U07 Ficha 14.pdf
+│   │   ├── U07 Ficha 14 (solucionario).pdf
+│   │   ├── U08 Ficha 15.pdf
+│   │   ├── U08 Ficha 15 (solucionario).pdf
+│   │   ├── U08 Ficha 16.pdf
+│   │   └── U08 Ficha 16 (solucionario).pdf
+│   └── Respuestarios/
+│       ├── Respuestario U01.pdf
+│       ├── Respuestario U02.pdf
+│       ├── Respuestario U03.pdf
+│       ├── Respuestario U04.pdf
+│       ├── Respuestario U05.pdf
+│       ├── Respuestario U06.pdf
+│       ├── Respuestario U07.pdf
+│       └── Respuestario U08.pdf
+├── Matemática 6.to grado - Primaria/
+│   ├── Pautas para el trabajo con material concreto/
+│   │   ├── Unidad 01 Potenciación.docx
+│   │   ├── Unidad 01 Problemas aritméticos.docx
+│   │   ├── Unidad 01 Sistema de numeración decimal.docx
+│   │   ├── Unidad 02 Intersección y unión de conjuntos.docx
+│   │   ├── Unidad 02 Múltiplos y divisores.docx
+│   │   ├── Unidad 02 Números primos y compuestos.docx
+│   │   ├── Unidad 03 Adición de enteros.docx
+│   │   ├── Unidad 03 Comparación y valor absoluto.docx
+│   │   ├── Unidad 03 Sustracción de números enteros.docx
+│   │   ├── Unidad 04 Adición y sustracción de fracciones.docx
+│   │   ├── Unidad 04 Comparación y relación de orden.docx
+│   │   ├── Unidad 04 Igualdad y ecuación.docx
+│   │   ├── Unidad 05 Comparación y relación de orden.docx
+│   │   ├── Unidad 05 Expresión decimal de una fracción decimal.docx
+│   │   ├── Unidad 05 Polígonos. Clasificación.docx
+│   │   ├── Unidad 06 Área de triángulos y cuadriláteros.docx
+│   │   ├── Unidad 06 Inecuaciones. Propiedades.docx
+│   │   ├── Unidad 06 Multiplicación de expresiones decimales.docx
+│   │   ├── Unidad 07 Magnitudes directamente proporcionales.docx
+│   │   ├── Unidad 07 Magnitudes inversamente proporcionales.docx
+│   │   ├── Unidad 07 Unidades de volumen y de capacidad.docx
+│   │   ├── Unidad 08 Área de un cilindro.docx
+│   │   ├── Unidad 08 Área de un prisma.docx
+│   │   └── Unidad 08 Vistas de una construcción.docx
+│   ├── Actividades evaluativas y metacognitivas - Tomo I/
+│   │   ├── U01 - Actividad evaluativa 1.pdf
+│   │   ├── U01 - Actividad evaluativa 2.pdf
+│   │   ├── U01 - Actividad metacognitiva 1.pdf
+│   │   ├── U02 - Actividad evaluativa 1.pdf
+│   │   ├── U02 - Actividad evaluativa 2.pdf
+│   │   ├── U02 - Actividad evaluativa 3.pdf
+│   │   ├── U02 - Actividad metacognitiva 1.pdf
+│   │   ├── U03 - Actividad evaluativa 1.pdf
+│   │   ├── U03 - Actividad evaluativa 2.pdf
+│   │   ├── U03 - Actividad evaluativa 3.pdf
+│   │   ├── U03 - Actividad metacognitiva 1.pdf
+│   │   ├── U04 - Actividad evaluativa 1.pdf
+│   │   ├── U04 - Actividad evaluativa 2.pdf
+│   │   ├── U04 - Actividad evaluativa 3.pdf
+│   │   └── U04 - Actividad metacognitiva 1.pdf
+│   ├── Actividades evaluativas y metacognitivas - Tomo II/
+│   │   ├── U05 - Actividad evaluativa 1.pdf
+│   │   ├── U05 - Actividad evaluativa 2.pdf
+│   │   ├── U05 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 1.pdf
+│   │   ├── U06 - Actividad evaluativa 2.pdf
+│   │   ├── U06 - Actividad metacognitiva 1.pdf
+│   │   ├── U06 - Actividad evaluativa 3.pdf
+│   │   ├── U07 - Actividad evaluativa 1.pdf
+│   │   ├── U07 - Actividad evaluativa 2.pdf
+│   │   ├── U07 - Actividad metacognitiva 1.pdf
+│   │   ├── U08 - Actividad evaluativa 1.pdf
+│   │   ├── U08 - Actividad evaluativa 2.pdf
+│   │   ├── U08 - Actividad metacognitiva 1.pdf
+│   │   └── U08 - Actividad evaluativa 3.pdf
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   ├── Cálculo mental 6.pdf
+│   │   └── Cálculo mental 6 (Solucionario).pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   ├── Problemas 11.pdf
+│   │   └── Problemas 11 (Solucionario).pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   ├── Números y operaciones 11.pdf
+│   │   └── Números y operaciones 11 (Solucionario).pdf
+│   ├── Proyecto integrador/
+│   │   ├── Proyecto integrador 6 Poemas para los héroes (alumno).pdf
+│   │   ├── Proyecto integrador 6 Poemas para los héroes (docente).pdf
+│   │   └── Instructivo del proyecto integrador.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Aprender con sentido/
+│   │   └── Aprender con sentido 6.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso de LibroMedia.pdf
+│   ├── Fichas de R.M., estrategias y más/
+│   │   ├── Unidad 01 R.M. (alumno).pdf
+│   │   ├── Unidad 01 R.M. (docente).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 01 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 01 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 01 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 02 R.M. (alumno).pdf
+│   │   ├── Unidad 02 R.M. (docente).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 02 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 02 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 02 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 03 R.M. (alumno).pdf
+│   │   ├── Unidad 03 R.M. (docente).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 03 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 03 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 03 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 03 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 03 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 03 Día del Logro.pdf
+│   │   ├── Unidad 04 R.M. (alumno).pdf
+│   │   ├── Unidad 04 R.M. (docente).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 04 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 04 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 04 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 05 R.M. (alumno).pdf
+│   │   ├── Unidad 05 R.M. (docente).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 05 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 05 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 05 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 06 R.M. (alumno).pdf
+│   │   ├── Unidad 06 R.M. (docente).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 06 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 06 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (alumno).pdf
+│   │   ├── Unidad 06 Instrumento de evaluación 2 (docente).pdf
+│   │   ├── Unidad 07 R.M. (alumno).pdf
+│   │   ├── Unidad 07 R.M. (docente).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 07 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 07 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 07 Uso de herramienta tecnológica (alumno).pdf
+│   │   ├── Unidad 07 Uso de herramienta tecnológica (docente).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (alumno).pdf
+│   │   ├── Unidad 07 Instrumento de evaluación (docente).pdf
+│   │   ├── Unidad 07 Día del Logro.pdf
+│   │   ├── Unidad 08 R.M. (alumno).pdf
+│   │   ├── Unidad 08 R.M. (docente).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (alumno).pdf
+│   │   ├── Unidad 08 Estrategia para resolver problemas (docente).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (alumno).pdf
+│   │   ├── Unidad 08 Estrategia de cálculo mental (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (alumno).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 1 (docente).pdf
+│   │   ├── Unidad 08 Instrumento de evaluación 2 (alumno).pdf
+│   │   └── Unidad 08 Instrumento de evaluación 2 (docente).pdf
+│   ├── Fichas de Refuerzo/
+│   │   ├── U01 Ficha 1.pdf
+│   │   ├── U01 Ficha 1 (solucionario).pdf
+│   │   ├── U01 Ficha 2.pdf
+│   │   ├── U01 Ficha 2 (solucionario).pdf
+│   │   ├── U02 Ficha 3.pdf
+│   │   ├── U02 Ficha 3 (solucionario).pdf
+│   │   ├── U02 Ficha 4.pdf
+│   │   ├── U02 Ficha 4 (solucionario).pdf
+│   │   ├── U03 Ficha 5.pdf
+│   │   ├── U03 Ficha 5 (solucionario).pdf
+│   │   ├── U03 Ficha 6.pdf
+│   │   ├── U03 Ficha 6 (solucionario).pdf
+│   │   ├── U04 Ficha 7.pdf
+│   │   ├── U04 Ficha 7 (solucionario).pdf
+│   │   ├── U04 Ficha 8.pdf
+│   │   ├── U04 Ficha 8 (solucionario).pdf
+│   │   ├── U05 Ficha 1.pdf
+│   │   ├── U05 Ficha 1 (solucionario).pdf
+│   │   ├── U05 Ficha 2.pdf
+│   │   ├── U05 Ficha 2 (solucionario).pdf
+│   │   ├── U06 Ficha 3.pdf
+│   │   ├── U06 Ficha 3 (solucionario).pdf
+│   │   ├── U06 Ficha 4.pdf
+│   │   ├── U06 Ficha 4 (solucionario).pdf
+│   │   ├── U07 Ficha 5.pdf
+│   │   ├── U07 Ficha 5 (solucionario).pdf
+│   │   ├── U07 Ficha 6.pdf
+│   │   ├── U07 Ficha 6 (solucionario).pdf
+│   │   ├── U08 Ficha 7.pdf
+│   │   ├── U08 Ficha 7 (solucionario).pdf
+│   │   ├── U08 Ficha 8.pdf
+│   │   └── U08 Ficha 8 (solucionario).pdf
+│   └── Respuestarios/
+│       ├── Respuestario U01.pdf
+│       ├── Respuestario U02.pdf
+│       ├── Respuestario U03.pdf
+│       ├── Respuestario U04.pdf
+│       ├── Respuestario U05.pdf
+│       ├── Respuestario U06.pdf
+│       ├── Respuestario U07.pdf
+│       └── Respuestario U08.pdf
+├── Matemática 1.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional de la Educación Básica.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencia de conocimientos del ciclo VI.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Guía metodológica/
+│   │   ├── Guia metodológica U0.pdf
+│   │   ├── Guia metodológica U1.pdf
+│   │   ├── Guia metodológica U2.pdf
+│   │   ├── Guia metodológica U3.pdf
+│   │   ├── Guia metodológica U4.pdf
+│   │   ├── Guia metodológica U5.pdf
+│   │   ├── Guia metodológica U6.pdf
+│   │   ├── Guia metodológica U7.pdf
+│   │   └── Guia metodológica U8.pdf
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia matemática.pdf
+│   │   ├── Desarrollo de la competencia matemática 1. Respuestas.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   ├── Plan de mejora U8. Respuestas.pdf
+│   │   └── Modelos de redibujo.pdf
+│   ├── Solucionario y respuestas/
+│   │   ├── Solucionario U1.pdf
+│   │   ├── Respuestas U1.pdf
+│   │   ├── Solucionario U2.pdf
+│   │   ├── Respuestas U2.pdf
+│   │   ├── Solucionario U3.pdf
+│   │   ├── Respuestas U3.pdf
+│   │   ├── Solucionario U4.pdf
+│   │   ├── Respuestas U4.pdf
+│   │   ├── Solucionario U5.pdf
+│   │   ├── Respuestas U5.pdf
+│   │   ├── Solucionario U6.pdf
+│   │   ├── Respuestas U6.pdf
+│   │   ├── Solucionario U7.pdf
+│   │   ├── Respuestas U7.pdf
+│   │   ├── Solucionario U8.pdf
+│   │   └── Respuestas U8.pdf
+│   ├── Aprender con sentido/
+│   │   ├── ¿Dónde cabe tanta basura.pdf
+│   │   ├── La proporcionalidad de las emociones.pdf
+│   │   └── Geometría y arquitectura para el encuentro.pdf
+│   ├── Herramientas Cooperativas/
+│   │   ├── Caja de herramientas cooperativas.pdf
+│   │   ├── Asistente cooperativo Senpai (PDF).pdf
+│   │   └── Asistente cooperativo Senpai (Interactivo).html
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 2.do grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional de la Educación Básica.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencia de conocimientos del ciclo VI.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Guía metodológica/
+│   │   ├── Guia metodológica U0.pdf
+│   │   ├── Guia metodológica U1.pdf
+│   │   ├── Guia metodológica U2.pdf
+│   │   ├── Guia metodológica U3.pdf
+│   │   ├── Guia metodológica U4.pdf
+│   │   ├── Guia metodológica U5.pdf
+│   │   ├── Guia metodológica U6.pdf
+│   │   ├── Guia metodológica U7.pdf
+│   │   └── Guia metodológica U8.pdf
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia matemática 2.pdf
+│   │   ├── Desarrollo de la competencia matemática 2. Respuestas.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   ├── Plan de mejora U8. Respuestas.pdf
+│   │   └── Modelos de redibujo.pdf
+│   ├── Solucionario y respuestas/
+│   │   ├── Solucionario U1.pdf
+│   │   ├── Respuestas U1.pdf
+│   │   ├── Solucionario U2.pdf
+│   │   ├── Respuestas U2.pdf
+│   │   ├── Solucionario U3.pdf
+│   │   ├── Respuestas U3.pdf
+│   │   ├── Solucionario U4.pdf
+│   │   ├── Respuestas U4.pdf
+│   │   ├── Solucionario U5.pdf
+│   │   ├── Respuestas U5.pdf
+│   │   ├── Solucionario U6.pdf
+│   │   ├── Respuestas U6.pdf
+│   │   ├── Solucionario U7.pdf
+│   │   ├── Respuestas U7.pdf
+│   │   ├── Solucionario U8.pdf
+│   │   └── Respuestas U8.pdf
+│   ├── Aprender con sentido/
+│   │   ├── No es lo mismo precio que valor.pdf
+│   │   ├── ¿Para qué nos sirve un promedio.pdf
+│   │   └── ¿Robots mejores que los humanos.pdf
+│   ├── Herramientas Cooperativas/
+│   │   ├── Caja de herramientas cooperativas.pdf
+│   │   ├── Asistente cooperativo Senpai (PDF).pdf
+│   │   └── Asistente cooperativo Senpai (Interactivo).html
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 3.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional de la Educación Básica.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencia de conocimientos del ciclo VI.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Guía metodológica/
+│   │   ├── Guia metodológica U0.pdf
+│   │   ├── Guia metodológica U1.pdf
+│   │   ├── Guia metodológica U2.pdf
+│   │   ├── Guia metodológica U3.pdf
+│   │   ├── Guia metodológica U4.pdf
+│   │   ├── Guia metodológica U5.pdf
+│   │   ├── Guia metodológica U6.pdf
+│   │   ├── Guia metodológica U7.pdf
+│   │   └── Guia metodológica U8.pdf
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia matemática.pdf
+│   │   ├── Desarrollo de la competencia matemática. Respuestas.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   └── Plan de mejora U8. Respuestas.pdf
+│   ├── Solucionario y respuestas/
+│   │   ├── Solucionario U1.pdf
+│   │   ├── Respuestas U1.pdf
+│   │   ├── Solucionario U2.pdf
+│   │   ├── Respuestas U2.pdf
+│   │   ├── Solucionario U3.pdf
+│   │   ├── Respuestas U3.pdf
+│   │   ├── Solucionario U4.pdf
+│   │   ├── Respuestas U4.pdf
+│   │   ├── Solucionario U5.pdf
+│   │   ├── Respuestas U5.pdf
+│   │   ├── Solucionario U6.pdf
+│   │   ├── Respuestas U6.pdf
+│   │   ├── Solucionario U7.pdf
+│   │   ├── Respuestas U7.pdf
+│   │   ├── Solucionario U8.pdf
+│   │   └── Respuestas U8.pdf
+│   ├── Aprender con sentido/
+│   │   ├── Otra forma de organizar los desechos.pdf
+│   │   ├── Criterios para interpretar la información.pdf
+│   │   ├── Saberes para el encuentro con los demás.pdf
+│   │   ├── Nuestro volumen y capacidad para hacer el bien.pdf
+│   │   ├── Nuestra responsabilidad social.pdf
+│   │   └── El mañana en función de tus desiciones.pdf
+│   ├── Herramientas Cooperativas/
+│   │   ├── Caja de herramientas cooperativas.pdf
+│   │   ├── Asistente cooperativo Senpai (PDF).pdf
+│   │   └── Asistente cooperativo Senpai (Interactivo).html
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 4.to grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional de la Educación Básica.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencia de conocimientos del ciclo VII.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Guía metodológica/
+│   │   ├── Guia metodológica U0.pdf
+│   │   ├── Guia metodológica U1.pdf
+│   │   ├── Guia metodológica U2.pdf
+│   │   ├── Guia metodológica U3.pdf
+│   │   ├── Guia metodológica U4.pdf
+│   │   ├── Guia metodológica U5.pdf
+│   │   ├── Guia metodológica U6.pdf
+│   │   ├── Guia metodológica U7.pdf
+│   │   └── Guia metodológica U8.pdf
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia matemática 4.pdf
+│   │   ├── Desarrollo de la competencia matemática 4. Respuestas.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   ├── Plan de mejora U8. Respuestas.pdf
+│   │   └── Modelos de redibujo.pdf
+│   ├── Solucionario y respuestas/
+│   │   ├── Solucionario U1.pdf
+│   │   ├── Respuestas U1.pdf
+│   │   ├── Solucionario U2.pdf
+│   │   ├── Respuestas U2.pdf
+│   │   ├── Solucionario U3.pdf
+│   │   ├── Respuestas U3.pdf
+│   │   ├── Solucionario U4.pdf
+│   │   ├── Respuestas U4.pdf
+│   │   ├── Solucionario U5.pdf
+│   │   ├── Respuestas U5.pdf
+│   │   ├── Solucionario U6.pdf
+│   │   ├── Respuestas U6.pdf
+│   │   ├── Solucionario U7.pdf
+│   │   ├── Respuestas U7.pdf
+│   │   ├── Solucionario U8.pdf
+│   │   └── Respuestas U8.pdf
+│   ├── Aprender con sentido/
+│   │   ├── Una muestra de las redes sociales.pdf
+│   │   ├── Somos semejantes y hermanos.pdf
+│   │   ├── Trazamos la recta de nuestra vida.pdf
+│   │   └── Para Jesús no hay azar.pdf
+│   ├── Herramientas Cooperativas/
+│   │   ├── Caja de herramientas cooperativas.pdf
+│   │   ├── Asistente cooperativo Senpai (PDF).pdf
+│   │   └── Asistente cooperativo Senpai (Interactivo).html
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 5.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional de la Educación Básica.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencia de conocimientos del ciclo VI.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Guía metodológica/
+│   │   ├── Guia metodológica U0.pdf
+│   │   ├── Guia metodológica U1.pdf
+│   │   ├── Guia metodológica U2.pdf
+│   │   ├── Guia metodológica U3.pdf
+│   │   ├── Guia metodológica U4.pdf
+│   │   ├── Guia metodológica U5.pdf
+│   │   ├── Guia metodológica U6.pdf
+│   │   ├── Guia metodológica U7.pdf
+│   │   └── Guia metodológica U8.pdf
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia matemática.pdf
+│   │   ├── Desarrollo de la competencia matemática. Respuestas.pdf
+│   │   ├── Plan de mejora U1.pdf
+│   │   ├── Plan de mejora U1. Respuestas.pdf
+│   │   ├── Plan de mejora U2.pdf
+│   │   ├── Plan de mejora U2. Respuestas.pdf
+│   │   ├── Plan de mejora U3.pdf
+│   │   ├── Plan de mejora U3. Respuestas.pdf
+│   │   ├── Plan de mejora U4.pdf
+│   │   ├── Plan de mejora U4. Respuestas.pdf
+│   │   ├── Plan de mejora U5.pdf
+│   │   ├── Plan de mejora U5. Respuestas.pdf
+│   │   ├── Plan de mejora U6.pdf
+│   │   ├── Plan de mejora U6. Respuestas.pdf
+│   │   ├── Plan de mejora U7.pdf
+│   │   ├── Plan de mejora U7. Respuestas.pdf
+│   │   ├── Plan de mejora U8.pdf
+│   │   ├── Plan de mejora U8. Respuestas.pdf
+│   │   └── Modelos de redibujo.pdf
+│   ├── Solucionario y respuestas/
+│   │   ├── Solucionario U1.pdf
+│   │   ├── Respuestas U1.pdf
+│   │   ├── Solucionario U2.pdf
+│   │   ├── Respuestas U2.pdf
+│   │   ├── Solucionario U3.pdf
+│   │   ├── Respuestas U3.pdf
+│   │   ├── Solucionario U4.pdf
+│   │   ├── Respuestas U4.pdf
+│   │   ├── Solucionario U5.pdf
+│   │   ├── Respuestas U5.pdf
+│   │   ├── Solucionario U6.pdf
+│   │   ├── Respuestas U6.pdf
+│   │   ├── Solucionario U7.pdf
+│   │   ├── Respuestas U7.pdf
+│   │   ├── Solucionario U8.pdf
+│   │   └── Respuestas U8.pdf
+│   ├── Aprender con sentido/
+│   │   ├── Sin límites no hay convivencia.pdf
+│   │   ├── Jesús no se conforma con lo mínimo; nos invita a dar lo máximo.pdf
+│   │   └── La necesidad de las actividades circulares.pdf
+│   ├── Herramientas Cooperativas/
+│   │   ├── Caja de herramientas cooperativas.pdf
+│   │   ├── Asistente cooperativo Senpai (PDF).pdf
+│   │   └── Asistente cooperativo Senpai (Interactivo).html
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Ciencia y Tecnología 1.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Curriculo Nacional de la Educaicón Básica Regular.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencas de conocimientos del ciclo VI.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   ├── Desarrollo de la competencia científica 2.pdf
+│   │   └── PDF Laboratorio Ciencia y Tecnológía 1.pdf
+│   └── Guía metodológica/
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+├── Ciencias Sociales 1.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   └── Desarrollo de la competencia ciudadana 2.pdf
+│   ├── Guía metodológica/
+│   │   ├── Guía metodológica U0.pdf
+│   │   ├── Guía metodológica U1.pdf
+│   │   ├── Guía metodológica U2.pdf
+│   │   ├── Guía metodológica U3.pdf
+│   │   ├── Guía metodológica U4.pdf
+│   │   ├── Guía metodológica U5.pdf
+│   │   ├── Guía metodológica U6.pdf
+│   │   ├── Guía metodológica U7.pdf
+│   │   └── Guía metodológica U8.pdf
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Ciencia y Tecnología 2.do grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Curriculo Nacional de la Educaicón Básica Regular.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencas de conocimientos del ciclo VI.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   └── Guía metodológica/
+│       ├── Desarrollo de la competencia científica 2.pdf
+│       ├── PDF Laboratorio Ciencia y Tecnológía 2.pdf
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+├── Ciencias Sociales 2.do grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   └── Desarrollo de la competencia ciudadana 2.pdf
+│   ├── Guía metodológica/
+│   │   ├── Guía metodológica U0.pdf
+│   │   ├── Guía metodológica U1.pdf
+│   │   ├── Guía metodológica U2.pdf
+│   │   ├── Guía metodológica U3.pdf
+│   │   ├── Guía metodológica U4.pdf
+│   │   ├── Guía metodológica U5.pdf
+│   │   ├── Guía metodológica U6.pdf
+│   │   ├── Guía metodológica U7.pdf
+│   │   └── Guía metodológica U8.pdf
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Ciencias Sociales 3.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   └── Desarrollo de la competencia ciudadana 3.pdf
+│   ├── Guía metodológica/
+│   │   ├── Guía metodológica U0.pdf
+│   │   ├── Guía metodológica U1.pdf
+│   │   ├── Guía metodológica U2.pdf
+│   │   ├── Guía metodológica U3.pdf
+│   │   ├── Guía metodológica U4.pdf
+│   │   ├── Guía metodológica U5.pdf
+│   │   ├── Guía metodológica U6.pdf
+│   │   ├── Guía metodológica U7.pdf
+│   │   └── Guía metodológica U8.pdf
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Ciencias Sociales 4.to grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   └── Desarrollo de la competencia ciudadana 2.pdf
+│   ├── Guía metodológica/
+│   │   ├── Guía metodológica U0.pdf
+│   │   ├── Guía metodológica U1.pdf
+│   │   ├── Guía metodológica U2.pdf
+│   │   ├── Guía metodológica U3.pdf
+│   │   ├── Guía metodológica U4.pdf
+│   │   ├── Guía metodológica U5.pdf
+│   │   ├── Guía metodológica U6.pdf
+│   │   ├── Guía metodológica U7.pdf
+│   │   └── Guía metodológica U8.pdf
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Ciencias Sociales 5.to grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   └── Desarrollo de la competencia ciudadana 2.pdf
+│   ├── Guía metodológica/
+│   │   ├── Guía metodológica U0.pdf
+│   │   ├── Guía metodológica U1.pdf
+│   │   ├── Guía metodológica U2.pdf
+│   │   ├── Guía metodológica U3.pdf
+│   │   ├── Guía metodológica U4.pdf
+│   │   ├── Guía metodológica U5.pdf
+│   │   ├── Guía metodológica U6.pdf
+│   │   ├── Guía metodológica U7.pdf
+│   │   └── Guía metodológica U8.pdf
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Química 3.er grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Currículo Nacional.pdf
+│   │   ├── Programa Curricular de Educación Secundaria.pdf
+│   │   ├── Secuencias de conocimientos del ciclo VII.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   └── Propósitos de aprendizaje U8.docx
+│   ├── Atención a la diversidad/
+│   │   └── Desarrollo de la competencia científica.pdf
+│   └── Guía metodológica/
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+├── Biología 4.to grado - Secundaria/
+│   ├── Documentos curriculares/
+│   │   ├── Secuencias de conocimientos del ciclo VII.pdf
+│   │   ├── Propósitos de aprendizaje U1.pdf
+│   │   ├── Propósitos de aprendizaje U1.docx
+│   │   ├── Propósitos de aprendizaje U2.pdf
+│   │   ├── Propósitos de aprendizaje U2.docx
+│   │   ├── Propósitos de aprendizaje U3.pdf
+│   │   ├── Propósitos de aprendizaje U3.docx
+│   │   ├── Propósitos de aprendizaje U4.pdf
+│   │   ├── Propósitos de aprendizaje U4.docx
+│   │   ├── Propósitos de aprendizaje U5.pdf
+│   │   ├── Propósitos de aprendizaje U5.docx
+│   │   ├── Propósitos de aprendizaje U6.pdf
+│   │   ├── Propósitos de aprendizaje U6.docx
+│   │   ├── Propósitos de aprendizaje U7.pdf
+│   │   ├── Propósitos de aprendizaje U7.docx
+│   │   ├── Propósitos de aprendizaje U8.pdf
+│   │   ├── Propósitos de aprendizaje U8.docx
+│   │   ├── Currículo Nacional.pdf
+│   │   └── Programa Curricular de Educación Secundaria.pdf
+│   ├── Atención a la diversidad/
+│   │   ├── PDF Laboratorio Biología.pdf
+│   │   └── Desarrollo de la competencia científica 4.pdf
+│   └── Guía metodológica/
+│       ├── Guía metodológica U0.pdf
+│       ├── Guía metodológica U1.pdf
+│       ├── Guía metodológica U2.pdf
+│       ├── Guía metodológica U3.pdf
+│       ├── Guía metodológica U4.pdf
+│       ├── Guía metodológica U5.pdf
+│       ├── Guía metodológica U6.pdf
+│       ├── Guía metodológica U7.pdf
+│       └── Guía metodológica U8.pdf
+└── Física 5.to grado - Secundaria/
+    ├── Documentos curriculares/
+    │   ├── Currículo Nacional.pdf
+    │   ├── Programa Curricular de Educación Secundaria.pdf
+    │   ├── Secuencias de conocimientos del ciclo VII.pdf
+    │   ├── Propósitos de aprendizaje U1.pdf
+    │   ├── Propósitos de aprendizaje U1.docx
+    │   ├── Propósitos de aprendizaje U2.pdf
+    │   ├── Propósitos de aprendizaje U2.docx
+    │   ├── Propósitos de aprendizaje U3.pdf
+    │   ├── Propósitos de aprendizaje U3.docx
+    │   ├── Propósitos de aprendizaje U4.pdf
+    │   ├── Propósitos de aprendizaje U4.docx
+    │   ├── Propósitos de aprendizaje U5.pdf
+    │   ├── Propósitos de aprendizaje U5.docx
+    │   ├── Propósitos de aprendizaje U6.pdf
+    │   ├── Propósitos de aprendizaje U6.docx
+    │   ├── Propósitos de aprendizaje U7.pdf
+    │   ├── Propósitos de aprendizaje U7.docx
+    │   ├── Propósitos de aprendizaje U8.pdf
+    │   └── Propósitos de aprendizaje U8.docx
+    ├── Atención a la diversidad/
+    │   ├── Desarrollo de la competencia científica.pdf
+    │   ├── PDF Las propiedades de la materia.pdf
+    │   ├── PDF Los fluidos.pdf
+    │   ├── PDF El cambio climático.pdf
+    │   ├── PDF La física moderna.pdf
+    │   └── PDF Laboratorio Física.pdf
+    └── Guía metodológica/
+        ├── Guía metodológica U0.pdf
+        ├── Guía metodológica U1.pdf
+        ├── Guía metodológica U2.pdf
+        ├── Guía metodológica U3.pdf
+        ├── Guía metodológica U4.pdf
+        ├── Guía metodológica U5.pdf
+        ├── Guía metodológica U6.pdf
+        ├── Guía metodológica U7.pdf
+        └── Guía metodológica U8.pdf

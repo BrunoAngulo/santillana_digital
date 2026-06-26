@@ -1,0 +1,234 @@
+SantillanaDigital_Docs/
+├── Comunicación 1.er grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 1 Yo y mi mundo (alumno).pdf
+│   ├── Atlas del mundo/
+│   │   └── Atlas del mundo.pdf
+│   ├── Fiestas del Perú/
+│   │   └── Fiestas del Mundo.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso del Libromedia.pdf
+│   └── Alimentos nativos del Perú/
+│       └── Alimentos nativos del Perú.pdf
+├── Comunicación 2.do grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 2 Comunidades en todos lados (alumno).pdf
+│   ├── Atlas del mundo/
+│   │   └── Atlas del mundo.pdf
+│   ├── Fiestas del Perú/
+│   │   └── Fiestas del Perú.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso del LibroMedia/
+│   │   └── Manual de uso del Libromedia.pdf
+│   └── Alimentos nativos del Perú/
+│       └── Alimentos nativos del Perú.pdf
+├── Comunicación 3.er grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 3Superhérores del cambio global (alumno).pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso del Libromedia.pdf
+├── Comunicación 4.to grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 4 Exploradores del entorno (alumno).pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso del Libromedia.pdf
+├── Comunicación 5.to grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 5 Hábitats en el jardín del colegio (alumno).pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso del Libromedia.pdf
+├── Comunicación 6.to grado - Primaria/
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 6 Poema para los hérores (alumno).pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso del Libromedia.pdf
+├── Comunicación 1.er grado - Secundaria/
+│   └── Atención a la diversidad/
+│       └── Desarrollo de la competencia lectora 1.pdf
+├── Comunicación 2.do grado - Secundaria/
+│   └── Atención a la diversidad/
+│       └── Desarrollo de la competencia lectora 2.pdf
+├── Matemática 1.er grado - Primaria/
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   └── Cálculo mental 1.pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   └── Problemas 2.pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   └── Números y operaciones 3.pdf
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 1 Yo y mi mundo (alumno).pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 2.do grado - Primaria/
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   └── Cálculo mental 2.pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   └── Problemas 4.pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   └── Números y operaciones 2.pdf
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 2 Comunidades en todos lados (alumno).pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 3.er grado - Primaria/
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   └── Cálculo mental 3.pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   └── Problemas 7.pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   └── Números y operaciones 7.pdf
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 3 Superhéroes del cambio global (alumno).pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 4.to grado - Primaria/
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   └── Cálculo mental 4.pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   └── Problemas 8.pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   └── Números y operaciones 8.pdf
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 4 Exploradores del entorno (alumno).pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 5.to grado - Primaria/
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   └── Cálculo mental 5.pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   └── Problemas 10.pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   └── Números y operaciones 9.pdf
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 5 Hábitats en el jardín del colegio (alumno).pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 6.to grado - Primaria/
+│   ├── Cuaderno sobre el cálculo mental/
+│   │   └── Cálculo mental 6.pdf
+│   ├── Cuaderno sobre problemas matemáticos/
+│   │   └── Problemas 11.pdf
+│   ├── Cuaderno sobre los números y sus operaciones/
+│   │   └── Números y operaciones 11.pdf
+│   ├── Proyecto integrador/
+│   │   └── Proyecto integrador 6 Poemas para los héroes (alumno).pdf
+│   ├── Programa de educación emocional/
+│   │   └── Programa de educación emocional.pdf
+│   ├── Manual de uso de Santillana Digital/
+│   │   └── Manual de uso de Santillana Digital.pdf
+│   └── Manual de uso del LibroMedia/
+│       └── Manual de uso de LibroMedia.pdf
+├── Matemática 2.do grado - Secundaria/
+│   ├── Atención a la diversidad/
+│   │   ├── Plan de mejora.pdf
+│   │   └── Desarrollo de la competencia matemática 2.pdf
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de Santillana Digital.pdf
+├── Matemática 4.to grado - Secundaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de Santillana Digital.pdf
+├── Ciencia y Tecnología 1.er grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Ciencia y Tecnología 2.do grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Ciencia y Tecnología 3.er grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Ciencia y Tecnología 4.to grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Ciencia y Tecnología 5.to grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Ciencia y Tecnología 6.to grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Ciencias Sociales 1.er grado - Secundaria/
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Ciencias Sociales 2.do grado - Secundaria/
+│   └── Atención a la diversidad/
+│       └── Desarrollo de la competencia ciudadana 2.pdf
+├── Ciencia y Tecnología 2.do grado - Secundaria/
+│   └── Atención a la diversidad/
+│       ├── PDF Laboratorio Ciencia y Tecnología 2.pdf
+│       └── Desarrollo de la competencia científica 2.pdf
+├── Ciencias Sociales 3.er grado - Secundaria/
+│   ├── Atención a la diversidad/
+│   │   └── Desarrollo de la competencia ciudadana 3.pdf
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Ciencias Sociales 4.to grado - Secundaria/
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Ciencias Sociales 5.to grado - Secundaria/
+│   └── El Perú y sus regiones/
+│       └── El Perú y sus regiones.pdf
+├── Personal Social 1.er grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Personal Social 2.do grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Personal Social 3.er grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Personal Social 4.to grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Personal Social 5.to grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+├── Personal Social 6.to grado - Primaria/
+│   └── Manual de uso de Santillana Digital/
+│       └── Manual de uso de Santillana Digital.pdf
+└── Biología 4.to grado - Secundaria/
+    └── Atención a la diversidad/
+        ├── PDF Laboratorio Biología.pdf
+        └── Desarrollo de la competencia científica 4.pdf
+└── resumen_global.xlsx
