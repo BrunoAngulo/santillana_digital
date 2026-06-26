@@ -9,6 +9,7 @@ import sys
 import time
 import json
 import re
+import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from datetime import datetime
@@ -99,7 +100,7 @@ def api_post(session, path: str, json_data=None, files=None, headers_extra=None)
         hdrs = {k: v for k, v in session.headers.items() if k.lower() != "content-type"}
         if headers_extra:
             hdrs.update(headers_extra)
-        r = requests.post(url, files=files, headers=hdrs, timeout=(30, 600))
+        r = requests.post(url, files=files, headers=hdrs, timeout=(30, 1800))
     else:
         r = session.post(url, json=json_data, timeout=30)
     _raise_with_body(r)
@@ -392,12 +393,18 @@ def guardar_log(resultados: list[dict], ruta_log: Path):
     wb.save(ruta_log)
 
 
-MAX_WORKERS = 10  # máximo de uploads simultáneos
+MAX_WORKERS  = 10  # máximo de uploads simultáneos en total
+MAX_ZIP_SEM  = 3   # de esos 10, cuántos ZIPs pueden subir a la vez
+_zip_sem     = threading.Semaphore(MAX_ZIP_SEM)
 
 
 def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
                 disc_guid: str, idioma_val: str, col_guid: str) -> dict:
-    """Sube un archivo completo (crear → upload → metadata). Crea su propia sesión."""
+    """Sube un archivo completo (crear → upload → metadata). Crea su propia sesión.
+    Los ZIPs adquieren _zip_sem para no saturar el ancho de banda."""
+    is_zip = item["ruta"].suffix.lower() == ".zip"
+    if is_zip:
+        _zip_sem.acquire()
     session = build_session(token)
     nombre    = item["nombre_visible"]
     erp_id    = item["erp_id"]
@@ -434,6 +441,9 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
         )
     except Exception as e:
         resultado["error"] = str(e)
+    finally:
+        if is_zip:
+            _zip_sem.release()
     return resultado
 
 
