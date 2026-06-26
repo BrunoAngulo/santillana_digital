@@ -77,10 +77,17 @@ def build_session(token: str) -> requests.Session:
     return s
 
 
+def _raise_with_body(r):
+    try:
+        r.raise_for_status()
+    except requests.HTTPError as e:
+        raise requests.HTTPError(f"{e} — {r.text[:300]}", response=r) from None
+
+
 def api_get(session, path: str, params=None):
     url = f"{API_BASE}{path}"
     r = session.get(url, params=params, timeout=30)
-    r.raise_for_status()
+    _raise_with_body(r)
     return r.json()
 
 
@@ -91,17 +98,17 @@ def api_post(session, path: str, json_data=None, files=None, headers_extra=None)
         hdrs = {k: v for k, v in session.headers.items() if k.lower() != "content-type"}
         if headers_extra:
             hdrs.update(headers_extra)
-        r = requests.post(url, files=files, headers=hdrs, timeout=120)
+        r = requests.post(url, files=files, headers=hdrs, timeout=(30, 600))
     else:
         r = session.post(url, json=json_data, timeout=30)
-    r.raise_for_status()
+    _raise_with_body(r)
     return r.json()
 
 
 def api_put(session, path: str, json_data: dict):
     url = f"{API_BASE}{path}"
     r = session.put(url, json=json_data, timeout=30)
-    r.raise_for_status()
+    _raise_with_body(r)
     return r.json()
 
 
@@ -252,15 +259,23 @@ def obtener_upload_info(session, guid: str) -> dict:
 
 
 def subir_archivo(session, endpoint: str, upload_token: str, filepath: Path) -> bool:
-    """POST multipart al endpoint de files-storage."""
+    """POST multipart al endpoint de files-storage, con reintentos."""
     mime = _mime(filepath)
-    with open(filepath, "rb") as f:
-        files = {
-            "file": (filepath.name, f, mime),
-            "token": (None, upload_token),
-        }
-        resp = api_post(session, endpoint, files=files)
-    return resp.get("status") == "success"
+    for intento in range(3):
+        try:
+            with open(filepath, "rb") as f:
+                resp = api_post(session, endpoint, files={
+                    "file": (filepath.name, f, mime),
+                    "token": (None, upload_token),
+                })
+            return resp.get("status") == "success"
+        except (requests.RequestException, OSError) as e:
+            if intento < 2:
+                espera = 10 * (2 ** intento)  # 10 s, 20 s
+                tqdm.write(f"  [reintento {intento + 2}/3 en {espera}s] {filepath.name}: {e}")
+                time.sleep(espera)
+            else:
+                raise
 
 
 def _mime(path: Path) -> str:
