@@ -331,7 +331,7 @@ def leer_excel(xlsx_path: Path) -> list[dict]:
             tqdm.write(f"  [AVISO] Extensión desconocida ignorada: {nombre_archivo}")
             continue
         archivos.append({
-            "nombre_visible":  str(nombre_visible).strip().rstrip('.'),
+            "nombre_visible":  str(nombre_visible).strip(),
             "nombre_archivo":  str(nombre_archivo).strip(),
             "erp_id":          erp_id,
             "type_guid":       type_guid,
