@@ -198,17 +198,25 @@ def fetch_education_years(session, level_guid: str) -> list[dict]:
     return _YEARS_FALLBACK.get(level_guid, [])
 
 
+_DISCIPLINES_FALLBACK = [
+    {"guid": "00000000-0000-1000-0000-000000013146", "name": "Matemática"},
+    {"guid": "00000000-0000-1000-0000-000000013147", "name": "Comunicación"},
+    {"guid": "00000000-0000-1000-0000-000000013148", "name": "Personal Social"},
+    {"guid": "00000000-0000-1000-0000-000000063304", "name": "Ciencia y Tecnología"},
+]
+
+
 def fetch_disciplines(session) -> list[dict]:
     try:
         data = api_get(session, "/api/cms/disciplines")
         items = data.get("data", data)
-        if isinstance(items, list):
+        if isinstance(items, list) and items:
             return [{"guid": x.get("guid", x.get("discipline_guid")),
                      "name": x.get("name", x.get("discipline_name", str(x)))}
                     for x in items]
     except Exception:
         pass
-    return []
+    return _DISCIPLINES_FALLBACK
 
 
 def fetch_collections(session, search: str = "") -> list[dict]:
@@ -375,23 +383,14 @@ def main():
     print("  Subidor de contenidos — Compartir Conocimientos Santillana")
     print("=" * 65)
 
-    # ── 1. Token JWT ────────────────────────────────────────────────
-    print("\nPega tu token JWT (header Authorization completo, ej: eyJ...).")
-    token = input("Token > ").strip()
-    if not token:
-        sys.exit("No se ingresó token.")
-    # Agregar prefijo Bearer si no lo tiene
-    if not token.startswith("Bearer ") and not token.startswith("eyJ"):
-        sys.exit("Token con formato inesperado.")
-    auth_header = token if token.startswith("Bearer ") else token  # el API lo recibe sin prefix
-    session = build_session(auth_header)
+    # ── 1. Ruta del proyecto ────────────────────────────────────────
+    # Uso:  python subir_contenidos.py "C:\...\CDCOMPRI1P"
+    # Si no se pasa argumento, usa el directorio actual.
+    if len(sys.argv) > 1:
+        raiz = Path(sys.argv[1].strip('"').strip("'"))
+    else:
+        raiz = Path.cwd()
 
-    # ── 2. Rutas (auto-detectadas desde donde se ejecuta el script) ─
-    # Estructura esperada:
-    #   <raiz>/              ← aquí corre el script
-    #   <raiz>/OUTPUT/       ← contiene el Excel .xlsx
-    #   <raiz>/OUTPUT/Completo/  ← contiene todos los archivos a subir
-    raiz = Path.cwd()
     output_dir   = raiz / "OUTPUT"
     completo_dir = output_dir / "Completo"
 
@@ -399,11 +398,19 @@ def main():
     print(f"  Carpeta OUTPUT    : {output_dir}")
     print(f"  Carpeta Completo  : {completo_dir}")
 
+    if not raiz.is_dir():
+        sys.exit(f"\n[ERROR] La carpeta no existe: {raiz}")
     if not output_dir.is_dir():
-        sys.exit(f"\n[ERROR] No se encontró la carpeta OUTPUT en {raiz}\n"
-                 f"Ejecuta el script desde la carpeta raíz del proyecto.")
+        sys.exit(f"\n[ERROR] No se encontró OUTPUT/ en {raiz}")
     if not completo_dir.is_dir():
-        sys.exit(f"\n[ERROR] No se encontró OUTPUT/Completo en {raiz}")
+        sys.exit(f"\n[ERROR] No se encontró OUTPUT/Completo/ en {raiz}")
+
+    # ── 2. Token JWT ────────────────────────────────────────────────
+    print("\nPega tu token JWT (eyJ...).")
+    token = input("Token > ").strip()
+    if not token:
+        sys.exit("No se ingresó token.")
+    session = build_session(token)
 
     # Buscar Excel en OUTPUT/
     excels = list(output_dir.glob("*.xlsx"))
