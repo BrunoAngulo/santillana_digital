@@ -468,7 +468,7 @@ def main():
         col_guid = menu("Colección", collections_list)
         col_label = next((c["name"] for c in collections_list if c["guid"] == col_guid), col_guid)
 
-    # ── 5. Disponible para — por carpeta fuente ──────────────────────
+    # ── 5. Disponible para — por archivo con defaults inteligentes ───
     TYPE_LABEL = {
         "CTTY_05": "PDF",
         "CTTY_08": "HTML Interactivo",
@@ -477,35 +477,57 @@ def main():
     }
     DISP_LABEL = {0: "Docentes y Estudiantes", 1: "Solo Docentes"}
 
-    # Recopilar fuentes únicas con conteo
+    import re as _re
+
+    def default_disp(archivo: dict) -> int:
+        # ZIP con patrón de unidad (U01, U1, U02...U08) → ambos
+        # Todo lo demás → solo docentes
+        es_zip = archivo["nombre_archivo"].lower().endswith(".zip")
+        tiene_unidad = bool(_re.search(r'[Uu]\d{1,2}', archivo["nombre_archivo"]))
+        return 0 if (es_zip and tiene_unidad) else 1
+
+    # Asignar defaults
+    for a in archivos:
+        a["is_teacher_only"] = default_disp(a)
+
+    # Mostrar agrupado por carpeta fuente para que el usuario confirme o cambie
     from collections import Counter
     conteo_fuentes = Counter(a["carpeta_fuente"] for a in archivos)
     fuentes_unicas = sorted(conteo_fuentes.keys())
 
-    print("\n" + "=" * 65)
-    print("  DISPONIBLE PARA — por tipo de recurso")
-    print("=" * 65)
-    print("  Para cada tipo de recurso elige quién puede verlo:")
-    print("    1 = Docentes y Estudiantes")
-    print("    2 = Solo Docentes")
+    print("\n" + "=" * 70)
+    print("  DISPONIBLE PARA — confirma o cambia el default por tipo de recurso")
+    print("=" * 70)
+    print("  Regla automática: ZIP con número de unidad (U01-U08) → ambos.")
+    print("  Todo lo demás → Solo Docentes.")
+    print()
+    print("  Presiona Enter para aceptar el default, o escribe 1/2 para cambiar:")
+    print("    1 = Docentes y Estudiantes   2 = Solo Docentes")
     print()
 
-    disp_por_fuente: dict[str, int] = {}
     for fuente in fuentes_unicas:
+        # Calcular default de la fuente (mayoría)
+        vals = [a["is_teacher_only"] for a in archivos if a["carpeta_fuente"] == fuente]
+        default_fuente = max(set(vals), key=vals.count)  # valor más frecuente
+        default_str = "1" if default_fuente == 0 else "2"
+        default_txt = DISP_LABEL[default_fuente]
         n = conteo_fuentes[fuente]
-        while True:
-            resp = input(f"  [{fuente}] ({n} archivos) > ").strip()
-            if resp == "1":
-                disp_por_fuente[fuente] = 0
-                break
-            elif resp == "2":
-                disp_por_fuente[fuente] = 1
-                break
-            print("    Escribe 1 o 2")
 
-    # Asignar is_teacher_only a cada archivo
-    for a in archivos:
-        a["is_teacher_only"] = disp_por_fuente[a["carpeta_fuente"]]
+        resp = input(f"  [{fuente}] ({n} archivos)  default={default_txt}  > ").strip()
+        if resp == "":
+            nuevo = default_fuente
+        elif resp == "1":
+            nuevo = 0
+        elif resp == "2":
+            nuevo = 1
+        else:
+            print(f"    Entrada no válida, se usa el default: {default_txt}")
+            nuevo = default_fuente
+
+        # Aplicar a todos los archivos de esta fuente
+        for a in archivos:
+            if a["carpeta_fuente"] == fuente:
+                a["is_teacher_only"] = nuevo
 
     # ── 6. Previsualización detallada ────────────────────────────────
     level_name = next((l["name"] for l in levels if l["guid"] == level_guid), level_guid)
