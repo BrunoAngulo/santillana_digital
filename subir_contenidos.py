@@ -392,7 +392,7 @@ def guardar_log(resultados: list[dict], ruta_log: Path):
     wb.save(ruta_log)
 
 
-MAX_WORKERS = 4  # archivos subiendo en paralelo simultáneamente
+BATCH_SIZE = 10  # archivos por lote (todos arrancan en paralelo)
 
 
 def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
@@ -665,29 +665,37 @@ def main():
     if conf != "s":
         sys.exit("Cancelado por el usuario.")
 
-    # ── 7. Subida en paralelo ────────────────────────────────────────
-    print(f"\n  Subiendo {len(archivos)} archivos con {MAX_WORKERS} hilos en paralelo...\n")
+    # ── 7. Subida en lotes de BATCH_SIZE ────────────────────────────
+    total_lotes = (len(archivos) + BATCH_SIZE - 1) // BATCH_SIZE
+    print(f"\n  {len(archivos)} archivos · {total_lotes} lotes de {BATCH_SIZE} en paralelo\n")
     resultados = []
-    barra = tqdm(total=len(archivos), desc="Completados", unit="arch", ncols=80)
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        futures = {
-            executor.submit(
-                _subir_item, token,
-                item, level_guid, year_guid, disc_guid, idioma_val, col_guid
-            ): item
-            for item in archivos
-        }
-        for future in as_completed(futures):
-            resultado = future.result()
-            resultados.append(resultado)
-            if resultado["estado"] == "OK":
-                tqdm.write(f"  [OK]    {resultado['archivo']}")
-            else:
-                tqdm.write(f"  [ERROR] {resultado['archivo']}: {resultado['error']}")
-            barra.update(1)
+    for n_lote, inicio in enumerate(range(0, len(archivos), BATCH_SIZE), 1):
+        lote = archivos[inicio:inicio + BATCH_SIZE]
+        print(f"  ── Lote {n_lote}/{total_lotes} ({len(lote)} archivos) ──")
+        barra = tqdm(total=len(lote), desc=f"  Lote {n_lote:>2}", unit="arch", ncols=80)
 
-    barra.close()
+        with ThreadPoolExecutor(max_workers=len(lote)) as executor:
+            futures = {
+                executor.submit(
+                    _subir_item, token,
+                    item, level_guid, year_guid, disc_guid, idioma_val, col_guid
+                ): item
+                for item in lote
+            }
+            for future in as_completed(futures):
+                resultado = future.result()
+                resultados.append(resultado)
+                if resultado["estado"] == "OK":
+                    tqdm.write(f"    [OK]    {resultado['archivo']}")
+                else:
+                    tqdm.write(f"    [ERROR] {resultado['archivo']}: {resultado['error']}")
+                barra.update(1)
+
+        barra.close()
+        ok_lote  = sum(1 for r in resultados[-len(lote):] if r["estado"] == "OK")
+        err_lote = len(lote) - ok_lote
+        print(f"  Lote {n_lote} → OK: {ok_lote}  Errores: {err_lote}\n")
 
     # ── 7. Log de resultados ─────────────────────────────────────────
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
