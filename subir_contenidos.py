@@ -33,7 +33,7 @@ except ImportError:
 API_BASE = "https://compartirconocimientos-pe.santillana.com"
 
 # Mapeo extensión → type_guid
-# CTTY_05=PDF  CTTY_06=HTML  CTTY_12=Office  CTTY_13=ZIP
+# CTTY_05=PDF  CTTY_08=HTML Interactivo  CTTY_12=Office  CTTY_13=ZIP
 TYPE_GUID = {
     ".pdf":  "CTTY_05",
     ".zip":  "CTTY_13",
@@ -41,8 +41,8 @@ TYPE_GUID = {
     ".doc":  "CTTY_12",
     ".pptx": "CTTY_12",
     ".xlsx": "CTTY_12",
-    ".html": "CTTY_06",
-    ".htm":  "CTTY_06",
+    ".html": "CTTY_08",
+    ".htm":  "CTTY_08",
 }
 
 # is_teacher_only según "disponible para"
