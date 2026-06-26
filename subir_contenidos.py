@@ -301,12 +301,13 @@ def leer_excel(xlsx_path: Path) -> list[dict]:
             tqdm.write(f"  [AVISO] Extensión desconocida ignorada: {nombre_archivo}")
             continue
         archivos.append({
-            "nombre_visible": str(nombre_visible).strip(),
-            "nombre_archivo": str(nombre_archivo).strip(),
-            "erp_id":         erp_id,
-            "type_guid":      type_guid,
-            "carpeta":        str(carpeta).strip(),
-            "tipo":           str(tipo).strip(),
+            "nombre_visible":  str(nombre_visible).strip(),
+            "nombre_archivo":  str(nombre_archivo).strip(),
+            "erp_id":          erp_id,
+            "type_guid":       type_guid,
+            "carpeta":         str(carpeta).strip(),
+            "tipo":            str(tipo).strip(),
+            "carpeta_fuente":  str(carpeta_fuente).strip() if carpeta_fuente else "sin_categoria",
         })
     return archivos
 
@@ -455,13 +456,6 @@ def main():
         {"1": ("es", "Español"), "2": ("en", "Inglés"), "3": ("pt", "Portugués")}
     )
 
-    # Disponible para
-    disp_val, disp_label = menu_simple(
-        "Disponible para",
-        DISPONIBLE_MAP
-    )
-    is_teacher_only = disp_val
-
     # Colección
     print("\nBuscando colecciones (escribe parte del nombre para filtrar):")
     busq = input("Búsqueda colección > ").strip()
@@ -474,54 +468,86 @@ def main():
         col_guid = menu("Colección", collections_list)
         col_label = next((c["name"] for c in collections_list if c["guid"] == col_guid), col_guid)
 
-    # ── 5. Previsualización detallada ────────────────────────────────
-    level_name = next((l["name"] for l in levels if l["guid"] == level_guid), level_guid)
-    year_name  = next((y["name"] for y in years  if y["guid"] == year_guid),  year_guid) if years else year_guid
-    disc_name  = next((d["name"] for d in disciplines if d["guid"] == disc_guid), disc_guid) if disciplines else disc_guid
-
+    # ── 5. Disponible para — por carpeta fuente ──────────────────────
     TYPE_LABEL = {
         "CTTY_05": "PDF",
         "CTTY_08": "HTML Interactivo",
         "CTTY_12": "Office",
         "CTTY_13": "ZIP",
     }
+    DISP_LABEL = {0: "Docentes y Estudiantes", 1: "Solo Docentes"}
 
-    print("\n" + "=" * 90)
-    print("  DETALLE DE ARCHIVOS A SUBIR")
-    print("=" * 90)
-    print(f"  {'#':<4} {'Nombre visible':<40} {'Archivo':<38} {'Tipo':<18} {'erp_id'}")
-    print("  " + "─" * 86)
+    # Recopilar fuentes únicas con conteo
+    from collections import Counter
+    conteo_fuentes = Counter(a["carpeta_fuente"] for a in archivos)
+    fuentes_unicas = sorted(conteo_fuentes.keys())
+
+    print("\n" + "=" * 65)
+    print("  DISPONIBLE PARA — por tipo de recurso")
+    print("=" * 65)
+    print("  Para cada tipo de recurso elige quién puede verlo:")
+    print("    1 = Docentes y Estudiantes")
+    print("    2 = Solo Docentes")
+    print()
+
+    disp_por_fuente: dict[str, int] = {}
+    for fuente in fuentes_unicas:
+        n = conteo_fuentes[fuente]
+        while True:
+            resp = input(f"  [{fuente}] ({n} archivos) > ").strip()
+            if resp == "1":
+                disp_por_fuente[fuente] = 0
+                break
+            elif resp == "2":
+                disp_por_fuente[fuente] = 1
+                break
+            print("    Escribe 1 o 2")
+
+    # Asignar is_teacher_only a cada archivo
+    for a in archivos:
+        a["is_teacher_only"] = disp_por_fuente[a["carpeta_fuente"]]
+
+    # ── 6. Previsualización detallada ────────────────────────────────
+    level_name = next((l["name"] for l in levels if l["guid"] == level_guid), level_guid)
+    year_name  = next((y["name"] for y in years  if y["guid"] == year_guid),  year_guid) if years else year_guid
+    disc_name  = next((d["name"] for d in disciplines if d["guid"] == disc_guid), disc_guid) if disciplines else disc_guid
+
+    print("\n" + "=" * 100)
+    print("  DETALLE COMPLETO — así se subirá cada archivo")
+    print("=" * 100)
+    print(f"  {'#':<4} {'Nombre visible':<38} {'Archivo':<36} {'Tipo':<18} {'Disponible para'}")
+    print("  " + "─" * 96)
     for i, a in enumerate(archivos, 1):
         tipo_label = TYPE_LABEL.get(a["type_guid"], a["type_guid"])
-        nombre_vis = a["nombre_visible"][:39]
-        nombre_arc = a["nombre_archivo"][:37]
-        erp        = a["erp_id"][:30]
-        print(f"  {i:<4} {nombre_vis:<40} {nombre_arc:<38} {tipo_label:<18} {erp}")
-    print("=" * 90)
+        disp_label = DISP_LABEL[a["is_teacher_only"]]
+        nombre_vis = a["nombre_visible"][:37]
+        nombre_arc = a["nombre_archivo"][:35]
+        print(f"  {i:<4} {nombre_vis:<38} {nombre_arc:<36} {tipo_label:<18} {disp_label}")
+    print("=" * 100)
 
-    print("\n  METADATOS QUE SE APLICARÁN A TODOS LOS ARCHIVOS:")
+    print(f"\n  METADATOS COMUNES A TODOS:")
     print(f"    Etapa           : {level_name}")
     print(f"    Año / Serie     : {year_name}")
     print(f"    Asignatura      : {disc_name}")
     print(f"    Idioma          : {idioma_label}")
-    print(f"    Disponible para : {disp_label}")
     print(f"    Colección       : {col_label}")
     print(f"\n  Total: {len(archivos)} archivos")
-    print("=" * 90)
+    print("=" * 100)
 
     conf = input("\n¿Iniciar subida? (s/n) > ").strip().lower()
     if conf != "s":
         sys.exit("Cancelado por el usuario.")
 
-    # ── 6. Subida ────────────────────────────────────────────────────
+    # ── 7. Subida ────────────────────────────────────────────────────
     resultados = []
     barra = tqdm(archivos, desc="Subiendo", unit="arch", ncols=80)
 
     for item in barra:
-        nombre   = item["nombre_visible"]
-        erp_id   = item["erp_id"]
-        type_g   = item["type_guid"]
-        filepath = item["ruta"]
+        nombre         = item["nombre_visible"]
+        erp_id         = item["erp_id"]
+        type_g         = item["type_guid"]
+        filepath       = item["ruta"]
+        is_teacher_only = item["is_teacher_only"]
         barra.set_postfix_str(filepath.name[:35])
 
         resultado = {"archivo": filepath.name, "nombre_visible": nombre,
@@ -549,7 +575,7 @@ def main():
 
             # Paso 4: actualizar metadata
             ok_meta = actualizar_metadata(
-                session, guid, nombre, erp_id, type_g, is_teacher_only,
+                session, guid, nombre, erp_id, type_g, item["is_teacher_only"],
                 education_levels=[level_guid],
                 education_years=[year_guid],
                 disciplines=[disc_guid],
