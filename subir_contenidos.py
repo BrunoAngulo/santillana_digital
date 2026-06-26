@@ -162,18 +162,40 @@ def fetch_education_levels(session) -> list[dict]:
     ]
 
 
+_YEARS_FALLBACK = {
+    # Primaria (nivel 039)
+    "00000000-0000-1000-0000-000000000039": [
+        {"guid": "00000000-0000-1000-0000-000000000119", "name": "1.er grado - Primaria"},
+        {"guid": "00000000-0000-1000-0000-000000000120", "name": "2.do grado - Primaria"},
+        {"guid": "00000000-0000-1000-0000-000000000121", "name": "3.er grado - Primaria"},
+        {"guid": "00000000-0000-1000-0000-000000000122", "name": "4.to grado - Primaria"},
+        {"guid": "00000000-0000-1000-0000-000000000123", "name": "5.to grado - Primaria"},
+        {"guid": "00000000-0000-1000-0000-000000000124", "name": "6.to grado - Primaria"},
+    ],
+    # Secundaria (nivel 040)
+    "00000000-0000-1000-0000-000000000040": [
+        {"guid": "00000000-0000-1000-0000-000000000126", "name": "1.er año - Secundaria"},
+        {"guid": "00000000-0000-1000-0000-000000000127", "name": "2.do año - Secundaria"},
+        {"guid": "00000000-0000-1000-0000-000000000128", "name": "3.er año - Secundaria"},
+        {"guid": "00000000-0000-1000-0000-000000000129", "name": "4.to año - Secundaria"},
+        {"guid": "00000000-0000-1000-0000-000000000130", "name": "5.to año - Secundaria"},
+    ],
+}
+
+
 def fetch_education_years(session, level_guid: str) -> list[dict]:
     try:
         data = api_get(session, "/api/cms/education-years",
                        params={"education_level_guid": level_guid})
         items = data.get("data", data)
-        if isinstance(items, list):
+        if isinstance(items, list) and items:
             return [{"guid": x.get("guid", x.get("education_year_guid")),
                      "name": x.get("name", x.get("education_year_name", str(x)))}
                     for x in items]
     except Exception:
         pass
-    return []
+    # Fallback con GUIDs conocidos
+    return _YEARS_FALLBACK.get(level_guid, [])
 
 
 def fetch_disciplines(session) -> list[dict]:
