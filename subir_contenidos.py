@@ -33,10 +33,10 @@ except ImportError:
 API_BASE = "https://compartirconocimientos-pe.santillana.com"
 
 # Mapeo extensión → type_guid
-# CTTY_05=PDF  CTTY_08=HTML Interactivo  CTTY_12=Office  CTTY_13=ZIP
+# CTTY_05=PDF  CTTY_08=HTML Interactivo  CTTY_12=Office
 TYPE_GUID = {
     ".pdf":  "CTTY_05",
-    ".zip":  "CTTY_13",
+    ".zip":  "CTTY_08",   # ZIP = HTML Interactivo (paquete HTML)
     ".docx": "CTTY_12",
     ".doc":  "CTTY_12",
     ".pptx": "CTTY_12",
