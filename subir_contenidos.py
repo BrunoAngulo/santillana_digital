@@ -9,6 +9,7 @@ import sys
 import time
 import json
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from datetime import datetime
 
@@ -77,10 +78,17 @@ def build_session(token: str) -> requests.Session:
     return s
 
 
+def _raise_with_body(r):
+    try:
+        r.raise_for_status()
+    except requests.HTTPError as e:
+        raise requests.HTTPError(f"{e} — {r.text[:300]}", response=r) from None
+
+
 def api_get(session, path: str, params=None):
     url = f"{API_BASE}{path}"
     r = session.get(url, params=params, timeout=30)
-    r.raise_for_status()
+    _raise_with_body(r)
     return r.json()
 
 
@@ -91,17 +99,17 @@ def api_post(session, path: str, json_data=None, files=None, headers_extra=None)
         hdrs = {k: v for k, v in session.headers.items() if k.lower() != "content-type"}
         if headers_extra:
             hdrs.update(headers_extra)
-        r = requests.post(url, files=files, headers=hdrs, timeout=120)
+        r = requests.post(url, files=files, headers=hdrs, timeout=(30, 600))
     else:
         r = session.post(url, json=json_data, timeout=30)
-    r.raise_for_status()
+    _raise_with_body(r)
     return r.json()
 
 
 def api_put(session, path: str, json_data: dict):
     url = f"{API_BASE}{path}"
     r = session.put(url, json=json_data, timeout=30)
-    r.raise_for_status()
+    _raise_with_body(r)
     return r.json()
 
 
@@ -252,15 +260,23 @@ def obtener_upload_info(session, guid: str) -> dict:
 
 
 def subir_archivo(session, endpoint: str, upload_token: str, filepath: Path) -> bool:
-    """POST multipart al endpoint de files-storage."""
+    """POST multipart al endpoint de files-storage, con reintentos."""
     mime = _mime(filepath)
-    with open(filepath, "rb") as f:
-        files = {
-            "file": (filepath.name, f, mime),
-            "token": (None, upload_token),
-        }
-        resp = api_post(session, endpoint, files=files)
-    return resp.get("status") == "success"
+    for intento in range(3):
+        try:
+            with open(filepath, "rb") as f:
+                resp = api_post(session, endpoint, files={
+                    "file": (filepath.name, f, mime),
+                    "token": (None, upload_token),
+                })
+            return resp.get("status") == "success"
+        except (requests.RequestException, OSError) as e:
+            if intento < 2:
+                espera = 10 * (2 ** intento)  # 10 s, 20 s
+                tqdm.write(f"  [reintento {intento + 2}/3 en {espera}s] {filepath.name}: {e}")
+                time.sleep(espera)
+            else:
+                raise
 
 
 def _mime(path: Path) -> str:
@@ -374,6 +390,51 @@ def guardar_log(resultados: list[dict], ruta_log: Path):
     ws.column_dimensions["E"].width = 50
     ws.column_dimensions["F"].width = 70
     wb.save(ruta_log)
+
+
+MAX_WORKERS = 10  # máximo de uploads simultáneos
+
+
+def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
+                disc_guid: str, idioma_val: str, col_guid: str) -> dict:
+    """Sube un archivo completo (crear → upload → metadata). Crea su propia sesión."""
+    session = build_session(token)
+    nombre    = item["nombre_visible"]
+    erp_id    = item["erp_id"]
+    type_g    = item["type_guid"]
+    filepath  = item["ruta"]
+    resultado = {"archivo": filepath.name, "nombre_visible": nombre,
+                 "estado": "ERROR", "guid": "", "error": "", "url_viewer": ""}
+    try:
+        guid = crear_contenido(session, nombre, erp_id, type_g, item["is_teacher_only"])
+        resultado["guid"] = guid
+
+        upload_info = obtener_upload_info(session, guid)
+
+        ok_upload = subir_archivo(session, upload_info["endpoint"], upload_info["token"], filepath)
+        if not ok_upload:
+            raise RuntimeError("El endpoint de upload no devolvió success")
+
+        time.sleep(1)
+
+        ok_meta = actualizar_metadata(
+            session, guid, nombre, erp_id, type_g, item["is_teacher_only"],
+            education_levels=[level_guid],
+            education_years=[year_guid],
+            disciplines=[disc_guid],
+            langs=[idioma_val],
+            collections=[col_guid],
+        )
+        if not ok_meta:
+            raise RuntimeError("Error al actualizar metadatos (PUT)")
+
+        resultado["estado"] = "OK"
+        resultado["url_viewer"] = (
+            f"https://publisher.compartirconocimientos-pe.santillana.com/content/{guid}/1"
+        )
+    except Exception as e:
+        resultado["error"] = str(e)
+    return resultado
 
 
 # ── Main ────────────────────────────────────────────────────────────────────
@@ -604,62 +665,29 @@ def main():
     if conf != "s":
         sys.exit("Cancelado por el usuario.")
 
-    # ── 7. Subida ────────────────────────────────────────────────────
+    # ── 7. Subida en paralelo (pool de MAX_WORKERS) ──────────────────
+    print(f"\n  Subiendo {len(archivos)} archivos — máximo {MAX_WORKERS} simultáneos\n")
     resultados = []
-    barra = tqdm(archivos, desc="Subiendo", unit="arch", ncols=80)
+    barra = tqdm(total=len(archivos), desc="Completados", unit="arch", ncols=80)
 
-    for item in barra:
-        nombre         = item["nombre_visible"]
-        erp_id         = item["erp_id"]
-        type_g         = item["type_guid"]
-        filepath       = item["ruta"]
-        is_teacher_only = item["is_teacher_only"]
-        barra.set_postfix_str(filepath.name[:35])
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {
+            executor.submit(
+                _subir_item, token,
+                item, level_guid, year_guid, disc_guid, idioma_val, col_guid
+            ): item
+            for item in archivos
+        }
+        for future in as_completed(futures):
+            resultado = future.result()
+            resultados.append(resultado)
+            if resultado["estado"] == "OK":
+                tqdm.write(f"  [OK]    {resultado['archivo']}")
+            else:
+                tqdm.write(f"  [ERROR] {resultado['archivo']}: {resultado['error']}")
+            barra.update(1)
 
-        resultado = {"archivo": filepath.name, "nombre_visible": nombre,
-                     "estado": "ERROR", "guid": "", "error": "", "url_viewer": ""}
-        try:
-            # Paso 1: crear contenido
-            guid = crear_contenido(session, nombre, erp_id, type_g, is_teacher_only)
-            resultado["guid"] = guid
-
-            # Paso 2: obtener token de subida
-            upload_info = obtener_upload_info(session, guid)
-
-            # Paso 3: subir archivo
-            ok_upload = subir_archivo(
-                session,
-                upload_info["endpoint"],
-                upload_info["token"],
-                filepath,
-            )
-            if not ok_upload:
-                raise RuntimeError("El endpoint de upload no devolvió success")
-
-            # Esperar brevemente a que el storage procese
-            time.sleep(1)
-
-            # Paso 4: actualizar metadata
-            ok_meta = actualizar_metadata(
-                session, guid, nombre, erp_id, type_g, item["is_teacher_only"],
-                education_levels=[level_guid],
-                education_years=[year_guid],
-                disciplines=[disc_guid],
-                langs=[idioma_val],
-                collections=[col_guid],
-            )
-            if not ok_meta:
-                raise RuntimeError("Error al actualizar metadatos (PUT)")
-
-            viewer_url = f"https://publisher.compartirconocimientos-pe.santillana.com/content/{guid}/1"
-            resultado["estado"] = "OK"
-            resultado["url_viewer"] = viewer_url
-
-        except Exception as e:
-            resultado["error"] = str(e)
-            tqdm.write(f"\n  [ERROR] {filepath.name}: {e}")
-
-        resultados.append(resultado)
+    barra.close()
 
     # ── 7. Log de resultados ─────────────────────────────────────────
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
