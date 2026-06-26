@@ -519,66 +519,59 @@ def main():
         col_guid = menu("Colección", collections_list)
         col_label = next((c["name"] for c in collections_list if c["guid"] == col_guid), col_guid)
 
-    # ── 5. Disponible para — por archivo con defaults inteligentes ───
+    # ── 5. Disponible para — tabla interactiva por archivo ──────────
     TYPE_LABEL = {
         "CTTY_05": "PDF",
         "CTTY_08": "HTML Interactivo",
         "CTTY_12": "Office",
-        "CTTY_13": "ZIP",
     }
     DISP_LABEL = {0: "Docentes y Estudiantes", 1: "Solo Docentes"}
 
-    import re as _re
+    def default_disp(nombre: str) -> int:
+        # ZIP con patrón de unidad (U01, U1 ... U08) → ambos; resto → solo docentes
+        return 0 if (nombre.lower().endswith(".zip")
+                     and re.search(r'[Uu]\d{1,2}(?!\d)', nombre)) else 1
 
-    def default_disp(archivo: dict) -> int:
-        # ZIP con patrón de unidad (U01, U1, U02...U08) → ambos
-        # Todo lo demás → solo docentes
-        es_zip = archivo["nombre_archivo"].lower().endswith(".zip")
-        tiene_unidad = bool(_re.search(r'[Uu]\d{1,2}', archivo["nombre_archivo"]))
-        return 0 if (es_zip and tiene_unidad) else 1
-
-    # Asignar defaults
     for a in archivos:
-        a["is_teacher_only"] = default_disp(a)
+        a["is_teacher_only"] = default_disp(a["nombre_archivo"])
 
-    # Mostrar agrupado por carpeta fuente para que el usuario confirme o cambie
-    from collections import Counter
-    conteo_fuentes = Counter(a["carpeta_fuente"] for a in archivos)
-    fuentes_unicas = sorted(conteo_fuentes.keys())
+    def _tabla_disp():
+        print("\n" + "=" * 82)
+        print("  DISPONIBLE PARA — revisa y edita (Enter vacío para confirmar todo)")
+        print("  Regla: ZIP con U01/U1..U08 en el nombre → Docentes y Estudiantes.")
+        print("  Resto → Solo Docentes.")
+        print("=" * 82)
+        print(f"  {'#':<5} {'Archivo':<38} {'Tipo':<18} {'Disponible para'}")
+        print("  " + "─" * 78)
+        for i, a in enumerate(archivos, 1):
+            tipo_lbl = TYPE_LABEL.get(a["type_guid"], a["type_guid"])
+            disp_lbl = DISP_LABEL[a["is_teacher_only"]]
+            print(f"  {i:<5} {a['nombre_archivo'][:37]:<38} {tipo_lbl:<18} {disp_lbl}")
+        print("  " + "─" * 78)
 
-    print("\n" + "=" * 70)
-    print("  DISPONIBLE PARA — confirma o cambia el default por tipo de recurso")
-    print("=" * 70)
-    print("  Regla automática: ZIP con número de unidad (U01-U08) → ambos.")
-    print("  Todo lo demás → Solo Docentes.")
-    print()
-    print("  Presiona Enter para aceptar el default, o escribe 1/2 para cambiar:")
-    print("    1 = Docentes y Estudiantes   2 = Solo Docentes")
-    print()
-
-    for fuente in fuentes_unicas:
-        # Calcular default de la fuente (mayoría)
-        vals = [a["is_teacher_only"] for a in archivos if a["carpeta_fuente"] == fuente]
-        default_fuente = max(set(vals), key=vals.count)  # valor más frecuente
-        default_str = "1" if default_fuente == 0 else "2"
-        default_txt = DISP_LABEL[default_fuente]
-        n = conteo_fuentes[fuente]
-
-        resp = input(f"  [{fuente}] ({n} archivos)  default={default_txt}  > ").strip()
-        if resp == "":
-            nuevo = default_fuente
-        elif resp == "1":
-            nuevo = 0
-        elif resp == "2":
-            nuevo = 1
+    while True:
+        _tabla_disp()
+        entrada = input("\n  Nro a editar (Enter para confirmar todos) > ").strip()
+        if entrada == "":
+            break
+        if entrada.isdigit() and 1 <= int(entrada) <= len(archivos):
+            idx = int(entrada) - 1
+            a = archivos[idx]
+            print(f"\n  Archivo : {a['nombre_archivo']}")
+            print(f"  Actual  : {DISP_LABEL[a['is_teacher_only']]}")
+            print("    1. Docentes y Estudiantes")
+            print("    2. Solo Docentes")
+            resp = input("  Nuevo valor (1/2) > ").strip()
+            if resp == "1":
+                a["is_teacher_only"] = 0
+                print("  → Docentes y Estudiantes")
+            elif resp == "2":
+                a["is_teacher_only"] = 1
+                print("  → Solo Docentes")
+            else:
+                print("  Sin cambios.")
         else:
-            print(f"    Entrada no válida, se usa el default: {default_txt}")
-            nuevo = default_fuente
-
-        # Aplicar a todos los archivos de esta fuente
-        for a in archivos:
-            if a["carpeta_fuente"] == fuente:
-                a["is_teacher_only"] = nuevo
+            print(f"  Número no válido (1–{len(archivos)}).")
 
     # ── 6. Previsualización detallada ────────────────────────────────
     level_name = next((l["name"] for l in levels if l["guid"] == level_guid), level_guid)
