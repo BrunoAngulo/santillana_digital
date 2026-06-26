@@ -45,6 +45,7 @@ def sanitize(name: str) -> str:
     name = name.strip()
     name = re.sub(r'[<>:"/\\|?*]', '', name)
     name = re.sub(r'\s+', ' ', name)
+    name = name.rstrip('.')
     return name or "sin_nombre"
 
 
