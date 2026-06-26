@@ -385,11 +385,16 @@ def main():
 
     # ── 1. Ruta del proyecto ────────────────────────────────────────
     # Uso:  python subir_contenidos.py "C:\...\CDCOMPRI1P"
-    # Si no se pasa argumento, usa el directorio actual.
+    # Si no se pasa argumento, se solicita de forma interactiva.
     if len(sys.argv) > 1:
         raiz = Path(sys.argv[1].strip('"').strip("'"))
     else:
-        raiz = Path.cwd()
+        print("\nIngresa la ruta de la carpeta raíz del proyecto")
+        print("Ejemplo: C:\\Users\\bangulo\\...\\CDCOMPRI1P")
+        ruta_str = input("\nRuta > ").strip().strip('"').strip("'")
+        if not ruta_str:
+            sys.exit("No se ingresó ninguna ruta.")
+        raiz = Path(ruta_str)
 
     output_dir   = raiz / "OUTPUT"
     completo_dir = output_dir / "Completo"
