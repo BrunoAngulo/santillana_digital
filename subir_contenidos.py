@@ -33,14 +33,14 @@ except ImportError:
 API_BASE = "https://compartirconocimientos-pe.santillana.com"
 
 # Mapeo extensión → type_guid
-# CTTY_05=PDF  CTTY_06=HTML  CTTY_07=Office  CTTY_13=ZIP
+# CTTY_05=PDF  CTTY_06=HTML  CTTY_12=Office  CTTY_13=ZIP
 TYPE_GUID = {
     ".pdf":  "CTTY_05",
     ".zip":  "CTTY_13",
-    ".docx": "CTTY_07",
-    ".doc":  "CTTY_07",
-    ".pptx": "CTTY_07",
-    ".xlsx": "CTTY_07",
+    ".docx": "CTTY_12",
+    ".doc":  "CTTY_12",
+    ".pptx": "CTTY_12",
+    ".xlsx": "CTTY_12",
     ".html": "CTTY_06",
     ".htm":  "CTTY_06",
 }
@@ -363,39 +363,38 @@ def main():
     auth_header = token if token.startswith("Bearer ") else token  # el API lo recibe sin prefix
     session = build_session(auth_header)
 
-    # ── 2. Carpeta raíz ─────────────────────────────────────────────
-    print("\nIngresa la ruta de la carpeta raíz del proyecto")
-    print("(debe contener el archivo .xlsx y la subcarpeta Completo/)")
-    ruta_str = input("Carpeta > ").strip().strip('"')
-    raiz = Path(ruta_str)
-    if not raiz.is_dir():
-        sys.exit(f"No existe la carpeta: {raiz}")
+    # ── 2. Rutas (auto-detectadas desde donde se ejecuta el script) ─
+    # Estructura esperada:
+    #   <raiz>/              ← aquí corre el script
+    #   <raiz>/OUTPUT/       ← contiene el Excel .xlsx
+    #   <raiz>/OUTPUT/Completo/  ← contiene todos los archivos a subir
+    raiz = Path.cwd()
+    output_dir   = raiz / "OUTPUT"
+    completo_dir = output_dir / "Completo"
 
-    # Buscar Excel
-    excels = list(raiz.glob("*.xlsx"))
+    print(f"\n  Directorio raíz   : {raiz}")
+    print(f"  Carpeta OUTPUT    : {output_dir}")
+    print(f"  Carpeta Completo  : {completo_dir}")
+
+    if not output_dir.is_dir():
+        sys.exit(f"\n[ERROR] No se encontró la carpeta OUTPUT en {raiz}\n"
+                 f"Ejecuta el script desde la carpeta raíz del proyecto.")
+    if not completo_dir.is_dir():
+        sys.exit(f"\n[ERROR] No se encontró OUTPUT/Completo en {raiz}")
+
+    # Buscar Excel en OUTPUT/
+    excels = list(output_dir.glob("*.xlsx"))
     if not excels:
-        sys.exit("No se encontró ningún archivo .xlsx en la carpeta raíz.")
+        sys.exit(f"\n[ERROR] No se encontró ningún .xlsx en {output_dir}")
     if len(excels) == 1:
         xlsx_path = excels[0]
-        print(f"  Excel detectado: {xlsx_path.name}")
+        print(f"  Excel detectado   : {xlsx_path.name}")
     else:
-        print("\nExcels encontrados:")
+        print("\nVarios Excel encontrados en OUTPUT/:")
         for i, p in enumerate(excels, 1):
             print(f"  {i}. {p.name}")
         idx = int(input("Elige número > ").strip()) - 1
         xlsx_path = excels[idx]
-
-    # Carpeta Completo
-    completo_dir = raiz / "Completo"
-    if not completo_dir.is_dir():
-        # intentar OUTPUT/Completo
-        completo_dir = raiz / "OUTPUT" / "Completo"
-    if not completo_dir.is_dir():
-        ruta_comp = input(f"No se encontró Completo/. Ingresa la ruta exacta > ").strip().strip('"')
-        completo_dir = Path(ruta_comp)
-    if not completo_dir.is_dir():
-        sys.exit(f"No existe la carpeta Completo: {completo_dir}")
-    print(f"  Carpeta archivos: {completo_dir}")
 
     # ── 3. Leer Excel ───────────────────────────────────────────────
     print(f"\nLeyendo {xlsx_path.name}...")
