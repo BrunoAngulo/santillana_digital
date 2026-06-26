@@ -260,6 +260,21 @@ def obtener_upload_info(session, guid: str) -> dict:
     return {"token": upload["token"], "endpoint": upload["endpoint"]}
 
 
+def esperar_procesado(session, guid: str, timeout_seg: int = 600) -> bool:
+    """Polling a GET /api/cms/contents/{guid} hasta que el estado no sea 'processing'."""
+    fin = time.time() + timeout_seg
+    while time.time() < fin:
+        try:
+            data = api_get(session, f"/api/cms/contents/{guid}")
+            estado = (data.get("data") or {}).get("status", "")
+            if estado and estado != "processing":
+                return True
+        except requests.RequestException:
+            pass
+        time.sleep(5)
+    return False
+
+
 def subir_archivo(session, endpoint: str, upload_token: str, filepath: Path) -> bool:
     """POST multipart al endpoint de files-storage, con reintentos."""
     mime = _mime(filepath)
@@ -422,7 +437,7 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
         if not ok_upload:
             raise RuntimeError("El endpoint de upload no devolvió success")
 
-        time.sleep(1)
+        esperar_procesado(session, guid)
 
         ok_meta = actualizar_metadata(
             session, guid, nombre, erp_id, type_g, item["is_teacher_only"],
