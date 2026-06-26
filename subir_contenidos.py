@@ -474,22 +474,41 @@ def main():
         col_guid = menu("Colección", collections_list)
         col_label = next((c["name"] for c in collections_list if c["guid"] == col_guid), col_guid)
 
-    # ── 5. Resumen antes de ejecutar ────────────────────────────────
-    print("\n" + "=" * 65)
-    print("  RESUMEN DEL LOTE")
-    print("=" * 65)
-    level_name  = next((l["name"] for l in levels if l["guid"] == level_guid), level_guid)
-    year_name   = next((y["name"] for y in years  if y["guid"] == year_guid),  year_guid) if years else year_guid
-    disc_name   = next((d["name"] for d in disciplines if d["guid"] == disc_guid), disc_guid) if disciplines else disc_guid
-    print(f"  Excel              : {xlsx_path.name}")
-    print(f"  Archivos a subir   : {len(archivos)}")
-    print(f"  Etapa              : {level_name}")
-    print(f"  Año / Serie        : {year_name}")
-    print(f"  Asignatura         : {disc_name}")
-    print(f"  Idioma             : {idioma_label}")
-    print(f"  Disponible para    : {disp_label}")
-    print(f"  Colección          : {col_label}")
-    print("=" * 65)
+    # ── 5. Previsualización detallada ────────────────────────────────
+    level_name = next((l["name"] for l in levels if l["guid"] == level_guid), level_guid)
+    year_name  = next((y["name"] for y in years  if y["guid"] == year_guid),  year_guid) if years else year_guid
+    disc_name  = next((d["name"] for d in disciplines if d["guid"] == disc_guid), disc_guid) if disciplines else disc_guid
+
+    TYPE_LABEL = {
+        "CTTY_05": "PDF",
+        "CTTY_08": "HTML Interactivo",
+        "CTTY_12": "Office",
+        "CTTY_13": "ZIP",
+    }
+
+    print("\n" + "=" * 90)
+    print("  DETALLE DE ARCHIVOS A SUBIR")
+    print("=" * 90)
+    print(f"  {'#':<4} {'Nombre visible':<40} {'Archivo':<38} {'Tipo':<18} {'erp_id'}")
+    print("  " + "─" * 86)
+    for i, a in enumerate(archivos, 1):
+        tipo_label = TYPE_LABEL.get(a["type_guid"], a["type_guid"])
+        nombre_vis = a["nombre_visible"][:39]
+        nombre_arc = a["nombre_archivo"][:37]
+        erp        = a["erp_id"][:30]
+        print(f"  {i:<4} {nombre_vis:<40} {nombre_arc:<38} {tipo_label:<18} {erp}")
+    print("=" * 90)
+
+    print("\n  METADATOS QUE SE APLICARÁN A TODOS LOS ARCHIVOS:")
+    print(f"    Etapa           : {level_name}")
+    print(f"    Año / Serie     : {year_name}")
+    print(f"    Asignatura      : {disc_name}")
+    print(f"    Idioma          : {idioma_label}")
+    print(f"    Disponible para : {disp_label}")
+    print(f"    Colección       : {col_label}")
+    print(f"\n  Total: {len(archivos)} archivos")
+    print("=" * 90)
+
     conf = input("\n¿Iniciar subida? (s/n) > ").strip().lower()
     if conf != "s":
         sys.exit("Cancelado por el usuario.")
