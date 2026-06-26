@@ -419,30 +419,47 @@ def main():
         idx = int(input("Elige número > ").strip()) - 1
         xlsx_path = excels[idx]
 
-    # ── 3. Leer Excel ───────────────────────────────────────────────
+    # ── 3. Escanear Completo/ y cruzar con Excel ────────────────────
+    # Fuente de verdad = archivos físicos en Completo/
+    # El Excel aporta: nombre_visible y carpeta_fuente
     print(f"\nLeyendo {xlsx_path.name}...")
-    archivos = leer_excel(xlsx_path)
-    print(f"  {len(archivos)} entradas encontradas en el Excel.")
+    meta_excel = {e["nombre_archivo"]: e for e in leer_excel(xlsx_path)}
+    print(f"  {len(meta_excel)} entradas en el Excel.")
 
-    # Verificar cuáles existen físicamente
-    faltantes = []
-    for a in archivos:
-        ruta_arch = completo_dir / a["nombre_archivo"]
-        a["ruta"] = ruta_arch
-        if not ruta_arch.exists():
-            faltantes.append(a["nombre_archivo"])
+    EXTENSIONES_VALIDAS = set(TYPE_GUID.keys())
+    archivos_fisicos = sorted(
+        f for f in completo_dir.iterdir()
+        if f.is_file() and f.suffix.lower() in EXTENSIONES_VALIDAS
+    )
+    print(f"  {len(archivos_fisicos)} archivos encontrados en Completo/.")
 
-    if faltantes:
-        print(f"\n  [AVISO] {len(faltantes)} archivo(s) no encontrados en Completo/:")
-        for f in faltantes[:10]:
-            print(f"    - {f}")
-        if len(faltantes) > 10:
-            print(f"    ... y {len(faltantes)-10} más")
-        cont = input("\n¿Continuar de todas formas? (s/n) > ").strip().lower()
-        if cont != "s":
-            sys.exit("Cancelado.")
-        archivos = [a for a in archivos if a["ruta"].exists()]
-        print(f"  Se subirán {len(archivos)} archivos encontrados.")
+    sin_excel = [f.name for f in archivos_fisicos if f.name not in meta_excel]
+    if sin_excel:
+        print(f"\n  [INFO] {len(sin_excel)} archivo(s) en Completo/ sin entrada en el Excel")
+        print(f"  (se subirán usando el nombre del archivo como nombre visible):")
+        for n in sin_excel[:10]:
+            print(f"    - {n}")
+        if len(sin_excel) > 10:
+            print(f"    ... y {len(sin_excel)-10} más")
+
+    # Construir lista final desde los archivos físicos
+    archivos = []
+    for filepath in archivos_fisicos:
+        ext      = filepath.suffix.lower()
+        erp_id   = filepath.stem
+        type_g   = TYPE_GUID[ext]
+        meta     = meta_excel.get(filepath.name, {})
+        archivos.append({
+            "nombre_visible":  meta.get("nombre_visible", erp_id),
+            "nombre_archivo":  filepath.name,
+            "erp_id":          erp_id,
+            "type_guid":       type_g,
+            "carpeta":         meta.get("carpeta", ""),
+            "tipo":            meta.get("tipo", "ARCHIVO"),
+            "carpeta_fuente":  meta.get("carpeta_fuente", "sin_categoria"),
+            "ruta":            filepath,
+        })
+    print(f"  Total a subir: {len(archivos)} archivos.\n")
 
     # ── 4. Selección de metadatos ────────────────────────────────────
     print("\n" + "=" * 65)
