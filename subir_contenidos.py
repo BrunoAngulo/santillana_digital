@@ -9,6 +9,7 @@ import sys
 import time
 import json
 import re
+import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from datetime import datetime
@@ -99,7 +100,7 @@ def api_post(session, path: str, json_data=None, files=None, headers_extra=None)
         hdrs = {k: v for k, v in session.headers.items() if k.lower() != "content-type"}
         if headers_extra:
             hdrs.update(headers_extra)
-        r = requests.post(url, files=files, headers=hdrs, timeout=(30, 600))
+        r = requests.post(url, files=files, headers=hdrs, timeout=(30, 1800))
     else:
         r = session.post(url, json=json_data, timeout=30)
     _raise_with_body(r)
@@ -259,6 +260,21 @@ def obtener_upload_info(session, guid: str) -> dict:
     return {"token": upload["token"], "endpoint": upload["endpoint"]}
 
 
+def esperar_procesado(session, guid: str, timeout_seg: int = 600) -> bool:
+    """Polling a GET /api/cms/contents/{guid} hasta que el estado no sea 'processing'."""
+    fin = time.time() + timeout_seg
+    while time.time() < fin:
+        try:
+            data = api_get(session, f"/api/cms/contents/{guid}")
+            estado = (data.get("data") or {}).get("status", "")
+            if estado and estado != "processing":
+                return True
+        except requests.RequestException:
+            pass
+        time.sleep(5)
+    return False
+
+
 def subir_archivo(session, endpoint: str, upload_token: str, filepath: Path) -> bool:
     """POST multipart al endpoint de files-storage, con reintentos."""
     mime = _mime(filepath)
@@ -392,12 +408,18 @@ def guardar_log(resultados: list[dict], ruta_log: Path):
     wb.save(ruta_log)
 
 
-MAX_WORKERS = 10  # máximo de uploads simultáneos
+MAX_WORKERS  = 10  # máximo de uploads simultáneos en total
+MAX_ZIP_SEM  = 3   # de esos 10, cuántos ZIPs pueden subir a la vez
+_zip_sem     = threading.Semaphore(MAX_ZIP_SEM)
 
 
 def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
                 disc_guid: str, idioma_val: str, col_guid: str) -> dict:
-    """Sube un archivo completo (crear → upload → metadata). Crea su propia sesión."""
+    """Sube un archivo completo (crear → upload → metadata). Crea su propia sesión.
+    Los ZIPs adquieren _zip_sem para no saturar el ancho de banda."""
+    is_zip = item["ruta"].suffix.lower() == ".zip"
+    if is_zip:
+        _zip_sem.acquire()
     session = build_session(token)
     nombre    = item["nombre_visible"]
     erp_id    = item["erp_id"]
@@ -415,7 +437,7 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
         if not ok_upload:
             raise RuntimeError("El endpoint de upload no devolvió success")
 
-        time.sleep(1)
+        esperar_procesado(session, guid)
 
         ok_meta = actualizar_metadata(
             session, guid, nombre, erp_id, type_g, item["is_teacher_only"],
@@ -434,6 +456,9 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
         )
     except Exception as e:
         resultado["error"] = str(e)
+    finally:
+        if is_zip:
+            _zip_sem.release()
     return resultado
 
 
