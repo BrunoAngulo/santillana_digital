@@ -238,22 +238,13 @@ def fetch_collections(session, search: str = "") -> list[dict]:
 # ── Búsqueda de contenido existente ─────────────────────────────────────────
 
 def buscar_contenido_por_erp(session, erp_id: str) -> dict | None:
-    """GET /api/cms/contents?search={erp_id} → devuelve el primer resultado con ese erp_id."""
-    try:
-        data = api_get(session, "/api/cms/contents", params={"search": erp_id, "pageSize": 10})
-        items = (data.get("data") or {}).get("contents", [])
-        for item in items:
-            if item.get("erp_id") == erp_id:
-                return item
-    except requests.RequestException:
-        pass
+    """GET /api/cms/contents?search={erp_id} → devuelve el dict del contenido si existe."""
+    data = api_get(session, "/api/cms/contents",
+                   params={"search": erp_id, "pageSize": 10, "offset": 0, "page": 0})
+    for item in (data.get("data") or {}).get("contents", []):
+        if item.get("erp_id") == erp_id:
+            return item
     return None
-
-
-def obtener_contenido(session, guid: str) -> dict:
-    """GET /api/cms/contents/{guid} → devuelve el dict de data."""
-    data = api_get(session, f"/api/cms/contents/{guid}")
-    return data.get("data") or {}
 
 
 # ── Lógica de subida ─────────────────────────────────────────────────────────
@@ -477,23 +468,28 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
             guid = existente["guid"]
             resultado["guid"] = guid
 
-            actual = obtener_contenido(session, guid)
-            # Mergear listas existentes con los valores del lote actual
-            lvls = list({*actual.get("educationLevels", []), level_guid})
-            yrs  = list({*actual.get("educationYears",  []), year_guid})
-            disc = list({*actual.get("disciplines",     []), disc_guid})
-            cols = list({*actual.get("collections",     []), col_guid})
+            # La respuesta de búsqueda tiene objetos anidados; extraer GUIDs
+            lvls  = list({*(x["education_level_guid"] for x in existente.get("educationLevels", [])),
+                          level_guid})
+            yrs   = list({*(x["education_year_guid"]  for x in existente.get("educationYears",  [])),
+                          year_guid})
+            disc  = list({*(x["discipline_guid"]      for x in existente.get("disciplines",     [])),
+                          disc_guid})
+            cols  = list({*(x["guid"]                 for x in existente.get("collections",     [])),
+                          col_guid})
+            langs_act = list({*(x["id"]               for x in existente.get("langs",           [])),
+                              idioma_val})
 
             ok_meta = actualizar_metadata(
                 session, guid,
-                actual.get("name", nombre),
+                existente.get("name", nombre),
                 erp_id,
-                actual.get("type_guid", type_g),
-                actual.get("is_teacher_only", item["is_teacher_only"]),
+                existente.get("type_guid", type_g),
+                existente.get("is_teacher_only", item["is_teacher_only"]),
                 education_levels=lvls,
                 education_years=yrs,
                 disciplines=disc,
-                langs=actual.get("langs", [idioma_val]),
+                langs=langs_act,
                 collections=cols,
             )
             if not ok_meta:
