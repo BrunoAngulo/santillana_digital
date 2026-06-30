@@ -358,6 +358,12 @@ def actualizar_metadata(session, guid: str, nombre_visible: str, erp_id: str,
 
 # ── Lectura del Excel ────────────────────────────────────────────────────────
 
+_PARA_MAP = {
+    "syd": 0,   # SyD → Docentes y Estudiantes
+    "d":   1,   # D   → Solo Docentes
+}
+
+
 def leer_excel(xlsx_path: Path) -> list[dict]:
     wb = openpyxl.load_workbook(xlsx_path)
     ws = wb.active
@@ -365,23 +371,38 @@ def leer_excel(xlsx_path: Path) -> list[dict]:
     for row in ws.iter_rows(min_row=2, values_only=True):
         if not any(row):
             continue
-        nombre_visible, nombre_archivo, ruta_dest, tipo, carpeta, carpeta_fuente = row
+        # Rellenar hasta 7 columnas para no fallar si G no existe
+        cols           = list(row) + [None] * 7
+        nombre_visible = cols[0]
+        nombre_archivo = cols[1]
+        ruta_dest      = cols[2]
+        tipo           = cols[3]
+        carpeta        = cols[4]
+        carpeta_fuente = cols[5]
+        para_col       = cols[6]   # columna G: "SyD" | "D" | vacío
+
         if not nombre_archivo:
             continue
-        ext = Path(str(nombre_archivo)).suffix.lower()
-        erp_id = Path(str(nombre_archivo)).stem
+        ext       = Path(str(nombre_archivo)).suffix.lower()
+        erp_id    = Path(str(nombre_archivo)).stem
         type_guid = TYPE_GUID.get(ext)
         if not type_guid:
             tqdm.write(f"  [AVISO] Extensión desconocida ignorada: {nombre_archivo}")
             continue
+
+        # Mapear columna G → is_teacher_only (None si no hay valor)
+        para_str         = str(para_col).strip().lower() if para_col else ""
+        is_teacher_excel = _PARA_MAP.get(para_str)   # 0, 1 ó None
+
         archivos.append({
-            "nombre_visible":  str(nombre_visible).strip(),
-            "nombre_archivo":  str(nombre_archivo).strip(),
-            "erp_id":          erp_id,
-            "type_guid":       type_guid,
-            "carpeta":         str(carpeta).strip(),
-            "tipo":            str(tipo).strip(),
-            "carpeta_fuente":  str(carpeta_fuente).strip() if carpeta_fuente else "sin_categoria",
+            "nombre_visible":   str(nombre_visible).strip().rstrip('.'),
+            "nombre_archivo":   str(nombre_archivo).strip(),
+            "erp_id":           erp_id,
+            "type_guid":        type_guid,
+            "carpeta":          str(carpeta).strip() if carpeta else "",
+            "tipo":             str(tipo).strip() if tipo else "ARCHIVO",
+            "carpeta_fuente":   str(carpeta_fuente).strip() if carpeta_fuente else "sin_categoria",
+            "is_teacher_excel": is_teacher_excel,   # None si columna G vacía/ausente
         })
     return archivos
 
@@ -625,14 +646,15 @@ def main():
         type_g   = TYPE_GUID[ext]
         meta     = meta_excel.get(filepath.name, {})
         archivos.append({
-            "nombre_visible":  meta.get("nombre_visible", erp_id),
-            "nombre_archivo":  filepath.name,
-            "erp_id":          erp_id,
-            "type_guid":       type_g,
-            "carpeta":         meta.get("carpeta", ""),
-            "tipo":            meta.get("tipo", "ARCHIVO"),
-            "carpeta_fuente":  meta.get("carpeta_fuente", "sin_categoria"),
-            "ruta":            filepath,
+            "nombre_visible":   meta.get("nombre_visible", erp_id),
+            "nombre_archivo":   filepath.name,
+            "erp_id":           erp_id,
+            "type_guid":        type_g,
+            "carpeta":          meta.get("carpeta", ""),
+            "tipo":             meta.get("tipo", "ARCHIVO"),
+            "carpeta_fuente":   meta.get("carpeta_fuente", "sin_categoria"),
+            "is_teacher_excel": meta.get("is_teacher_excel"),  # None si columna G vacía
+            "ruta":             filepath,
         })
     print(f"  Total a subir: {len(archivos)} archivos.\n")
 
@@ -696,21 +718,25 @@ def main():
                      and re.search(r'[Uu]\d{1,2}(?!\d)', nombre)) else 1
 
     for a in archivos:
-        a["is_teacher_only"] = default_disp(a["nombre_archivo"])
+        # Columna G del Excel tiene prioridad; si no existe, usar regex
+        if a.get("is_teacher_excel") is not None:
+            a["is_teacher_only"] = a["is_teacher_excel"]
+        else:
+            a["is_teacher_only"] = default_disp(a["nombre_archivo"])
 
     def _tabla_disp():
-        print("\n" + "=" * 82)
+        print("\n" + "=" * 88)
         print("  DISPONIBLE PARA — revisa y edita (Enter vacío para confirmar todo)")
-        print("  Regla: ZIP con U01/U1..U08 en el nombre → Docentes y Estudiantes.")
-        print("  Resto → Solo Docentes.")
-        print("=" * 82)
-        print(f"  {'#':<5} {'Archivo':<38} {'Tipo':<18} {'Disponible para'}")
-        print("  " + "─" * 78)
+        print("  Fuente: [X]=columna G del Excel  [ ]=regla automática (ZIP+unidad / resto)")
+        print("=" * 88)
+        print(f"  {'#':<5} {'Archivo':<38} {'Tipo':<18} {'Disponible para':<25} {'Fuente'}")
+        print("  " + "─" * 84)
         for i, a in enumerate(archivos, 1):
-            tipo_lbl = TYPE_LABEL.get(a["type_guid"], a["type_guid"])
-            disp_lbl = DISP_LABEL[a["is_teacher_only"]]
-            print(f"  {i:<5} {a['nombre_archivo'][:37]:<38} {tipo_lbl:<18} {disp_lbl}")
-        print("  " + "─" * 78)
+            tipo_lbl   = TYPE_LABEL.get(a["type_guid"], a["type_guid"])
+            disp_lbl   = DISP_LABEL[a["is_teacher_only"]]
+            fuente_lbl = "[X] Excel" if a.get("is_teacher_excel") is not None else "[ ] auto"
+            print(f"  {i:<5} {a['nombre_archivo'][:37]:<38} {tipo_lbl:<18} {disp_lbl:<25} {fuente_lbl}")
+        print("  " + "─" * 84)
 
     while True:
         _tabla_disp()
