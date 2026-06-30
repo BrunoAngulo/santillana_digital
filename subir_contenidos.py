@@ -455,6 +455,7 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
             if "ER_DUP_ENTRY" not in str(e) and "1062" not in str(e):
                 raise
             es_duplicado = True
+            tqdm.write(f"  [ACTUALIZANDO] {filepath.name} — ya existe, mergeando metadata...")
 
         viewer_url = lambda g: (
             f"https://publisher.compartirconocimientos-pe.santillana.com/content/{g}/1"
