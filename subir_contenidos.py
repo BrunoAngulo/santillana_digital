@@ -469,34 +469,41 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
             guid = existente["guid"]
             resultado["guid"] = guid
 
-            # La respuesta de búsqueda tiene objetos anidados; extraer GUIDs
-            lvls  = list({*(x["education_level_guid"] for x in existente.get("educationLevels", [])),
-                          level_guid})
-            yrs   = list({*(x["education_year_guid"]  for x in existente.get("educationYears",  [])),
-                          year_guid})
-            disc  = list({*(x["discipline_guid"]      for x in existente.get("disciplines",     [])),
-                          disc_guid})
-            cols  = list({*(x["guid"]                 for x in existente.get("collections",     [])),
-                          col_guid})
-            langs_act = list({*(x["id"]               for x in existente.get("langs",           [])),
-                              idioma_val})
+            # Extraer GUIDs existentes (objetos anidados de la API)
+            lvls_exist = {x["education_level_guid"] for x in existente.get("educationLevels", [])}
+            yrs_exist  = {x["education_year_guid"]  for x in existente.get("educationYears",  [])}
+            disc_exist = {x["discipline_guid"]      for x in existente.get("disciplines",     [])}
+            cols_exist = {x["guid"]                 for x in existente.get("collections",     [])}
+            lang_exist = {x["id"]                   for x in existente.get("langs",           [])}
 
-            ok_meta = actualizar_metadata(
-                session, guid,
-                existente.get("name", nombre),
-                erp_id,
-                existente.get("type_guid", type_g),
-                existente.get("is_teacher_only", item["is_teacher_only"]),
-                education_levels=lvls,
-                education_years=yrs,
-                disciplines=disc,
-                langs=langs_act,
-                collections=cols,
-            )
-            if not ok_meta:
-                raise RuntimeError("Error al actualizar metadatos del contenido existente")
-            resultado["estado"]     = "ACTUALIZADO"
-            resultado["url_viewer"] = viewer_url(guid)
+            # Si ya tiene exactamente este nivel Y este año → no hay nada que cambiar
+            if level_guid in lvls_exist and year_guid in yrs_exist:
+                tqdm.write(f"  [SIN CAMBIOS]  {filepath.name} — ya asignado a este nivel/grado")
+                resultado["estado"]     = "ACTUALIZADO"
+                resultado["url_viewer"] = viewer_url(guid)
+            else:
+                lvls      = list(lvls_exist | {level_guid})
+                yrs       = list(yrs_exist  | {year_guid})
+                disc      = list(disc_exist | {disc_guid})
+                cols      = list(cols_exist | {col_guid})
+                langs_act = list(lang_exist | {idioma_val})
+
+                ok_meta = actualizar_metadata(
+                    session, guid,
+                    existente.get("name", nombre),
+                    erp_id,
+                    existente.get("type_guid", type_g),
+                    existente.get("is_teacher_only", item["is_teacher_only"]),
+                    education_levels=lvls,
+                    education_years=yrs,
+                    disciplines=disc,
+                    langs=langs_act,
+                    collections=cols,
+                )
+                if not ok_meta:
+                    raise RuntimeError("Error al actualizar metadatos del contenido existente")
+                resultado["estado"]     = "ACTUALIZADO"
+                resultado["url_viewer"] = viewer_url(guid)
 
         else:
             # ── Contenido nuevo: subir archivo y guardar metadata ────
@@ -792,13 +799,15 @@ def main():
     guardar_log(resultados, log_path)
 
     ok_count  = sum(1 for r in resultados if r["estado"] == "OK")
-    err_count = len(resultados) - ok_count
+    upd_count = sum(1 for r in resultados if r["estado"] == "ACTUALIZADO")
+    err_count = len(resultados) - ok_count - upd_count
 
     print(f"\n{'=' * 65}")
     print(f"  Subida completada.")
-    print(f"  OK      : {ok_count}")
-    print(f"  Errores : {err_count}")
-    print(f"  Log     : {log_path}")
+    print(f"  Nuevos      : {ok_count}")
+    print(f"  Actualizados: {upd_count}")
+    print(f"  Errores     : {err_count}")
+    print(f"  Log         : {log_path}")
     print("=" * 65)
 
 
