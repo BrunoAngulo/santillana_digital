@@ -235,6 +235,27 @@ def fetch_collections(session, search: str = "") -> list[dict]:
     return [{"guid": c["guid"], "name": c["collection"]} for c in cols]
 
 
+# ── Búsqueda de contenido existente ─────────────────────────────────────────
+
+def buscar_contenido_por_erp(session, erp_id: str) -> dict | None:
+    """GET /api/cms/contents?search={erp_id} → devuelve el primer resultado con ese erp_id."""
+    try:
+        data = api_get(session, "/api/cms/contents", params={"search": erp_id, "pageSize": 10})
+        items = (data.get("data") or {}).get("contents", [])
+        for item in items:
+            if item.get("erp_id") == erp_id:
+                return item
+    except requests.RequestException:
+        pass
+    return None
+
+
+def obtener_contenido(session, guid: str) -> dict:
+    """GET /api/cms/contents/{guid} → devuelve el dict de data."""
+    data = api_get(session, f"/api/cms/contents/{guid}")
+    return data.get("data") or {}
+
+
 # ── Lógica de subida ─────────────────────────────────────────────────────────
 
 def crear_contenido(session, nombre_visible: str, erp_id: str, type_guid: str,
@@ -389,10 +410,16 @@ def guardar_log(resultados: list[dict], ruta_log: Path):
         c.font = font_h
         c.alignment = Alignment(horizontal="center")
 
-    fill_ok  = PatternFill("solid", fgColor="C6EFCE")
-    fill_err = PatternFill("solid", fgColor="FFC7CE")
+    fill_ok   = PatternFill("solid", fgColor="C6EFCE")
+    fill_upd  = PatternFill("solid", fgColor="FFEB9C")
+    fill_err  = PatternFill("solid", fgColor="FFC7CE")
     for i, r in enumerate(resultados, 2):
-        fill = fill_ok if r["estado"] == "OK" else fill_err
+        if r["estado"] == "OK":
+            fill = fill_ok
+        elif r["estado"] == "ACTUALIZADO":
+            fill = fill_upd
+        else:
+            fill = fill_err
         valores = [r["archivo"], r["nombre_visible"], r.get("guid", ""),
                    r["estado"], r.get("error", ""), r.get("url_viewer", "")]
         for col, val in enumerate(valores, 1):
@@ -428,32 +455,78 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
     resultado = {"archivo": filepath.name, "nombre_visible": nombre,
                  "estado": "ERROR", "guid": "", "error": "", "url_viewer": ""}
     try:
-        guid = crear_contenido(session, nombre, erp_id, type_g, item["is_teacher_only"])
-        resultado["guid"] = guid
+        # ── Intentar crear contenido ─────────────────────────────────
+        guid         = None
+        es_duplicado = False
+        try:
+            guid = crear_contenido(session, nombre, erp_id, type_g, item["is_teacher_only"])
+        except requests.HTTPError as e:
+            if "ER_DUP_ENTRY" not in str(e) and "1062" not in str(e):
+                raise
+            es_duplicado = True
 
-        upload_info = obtener_upload_info(session, guid)
-
-        ok_upload = subir_archivo(session, upload_info["endpoint"], upload_info["token"], filepath)
-        if not ok_upload:
-            raise RuntimeError("El endpoint de upload no devolvió success")
-
-        esperar_procesado(session, guid)
-
-        ok_meta = actualizar_metadata(
-            session, guid, nombre, erp_id, type_g, item["is_teacher_only"],
-            education_levels=[level_guid],
-            education_years=[year_guid],
-            disciplines=[disc_guid],
-            langs=[idioma_val],
-            collections=[col_guid],
+        viewer_url = lambda g: (
+            f"https://publisher.compartirconocimientos-pe.santillana.com/content/{g}/1"
         )
-        if not ok_meta:
-            raise RuntimeError("Error al actualizar metadatos (PUT)")
 
-        resultado["estado"] = "OK"
-        resultado["url_viewer"] = (
-            f"https://publisher.compartirconocimientos-pe.santillana.com/content/{guid}/1"
-        )
+        if es_duplicado:
+            # ── Contenido ya existe: buscar, mergear y actualizar ────
+            existente = buscar_contenido_por_erp(session, erp_id)
+            if not existente:
+                raise RuntimeError(f"ER_DUP_ENTRY pero no se encontró erp_id={erp_id}")
+            guid = existente["guid"]
+            resultado["guid"] = guid
+
+            actual = obtener_contenido(session, guid)
+            # Mergear listas existentes con los valores del lote actual
+            lvls = list({*actual.get("educationLevels", []), level_guid})
+            yrs  = list({*actual.get("educationYears",  []), year_guid})
+            disc = list({*actual.get("disciplines",     []), disc_guid})
+            cols = list({*actual.get("collections",     []), col_guid})
+
+            ok_meta = actualizar_metadata(
+                session, guid,
+                actual.get("name", nombre),
+                erp_id,
+                actual.get("type_guid", type_g),
+                actual.get("is_teacher_only", item["is_teacher_only"]),
+                education_levels=lvls,
+                education_years=yrs,
+                disciplines=disc,
+                langs=actual.get("langs", [idioma_val]),
+                collections=cols,
+            )
+            if not ok_meta:
+                raise RuntimeError("Error al actualizar metadatos del contenido existente")
+            resultado["estado"]     = "ACTUALIZADO"
+            resultado["url_viewer"] = viewer_url(guid)
+
+        else:
+            # ── Contenido nuevo: subir archivo y guardar metadata ────
+            resultado["guid"] = guid
+            upload_info = obtener_upload_info(session, guid)
+
+            ok_upload = subir_archivo(
+                session, upload_info["endpoint"], upload_info["token"], filepath
+            )
+            if not ok_upload:
+                raise RuntimeError("El endpoint de upload no devolvió success")
+
+            esperar_procesado(session, guid)
+
+            ok_meta = actualizar_metadata(
+                session, guid, nombre, erp_id, type_g, item["is_teacher_only"],
+                education_levels=[level_guid],
+                education_years=[year_guid],
+                disciplines=[disc_guid],
+                langs=[idioma_val],
+                collections=[col_guid],
+            )
+            if not ok_meta:
+                raise RuntimeError("Error al actualizar metadatos (PUT)")
+            resultado["estado"]     = "OK"
+            resultado["url_viewer"] = viewer_url(guid)
+
     except Exception as e:
         resultado["error"] = str(e)
     finally:
@@ -707,9 +780,11 @@ def main():
             resultado = future.result()
             resultados.append(resultado)
             if resultado["estado"] == "OK":
-                tqdm.write(f"  [OK]    {resultado['archivo']}")
+                tqdm.write(f"  [OK]          {resultado['archivo']}")
+            elif resultado["estado"] == "ACTUALIZADO":
+                tqdm.write(f"  [ACTUALIZADO] {resultado['archivo']}")
             else:
-                tqdm.write(f"  [ERROR] {resultado['archivo']}: {resultado['error']}")
+                tqdm.write(f"  [ERROR]       {resultado['archivo']}: {resultado['error']}")
             barra.update(1)
 
     barra.close()
