@@ -319,6 +319,24 @@ def _mime(path: Path) -> str:
     }.get(ext, "application/octet-stream")
 
 
+def resetear_archivo_contenido(session, guid: str) -> bool:
+    """PUT /api/cms/contents/{guid} vaciando url/bundle para preparar re-upload."""
+    payload = {
+        "guid":                      guid,
+        "bundle":                    "",
+        "url":                       "",
+        "url_public_viewer":         "",
+        "storage_status":            None,
+        "transcription_url":         None,
+        "encoded_transcription_url": None,
+        "transcription_bundle":      None,
+        "subtitles":                 [],
+        "audiodescriptions":         [],
+    }
+    resp = api_put(session, f"/api/cms/contents/{guid}", json_data=payload)
+    return resp.get("status") == "success"
+
+
 def actualizar_metadata(session, guid: str, nombre_visible: str, erp_id: str,
                         type_guid: str, is_teacher_only: int,
                         education_levels: list, education_years: list,
@@ -483,7 +501,7 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
         )
 
         if es_duplicado:
-            # ── Contenido ya existe: buscar, mergear y actualizar ────
+            # ── Contenido ya existe: resetear archivo y re-subir ─────
             existente = buscar_contenido_por_erp(session, erp_id)
             if not existente:
                 raise RuntimeError(f"ER_DUP_ENTRY pero no se encontró erp_id={erp_id}")
@@ -497,34 +515,44 @@ def _subir_item(token: str, item: dict, level_guid: str, year_guid: str,
             cols_exist = {x["guid"]                 for x in existente.get("collections",     [])}
             lang_exist = {x["id"]                   for x in existente.get("langs",           [])}
 
-            # Si ya tiene exactamente este nivel Y este año → no hay nada que cambiar
-            if level_guid in lvls_exist and year_guid in yrs_exist:
-                tqdm.write(f"  [SIN CAMBIOS]  {filepath.name} — ya asignado a este nivel/grado")
-                resultado["estado"]     = "ACTUALIZADO"
-                resultado["url_viewer"] = viewer_url(guid)
-            else:
-                lvls      = list(lvls_exist | {level_guid})
-                yrs       = list(yrs_exist  | {year_guid})
-                disc      = list(disc_exist | {disc_guid})
-                cols      = list(cols_exist | {col_guid})
-                langs_act = list(lang_exist | {idioma_val})
+            lvls      = list(lvls_exist | {level_guid})
+            yrs       = list(yrs_exist  | {year_guid})
+            disc      = list(disc_exist | {disc_guid})
+            cols      = list(cols_exist | {col_guid})
+            langs_act = list(lang_exist | {idioma_val})
 
-                ok_meta = actualizar_metadata(
-                    session, guid,
-                    existente.get("name", nombre),
-                    erp_id,
-                    existente.get("type_guid", type_g),
-                    existente.get("is_teacher_only", item["is_teacher_only"]),
-                    education_levels=lvls,
-                    education_years=yrs,
-                    disciplines=disc,
-                    langs=langs_act,
-                    collections=cols,
-                )
-                if not ok_meta:
-                    raise RuntimeError("Error al actualizar metadatos del contenido existente")
-                resultado["estado"]     = "ACTUALIZADO"
-                resultado["url_viewer"] = viewer_url(guid)
+            # 1. Vaciar el archivo anterior
+            tqdm.write(f"  [REEMPLAZANDO] {filepath.name} — reseteando archivo existente...")
+            if not resetear_archivo_contenido(session, guid):
+                raise RuntimeError("Error al resetear archivo del contenido existente")
+
+            # 2. Obtener nuevo endpoint de upload y subir
+            upload_info = obtener_upload_info(session, guid)
+            ok_upload = subir_archivo(
+                session, upload_info["endpoint"], upload_info["token"], filepath
+            )
+            if not ok_upload:
+                raise RuntimeError("El endpoint de re-upload no devolvió success")
+
+            esperar_procesado(session, guid)
+
+            # 3. Actualizar metadata (merge de niveles/años/etc.)
+            ok_meta = actualizar_metadata(
+                session, guid,
+                nombre,
+                erp_id,
+                type_g,
+                item["is_teacher_only"],
+                education_levels=lvls,
+                education_years=yrs,
+                disciplines=disc,
+                langs=langs_act,
+                collections=cols,
+            )
+            if not ok_meta:
+                raise RuntimeError("Error al actualizar metadatos tras re-upload")
+            resultado["estado"]     = "REEMPLAZADO"
+            resultado["url_viewer"] = viewer_url(guid)
 
         else:
             # ── Contenido nuevo: subir archivo y guardar metadata ────
@@ -811,6 +839,8 @@ def main():
             resultados.append(resultado)
             if resultado["estado"] == "OK":
                 tqdm.write(f"  [OK]          {resultado['archivo']}")
+            elif resultado["estado"] == "REEMPLAZADO":
+                tqdm.write(f"  [REEMPLAZADO] {resultado['archivo']}")
             elif resultado["estado"] == "ACTUALIZADO":
                 tqdm.write(f"  [ACTUALIZADO] {resultado['archivo']}")
             else:
@@ -824,16 +854,18 @@ def main():
     log_path = raiz / f"log_subida_{ts}.xlsx"
     guardar_log(resultados, log_path)
 
-    ok_count  = sum(1 for r in resultados if r["estado"] == "OK")
-    upd_count = sum(1 for r in resultados if r["estado"] == "ACTUALIZADO")
-    err_count = len(resultados) - ok_count - upd_count
+    ok_count   = sum(1 for r in resultados if r["estado"] == "OK")
+    rep_count  = sum(1 for r in resultados if r["estado"] == "REEMPLAZADO")
+    upd_count  = sum(1 for r in resultados if r["estado"] == "ACTUALIZADO")
+    err_count  = len(resultados) - ok_count - rep_count - upd_count
 
     print(f"\n{'=' * 65}")
     print(f"  Subida completada.")
-    print(f"  Nuevos      : {ok_count}")
-    print(f"  Actualizados: {upd_count}")
-    print(f"  Errores     : {err_count}")
-    print(f"  Log         : {log_path}")
+    print(f"  Nuevos       : {ok_count}")
+    print(f"  Reemplazados : {rep_count}")
+    print(f"  Actualizados : {upd_count}")
+    print(f"  Errores      : {err_count}")
+    print(f"  Log          : {log_path}")
     print("=" * 65)
 
 
