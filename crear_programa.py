@@ -5,15 +5,16 @@ Crea módulos y recursos en el LMS de Santillana a partir de la estructura local
 Flujo por producto:
   1. Detecta carpetas bajo PRIM/ que tienen OUTPUT/resumen_global.xlsx
   2. Lee el Excel: A=Nombre visible, B=Nombre archivo, C=Ruta, D=Tipo,
-                   E=Carpeta contenedora, F=Carpeta fuente, G=Name (serie)
+                   E=Carpeta contenedora (módulo), F=Carpeta fuente, G=Name (sección)
   3. Aplica fix de nombres:
        - "Unidad XX" → "Name Unidad XX"   (col A empieza con "Unidad")
        - nombre == stem archivo → "Name nombre"  (col A igual al stem de col B)
   4. Busca el curso en el LMS (búsqueda interactiva)
-  5. Por cada carpeta del Excel (orden: Documentos → Unidad 00 → Unidad 01 …):
+  5. Por cada módulo del Excel (orden: Documentos → Unidad 00 → Unidad 01 …):
        a. Crea una lección (módulo) si no existe ya
-       b. Crea sección "Recursos" dentro del módulo
-       c. Busca cada archivo en CMS por ERP ID y lo agrega a la sección
+       b. Por cada sección dentro del módulo (col G, orden original del Excel):
+            - Crea la sección con el nombre de col G
+            - Busca cada archivo en CMS por ERP ID y lo agrega a esa sección
 
 Uso:
   python crear_programa.py
@@ -124,41 +125,67 @@ def leer_excel_producto(xlsx_path: Path) -> list[dict]:
         nombre_archivo = str(cols[1] or "").strip()
         # cols[2] ruta_destino  — no se usa aquí
         # cols[3] tipo          — no se usa aquí
-        carpeta        = str(cols[4] or "").strip()   # Carpeta contenedora
+        modulo         = str(cols[4] or "").strip()   # Carpeta contenedora (módulo LMS)
         # cols[5] carpeta_fuente — no se usa aquí
-        name_serie     = str(cols[6] or "").strip()   # Name (serie, ej. "Dificultades de lectoescritura")
+        seccion        = str(cols[6] or "").strip()   # Name: nombre de la sección dentro del módulo
 
-        if not nombre_archivo or not carpeta:
+        if not nombre_archivo or not modulo:
             continue
 
         erp_id       = Path(nombre_archivo).stem
-        nombre_final = _fix_nombre(nombre_visible, nombre_archivo, name_serie)
+        nombre_final = _fix_nombre(nombre_visible, nombre_archivo, seccion)
 
         archivos.append({
             "nombre_visible": nombre_final,
             "erp_id":         erp_id,
-            "carpeta":        carpeta,
+            "modulo":         modulo,
+            "seccion":        seccion,
         })
     return archivos
 
 
-def agrupar_por_carpeta(archivos: list[dict]) -> dict[str, list[dict]]:
-    """Agrupa archivos por carpeta, excluye las de CARPETAS_EXCLUIR, ordena carpetas."""
-    por_carpeta: dict[str, list[dict]] = {}
-    for a in archivos:
-        carp = a["carpeta"]
-        if carp.lower() in CARPETAS_EXCLUIR:
-            continue
-        por_carpeta.setdefault(carp, []).append(a)
+def agrupar_por_modulo(archivos: list[dict]) -> dict[str, dict[str, list[dict]]]:
+    """
+    Devuelve {modulo → {seccion → [archivos]}}.
+    Excluye módulos en CARPETAS_EXCLUIR.
+    Ordena módulos: Documentos primero, luego Unidad numericamente.
+    Las secciones mantienen el orden original del Excel.
+    """
+    estructura: dict[str, dict[str, list[dict]]] = {}
+    secciones_orden: dict[str, list[str]] = {}
 
-    def sort_key(nombre: str) -> tuple:
+    for a in archivos:
+        modulo  = a["modulo"]
+        seccion = a["seccion"]
+
+        if modulo.lower() in CARPETAS_EXCLUIR:
+            continue
+
+        if modulo not in estructura:
+            estructura[modulo] = {}
+            secciones_orden[modulo] = []
+
+        if seccion not in estructura[modulo]:
+            estructura[modulo][seccion] = []
+            secciones_orden[modulo].append(seccion)
+
+        estructura[modulo][seccion].append(a)
+
+    def sort_key_modulo(nombre: str) -> tuple:
         lower = nombre.lower()
-        if lower == "documentos":
+        if "documentos" in lower:
             return (0, 0)
         m = re.search(r'\d+', nombre)
         return (1, int(m.group()) if m else 999)
 
-    return dict(sorted(por_carpeta.items(), key=lambda kv: sort_key(kv[0])))
+    resultado: dict[str, dict[str, list[dict]]] = {}
+    for modulo in sorted(estructura.keys(), key=sort_key_modulo):
+        resultado[modulo] = {
+            sec: estructura[modulo][sec]
+            for sec in secciones_orden[modulo]
+        }
+
+    return resultado
 
 
 # ── API: cursos ───────────────────────────────────────────────────────────────
@@ -176,9 +203,9 @@ def get_course_items(session, course_guid: str) -> list[dict]:
     return data.get("data", {}).get("items", [])
 
 
-def crear_lesson(session, course_guid: str, carpeta: str) -> str | None:
+def crear_lesson(session, course_guid: str, nombre_modulo: str) -> str | None:
     """Crea una lección (módulo) en el curso. Devuelve su lesson_guid."""
-    html_name = f'<p><span style="font-size: 24px;">{carpeta}</span></p>'
+    html_name = f'<p><span style="font-size: 24px;">{nombre_modulo}</span></p>'
     payload = {
         "evaluation_period_id": "annual",
         "name":               html_name,
@@ -190,11 +217,11 @@ def crear_lesson(session, course_guid: str, carpeta: str) -> str | None:
     return d.get("lesson_guid") or d.get("guid")
 
 
-def crear_seccion_recursos(session, lesson_guid: str) -> str | None:
-    """Crea la sección 'Recursos' en la lección. Devuelve su guid (parent_guid)."""
+def crear_seccion(session, lesson_guid: str, nombre_seccion: str) -> str | None:
+    """Crea una sección con el nombre dado dentro de la lección. Devuelve su guid (parent_guid)."""
     payload = {
         "lesson_guid":       lesson_guid,
-        "section":           "Recursos",
+        "section":           nombre_seccion,
         "section_type_guid": "default",
     }
     data = api_post(session, "/api/front/lesson-items", payload)
@@ -273,11 +300,11 @@ def procesar_producto(session, producto_path: Path) -> dict:
     print(f"\n{'─' * 62}")
     print(f"  Producto : {producto_path.name}")
 
-    archivos    = leer_excel_producto(xlsx)
-    por_carpeta = agrupar_por_carpeta(archivos)
-    carpetas    = list(por_carpeta.keys())
+    archivos   = leer_excel_producto(xlsx)
+    estructura = agrupar_por_modulo(archivos)
+    modulos    = list(estructura.keys())
 
-    print(f"  Módulos  : {carpetas}")
+    print(f"  Módulos  : {modulos}")
 
     # Buscar curso
     print()
@@ -302,60 +329,65 @@ def procesar_producto(session, producto_path: Path) -> dict:
     course_guid = curso["guid"]
 
     # Módulos ya existentes (para no duplicar)
-    items_existentes = get_course_items(session, course_guid)
+    items_existentes   = get_course_items(session, course_guid)
     modulos_existentes = {html_a_texto(it.get("lesson_name", "")).lower()
                           for it in items_existentes}
 
-    modulos_creados   = 0
-    modulos_salteados = 0
-    contenidos_ok     = 0
-    contenidos_error  = 0
+    modulos_creados    = 0
+    modulos_salteados  = 0
+    secciones_creadas  = 0
+    contenidos_ok      = 0
+    contenidos_error   = 0
 
-    barra = tqdm(carpetas, desc=f"  {producto_path.name}", unit="módulo", ncols=80)
+    barra = tqdm(modulos, desc=f"  {producto_path.name}", unit="módulo", ncols=80)
 
-    for carpeta in barra:
-        barra.set_postfix_str(carpeta[:30])
+    for modulo in barra:
+        barra.set_postfix_str(modulo[:30])
 
-        if carpeta.lower() in modulos_existentes:
-            tqdm.write(f"    [SKIP] Módulo ya existe: {carpeta}")
+        if modulo.lower() in modulos_existentes:
+            tqdm.write(f"    [SKIP] Módulo ya existe: {modulo}")
             modulos_salteados += 1
             continue
 
         # Crear módulo
-        lesson_guid = crear_lesson(session, course_guid, carpeta)
+        lesson_guid = crear_lesson(session, course_guid, modulo)
         if not lesson_guid:
-            tqdm.write(f"    [ERROR] No se pudo crear módulo: {carpeta}")
+            tqdm.write(f"    [ERROR] No se pudo crear módulo: {modulo}")
             continue
-        tqdm.write(f"    [+] Módulo: {carpeta}  [{lesson_guid}]")
+        tqdm.write(f"    [+] Módulo: {modulo}  [{lesson_guid}]")
         modulos_creados += 1
 
-        # Crear sección Recursos
-        parent_guid = crear_seccion_recursos(session, lesson_guid)
-        if not parent_guid:
-            tqdm.write(f"    [ERROR] No se pudo crear sección Recursos en '{carpeta}'")
-            continue
+        # Por cada sección dentro del módulo
+        for seccion, archivos_sec in estructura[modulo].items():
+            parent_guid = crear_seccion(session, lesson_guid, seccion)
+            if not parent_guid:
+                tqdm.write(f"      [ERROR] No se pudo crear sección '{seccion}'")
+                continue
+            tqdm.write(f"      [+] Sección: {seccion}")
+            secciones_creadas += 1
 
-        # Agregar contenidos
-        for archivo in por_carpeta[carpeta]:
-            content = buscar_contenido_por_erp(session, archivo["erp_id"])
-            if not content:
-                tqdm.write(f"      [NOT FOUND] {archivo['erp_id']}")
-                contenidos_error += 1
-            elif agregar_contenido(session, lesson_guid, parent_guid,
-                                   content, archivo["nombre_visible"]):
-                tqdm.write(f"      [+] {archivo['nombre_visible']}")
-                contenidos_ok += 1
-            else:
-                tqdm.write(f"      [ERROR] {archivo['erp_id']}")
-                contenidos_error += 1
+            # Agregar contenidos a la sección
+            for archivo in archivos_sec:
+                content = buscar_contenido_por_erp(session, archivo["erp_id"])
+                if not content:
+                    tqdm.write(f"        [NOT FOUND] {archivo['erp_id']}")
+                    contenidos_error += 1
+                elif agregar_contenido(session, lesson_guid, parent_guid,
+                                       content, archivo["nombre_visible"]):
+                    tqdm.write(f"        [+] {archivo['nombre_visible']}")
+                    contenidos_ok += 1
+                else:
+                    tqdm.write(f"        [ERROR] {archivo['erp_id']}")
+                    contenidos_error += 1
 
-            time.sleep(0.15)   # evitar rate-limit
+                time.sleep(0.15)   # evitar rate-limit
 
     return {
         "producto":          producto_path.name,
         "curso":             curso["name"],
         "modulos_creados":   modulos_creados,
         "modulos_salteados": modulos_salteados,
+        "secciones_creadas": secciones_creadas,
         "contenidos_ok":     contenidos_ok,
         "contenidos_error":  contenidos_error,
     }
@@ -384,7 +416,7 @@ def main():
     if not token:
         sys.exit("No se ingresó token.")
 
-    session  = build_session(token)
+    session   = build_session(token)
     productos = detectar_productos(base_path)
 
     if not productos:
@@ -410,11 +442,12 @@ def main():
             print(f"  {r['producto']:<20} ERROR: {r['error']}")
         else:
             print(f"  {r['producto']}")
-            print(f"    Curso            : {r['curso']}")
-            print(f"    Módulos creados  : {r['modulos_creados']}")
-            print(f"    Módulos saltados : {r['modulos_salteados']}")
-            print(f"    Contenidos OK    : {r['contenidos_ok']}")
-            print(f"    Contenidos error : {r['contenidos_error']}")
+            print(f"    Curso             : {r['curso']}")
+            print(f"    Módulos creados   : {r['modulos_creados']}")
+            print(f"    Módulos saltados  : {r['modulos_salteados']}")
+            print(f"    Secciones creadas : {r['secciones_creadas']}")
+            print(f"    Contenidos OK     : {r['contenidos_ok']}")
+            print(f"    Contenidos error  : {r['contenidos_error']}")
     print("=" * 62)
 
 

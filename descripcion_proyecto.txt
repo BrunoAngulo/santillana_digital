@@ -76,13 +76,15 @@ QUÉ HACE:
     - Lee el Excel y aplica fix de nombres:
         "Unidad 01" + serie "Dificultades..." → "Dificultades... Unidad 01"
     - Búsqueda interactiva del curso en el LMS
-    - Por cada carpeta del Excel (Documentos, Unidad 01, Unidad 02...):
+    - Por cada módulo del Excel (col E: Documentos, Unidad 01, Unidad 02...):
         → Crea una lección/módulo en el curso (si no existe ya)
-        → Crea sección "Recursos" dentro del módulo
-        → Busca cada archivo en el CMS por ERP ID
-        → Agrega el contenido a la sección
+        → Por cada sección (col G: "Dificultades de lectoescritura",
+          "Propósitos de aprendizaje", "Guía metodológica", etc.):
+            → Crea la sección con ese nombre
+            → Busca cada archivo en el CMS por ERP ID
+            → Agrega el contenido a la sección
   No crea módulo para la carpeta "Completo" (es un espejo de todo).
-  Al final muestra resumen de módulos y contenidos creados/errores.
+  Al final muestra resumen de módulos, secciones y contenidos creados/errores.
 
 USO:
   python crear_programa.py "C:\...\SUBIDAS\PRIM"
