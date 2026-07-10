@@ -150,14 +150,40 @@ QUÉ HACE:
 USO:
   python mapear_carpeta.py "C:\...\CDCOMPRI1P\OUTPUT"
 
+───────────────────────────────────────────────────────────────
+8. subir_docs_santillana.py
+───────────────────────────────────────────────────────────────
+QUÉ HACE:
+  Sube los archivos de SantillanaDigital_Docs/ al CMS y los
+  vincula al LMS en el módulo de Documentos de cada curso.
+  Estructura esperada:
+    SantillanaDigital_Docs/{Producto}/{Carpeta}/{Archivo}
+  Flujo por producto:
+    1. Por cada archivo busca en el CMS por nombre (stem exacto).
+       - Si ya existe → reutiliza su GUID.
+       - Si no existe → sube el archivo al CMS con los metadatos.
+    2. Selección interactiva del curso LMS para el producto.
+    3. Busca (o crea) el módulo "Documentos" en el curso LMS.
+    4. Por cada subcarpeta → crea una sección con ese nombre
+       dentro del módulo "Documentos" y vincula los archivos.
+  Metadatos CMS: pide etapa, año, asignatura, idioma y colección
+  una sola vez (para todos los productos) o por cada producto.
+  Genera log Excel: ENCONTRADO / SUBIDO / ERROR (CMS)
+                    VINCULADO / SKIP / ERROR (LMS)
+
+USO:
+  python subir_docs_santillana.py
+  python subir_docs_santillana.py "C:\...\SantillanaDigital_Docs"
+
 ═══════════════════════════════════════════════════════════════
   FLUJO TÍPICO DE TRABAJO
 ═══════════════════════════════════════════════════════════════
 
-  1. mapear_carpeta.py     → ver qué archivos hay localmente
-  2. subir_contenidos.py   → subir archivos al CMS
-  3. listar_contenidos.py  → verificar lo subido / detectar errores
-  4. actualizar_contenidos.py → corregir nombres si es necesario
-  5. crear_programa.py     → crear el programa LMS con los módulos
+  1. mapear_carpeta.py         → ver qué archivos hay localmente
+  2. subir_contenidos.py       → subir archivos de unidades al CMS
+  3. listar_contenidos.py      → verificar lo subido / detectar errores
+  4. actualizar_contenidos.py  → corregir nombres si es necesario
+  5. crear_programa.py         → crear el programa LMS con los módulos
+  6. subir_docs_santillana.py  → subir y vincular documentos al LMS
 
 ═══════════════════════════════════════════════════════════════
