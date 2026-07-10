@@ -247,10 +247,17 @@ def guardar_excel_lista(filas: list[dict], xlsx_path: Path, curso_nombre: str):
     ws["A1"].comment = None
     ws.sheet_properties.tabColor = "1F4E79"
 
-    # Hoja de metadatos para el updater
+    # Hoja oculta con todos los GUIDs originales (para detectar eliminaciones)
     wm = wb.create_sheet("_meta")
     wm["A1"] = "curso"
     wm["B1"] = curso_nombre
+    wm["A2"] = "guids_originales"
+    for i, fila in enumerate(filas, 3):
+        wm.cell(row=i, column=1, value=fila["guid_item"])
+        wm.cell(row=i, column=2, value=fila["modulo"])
+        wm.cell(row=i, column=3, value=fila["seccion"])
+        wm.cell(row=i, column=4, value=fila["nombre_visible"])
+    wm.sheet_state = "hidden"
 
     wb.save(xlsx_path)
     print(f"  Excel guardado: {xlsx_path.resolve()}")
@@ -258,7 +265,12 @@ def guardar_excel_lista(filas: list[dict], xlsx_path: Path, curso_nombre: str):
 
 # ── Excel: leer para actualizar ───────────────────────────────────────────────
 
-def leer_excel_ediciones(xlsx_path: Path) -> list[dict]:
+def leer_excel_ediciones(xlsx_path: Path) -> tuple[list[dict], list[dict]]:
+    """
+    Devuelve (filas_actuales, filas_eliminadas).
+    filas_actuales  → filas que siguen en la hoja Items (para actualizar nombre)
+    filas_eliminadas → filas que estaban en _meta pero ya no están en Items (para DELETE)
+    """
     wb = openpyxl.load_workbook(xlsx_path)
     ws = wb["Items"]
 
@@ -271,20 +283,38 @@ def leer_excel_ediciones(xlsx_path: Path) -> list[dict]:
     except ValueError as e:
         sys.exit(f"\n[ERROR] Columna no encontrada: {e}")
 
-    filas = []
+    filas_actuales = []
+    guids_actuales: set[str] = set()
+
     for row in ws.iter_rows(min_row=2, values_only=True):
         if not any(row):
             continue
         guid = str(row[col_guid] or "").strip()
         nom  = str(row[col_nom]  or "").strip()
         if guid and nom:
-            filas.append({
-                "guid_item":      guid,
-                "nombre_nuevo":   nom,
-                "modulo":         str(row[col_mod] or "").strip(),
-                "seccion":        str(row[col_sec] or "").strip(),
+            filas_actuales.append({
+                "guid_item":    guid,
+                "nombre_nuevo": nom,
+                "modulo":       str(row[col_mod] or "").strip(),
+                "seccion":      str(row[col_sec] or "").strip(),
             })
-    return filas
+            guids_actuales.add(guid)
+
+    # Leer GUIDs originales de la hoja _meta
+    filas_eliminadas = []
+    if "_meta" in wb.sheetnames:
+        wm = wb["_meta"]
+        for row in wm.iter_rows(min_row=3, values_only=True):
+            guid = str(row[0] or "").strip()
+            if guid and guid not in guids_actuales:
+                filas_eliminadas.append({
+                    "guid_item": guid,
+                    "modulo":    str(row[1] or "").strip(),
+                    "seccion":   str(row[2] or "").strip(),
+                    "nombre":    str(row[3] or "").strip(),
+                })
+
+    return filas_actuales, filas_eliminadas
 
 
 # ── GET / PUT item individual ─────────────────────────────────────────────────
@@ -318,6 +348,31 @@ def actualizar_nombre_item(session, item_guid: str, existente: dict,
     except requests.RequestException as e:
         tqdm.write(f"  [ERROR PUT] {item_guid}: {e}")
         return False
+
+
+# ── DELETE items ─────────────────────────────────────────────────────────────
+
+def eliminar_items(session, guids: list[str]) -> tuple[list[str], list[str]]:
+    """
+    DELETE /api/front/lesson-items con {"guid": [...]}.
+    Devuelve (eliminados, fallidos).
+    """
+    if not guids:
+        return [], []
+    try:
+        r = session.delete(
+            f"{API_BASE}/api/front/lesson-items",
+            json={"guid": guids},
+            timeout=30,
+        )
+        r.raise_for_status()
+        data = r.json()
+        if data.get("status") == "success":
+            return guids, []
+        return [], guids
+    except requests.RequestException as e:
+        tqdm.write(f"  [ERROR DELETE] {e}")
+        return [], guids
 
 
 # ── Worker actualización ──────────────────────────────────────────────────────
@@ -371,6 +426,7 @@ def guardar_log_actualizacion(resultados: list[dict], log_path: Path):
     fill_h   = PatternFill("solid", fgColor="1F4E79")
     font_h   = Font(bold=True, color="FFFFFF", size=11)
     fill_ok  = PatternFill("solid", fgColor="C6EFCE")
+    fill_del = PatternFill("solid", fgColor="F4CCCC")   # rojo claro: eliminado
     fill_err = PatternFill("solid", fgColor="FFC7CE")
     fill_nc  = PatternFill("solid", fgColor="D9D9D9")
 
@@ -382,15 +438,17 @@ def guardar_log_actualizacion(resultados: list[dict], log_path: Path):
 
     for i, r in enumerate(resultados, 2):
         ws.cell(row=i, column=1, value=r["guid_item"])
-        ws.cell(row=i, column=2, value=r["modulo"])
-        ws.cell(row=i, column=3, value=r["seccion"])
-        ws.cell(row=i, column=4, value=r["nombre_actual"])
-        ws.cell(row=i, column=5, value=r["nombre_nuevo"])
+        ws.cell(row=i, column=2, value=r.get("modulo", ""))
+        ws.cell(row=i, column=3, value=r.get("seccion", ""))
+        ws.cell(row=i, column=4, value=r.get("nombre_actual", ""))
+        ws.cell(row=i, column=5, value=r.get("nombre_nuevo", ""))
         ws.cell(row=i, column=6, value=r["estado"])
-        ws.cell(row=i, column=7, value=r["detalle"])
+        ws.cell(row=i, column=7, value=r.get("detalle", ""))
 
-        fill = (fill_ok  if r["estado"] == "ACTUALIZADO" else
-                fill_nc  if r["estado"] == "SIN_CAMBIO"  else
+        estado = r["estado"]
+        fill = (fill_ok  if estado == "ACTUALIZADO" else
+                fill_del if estado == "ELIMINADO"   else
+                fill_nc  if estado == "SIN_CAMBIO"  else
                 fill_err)
         for col in range(1, 8):
             ws.cell(row=i, column=col).fill = fill
@@ -457,30 +515,65 @@ def modo_listar(token: str):
 
 def modo_actualizar(token: str, xlsx_path: Path):
     print(f"Leyendo {xlsx_path.name}...")
-    filas = leer_excel_ediciones(xlsx_path)
-    print(f"  {len(filas)} filas con GUID y nombre.")
+    filas, filas_eliminar = leer_excel_ediciones(xlsx_path)
+    print(f"  {len(filas)} filas presentes  |  {len(filas_eliminar)} filas eliminadas")
 
-    if not filas:
+    if not filas and not filas_eliminar:
         sys.exit("No hay filas válidas.")
 
-    print(f"\nProcesando (máximo {MAX_WORKERS} simultáneos)...\n")
+    session    = build_session(token)
     resultados = []
-    barra = tqdm(total=len(filas), desc="Actualizando", unit="item", ncols=80)
 
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
-        futures = {pool.submit(_procesar_actualizacion, token, f): f for f in filas}
-        for future in as_completed(futures):
-            r = future.result()
-            resultados.append(r)
-            if r["estado"] == "ACTUALIZADO":
-                tqdm.write(f"  [OK] {r['detalle']}")
-            elif r["estado"] == "SIN_CAMBIO":
-                tqdm.write(f"  [=]  {r['nombre_actual']}")
+    # ── Eliminaciones (batch) ────────────────────────────────────────
+    if filas_eliminar:
+        print(f"\nEliminando {len(filas_eliminar)} items del programa...")
+        guids_del = [f["guid_item"] for f in filas_eliminar]
+        ok_guids, err_guids = eliminar_items(session, guids_del)
+        ok_set  = set(ok_guids)
+
+        for f in filas_eliminar:
+            if f["guid_item"] in ok_set:
+                print(f"  [ELIMINADO] {f['modulo']} / {f['seccion']} / {f['nombre']}")
+                resultados.append({
+                    "guid_item":    f["guid_item"],
+                    "modulo":       f["modulo"],
+                    "seccion":      f["seccion"],
+                    "nombre_actual": f["nombre"],
+                    "nombre_nuevo": "",
+                    "estado":       "ELIMINADO",
+                    "detalle":      "Fila eliminada del Excel",
+                })
             else:
-                tqdm.write(f"  [ERROR] {r['guid_item']}: {r['detalle']}")
-            barra.update(1)
+                print(f"  [ERROR] No se pudo eliminar: {f['guid_item']}")
+                resultados.append({
+                    "guid_item":    f["guid_item"],
+                    "modulo":       f["modulo"],
+                    "seccion":      f["seccion"],
+                    "nombre_actual": f["nombre"],
+                    "nombre_nuevo": "",
+                    "estado":       "ERROR",
+                    "detalle":      "DELETE falló",
+                })
 
-    barra.close()
+    # ── Actualizaciones de nombre (paralelo) ─────────────────────────
+    if filas:
+        print(f"\nActualizando nombres (máximo {MAX_WORKERS} simultáneos)...\n")
+        barra = tqdm(total=len(filas), desc="Actualizando", unit="item", ncols=80)
+
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+            futures = {pool.submit(_procesar_actualizacion, token, f): f for f in filas}
+            for future in as_completed(futures):
+                r = future.result()
+                resultados.append(r)
+                if r["estado"] == "ACTUALIZADO":
+                    tqdm.write(f"  [OK] {r['detalle']}")
+                elif r["estado"] == "SIN_CAMBIO":
+                    tqdm.write(f"  [=]  {r['nombre_actual']}")
+                else:
+                    tqdm.write(f"  [ERROR] {r['guid_item']}: {r['detalle']}")
+                barra.update(1)
+
+        barra.close()
 
     ts       = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_path = xlsx_path.parent / f"log_gestion_{ts}.xlsx"
@@ -488,11 +581,13 @@ def modo_actualizar(token: str, xlsx_path: Path):
     guardar_log_actualizacion(resultados, log_path)
 
     act = sum(1 for r in resultados if r["estado"] == "ACTUALIZADO")
+    eli = sum(1 for r in resultados if r["estado"] == "ELIMINADO")
     nc  = sum(1 for r in resultados if r["estado"] == "SIN_CAMBIO")
     err = sum(1 for r in resultados if r["estado"] == "ERROR")
 
     print(f"\n{'=' * 62}")
     print(f"  Actualizados  : {act}")
+    print(f"  Eliminados    : {eli}")
     print(f"  Sin cambio    : {nc}")
     print(f"  Errores       : {err}")
     print(f"  Log           : {log_path}")
