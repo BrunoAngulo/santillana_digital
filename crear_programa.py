@@ -65,6 +65,35 @@ SECCION_NOMBRE = {
     "senpai":    "Herramientas cooperativas",
 }
 
+# Orden de secciones dentro de cada módulo (Unidades)
+_ORDEN_SECCIONES = [
+    "Documentos curriculares",
+    "Libromedia",
+    "Estrategias de lectura",
+    "Dificultades de lectoescritura",
+    "Guía metodológica",
+    "Instrumentos de evaluación",
+    "Módulo de material imprimible",
+    "Láminas didácticas",
+    "Herramientas cooperativas",
+    "Recursos",
+]
+
+# Orden de módulos en el curso (los derivados de col E = Documentos van primero)
+_ORDEN_MODULOS_CURSO = [
+    "Documentos",
+    "Documentos curriculares",
+    "Libromedia",
+    "Estrategias de lectura",
+    "Dificultades de lectoescritura",
+    "Guía metodológica",
+    "Instrumentos de evaluación",
+    "Módulo de material imprimible",
+    "Láminas didácticas",
+    "Herramientas cooperativas",
+    # Unidades van al final, ordenadas numéricamente por reordenar_modulos_curso
+]
+
 
 # ── Sesión HTTP ──────────────────────────────────────────────────────────────
 
@@ -220,21 +249,16 @@ def agrupar_por_modulo(archivos: list[dict]) -> dict[str, dict[str, list[dict]]]
 
         estructura[modulo][seccion].append(a)
 
-    # Módulos: SECCION_NOMBRE-derivados primero (orden del dict), luego Unidades por número
-    _orden_modulos = list(SECCION_NOMBRE.values())
-    _orden_secciones = _orden_modulos  # mismas claves para secciones dentro de Unidades
-
     def sort_key_modulo(nombre: str) -> tuple:
         try:
-            return (0, _orden_modulos.index(nombre), "")
+            return (0, _ORDEN_MODULOS_CURSO.index(nombre), "")
         except ValueError:
             m = re.search(r'\d+', nombre)
             return (1, int(m.group()) if m else 9999, nombre.lower())
 
-    # Secciones dentro de Unidades: según orden de SECCION_NOMBRE
     def sort_key_seccion(nombre: str) -> tuple:
         try:
-            return (0, _orden_secciones.index(nombre))
+            return (0, _ORDEN_SECCIONES.index(nombre))
         except ValueError:
             return (1, nombre.lower())
 
@@ -340,6 +364,93 @@ def agregar_contenido(session, lesson_guid: str, parent_guid: str,
     }
     data = api_post(session, "/api/front/lesson-items", payload)
     return data.get("data", {}).get("guid") or None
+
+
+# ── API: secciones existentes y reordenamiento ───────────────────────────────
+
+def get_lesson_sections(session, lesson_guid: str) -> dict[str, str]:
+    """Devuelve {nombre_seccion_lower → guid} para las secciones ya existentes."""
+    try:
+        data  = api_get(session, f"/api/front/lessons/{lesson_guid}/items")
+        items = (data.get("data") or {}).get("items", [])
+        return {
+            (it.get("section") or "").strip().lower(): it["guid"]
+            for it in items
+            if it.get("section") and it.get("guid")
+        }
+    except Exception:
+        return {}
+
+
+def reordenar_secciones(session, lesson_guid: str) -> bool:
+    """
+    Reordena las secciones del módulo según _ORDEN_SECCIONES.
+    Se llama siempre — para módulos nuevos y existentes.
+    """
+    try:
+        data  = api_get(session, f"/api/front/lessons/{lesson_guid}/items")
+        items = (data.get("data") or {}).get("items", [])
+        secciones = [
+            ((it.get("section") or it.get("name") or "").strip(), it["guid"])
+            for it in items if it.get("guid")
+        ]
+        if not secciones:
+            return True
+
+        def _key(nom: str):
+            try:
+                return (0, _ORDEN_SECCIONES.index(nom))
+            except ValueError:
+                return (1, nom.lower())
+
+        secciones_ord = sorted(secciones, key=lambda x: _key(x[0]))
+        reorder = [{"guid": g, "order": i + 1}
+                   for i, (_, g) in enumerate(secciones_ord)]
+        r = session.put(f"{API_BASE}/api/front/lesson-items",
+                        json={"reorder": reorder}, timeout=30)
+        r.raise_for_status()
+        return r.json().get("status") == "success"
+    except Exception as e:
+        tqdm.write(f"      [ERROR] reordenar_secciones: {e}")
+        return False
+
+
+def reordenar_modulos_curso(session, course_guid: str) -> bool:
+    """
+    Reordena los módulos del curso según _ORDEN_MODULOS_CURSO;
+    los no reconocidos (Unidades) van al final ordenados numéricamente.
+    """
+    try:
+        items = get_course_items(session, course_guid)
+        modulos = [
+            (html_a_texto(it.get("lesson_name") or it.get("name") or ""), it["guid"])
+            for it in items if it.get("guid")
+        ]
+        if not modulos:
+            return True
+
+        def _key(nom: str):
+            try:
+                return (0, _ORDEN_MODULOS_CURSO.index(nom), "")
+            except ValueError:
+                m = re.search(r'\d+', nom)
+                return (1, int(m.group()) if m else 9999, nom.lower())
+
+        modulos_ord = sorted(modulos, key=lambda x: _key(x[0]))
+        reorder = [{"guid": g, "order": i + 1}
+                   for i, (_, g) in enumerate(modulos_ord)]
+        r = session.put(f"{API_BASE}/api/front/courses/{course_guid}/items",
+                        json={"reorder": reorder}, timeout=30)
+        r.raise_for_status()
+        ok = r.json().get("status") == "success"
+        if ok:
+            tqdm.write(f"  [OK] Módulos del curso reordenados ({len(reorder)} módulos)")
+        else:
+            tqdm.write(f"  [WARN] reordenar_modulos: {r.text[:120]}")
+        return ok
+    except Exception as e:
+        tqdm.write(f"  [ERROR] reordenar_modulos_curso: {e}")
+        return False
 
 
 # ── Log Excel ────────────────────────────────────────────────────────────────
@@ -466,7 +577,7 @@ def procesar_producto(session, producto_path: Path) -> dict:
 
     # Módulos ya existentes (para no duplicar)
     items_existentes   = get_course_items(session, course_guid)
-    modulos_existentes = {html_a_texto(it.get("lesson_name", "")).lower()
+    modulos_existentes = {html_a_texto(it.get("lesson_name", "")).lower(): it
                           for it in items_existentes}
 
     # Crear módulo "Documentos" vacío si el Excel tiene filas con col E = Documentos
@@ -507,12 +618,15 @@ def procesar_producto(session, producto_path: Path) -> dict:
         barra.set_postfix_str(modulo[:30])
 
         if modulo.lower() in modulos_existentes:
-            tqdm.write(f"    [SKIP] Módulo ya existe: {modulo}")
+            lesson_guid = modulos_existentes[modulo.lower()].get("lesson_guid", "")
+            tqdm.write(f"    [SKIP] Módulo ya existe: {modulo}  [{lesson_guid}]")
             modulos_salteados += 1
-            # Registrar todos sus contenidos como SKIP en el log
             for seccion, archivos_sec in estructura[modulo].items():
                 for archivo in archivos_sec:
                     _log(modulo, seccion, archivo, "SKIP", detalle="Módulo ya existía")
+            # Aún así verificar el orden de las secciones
+            if lesson_guid:
+                reordenar_secciones(session, lesson_guid)
             continue
 
         # Crear módulo
@@ -527,16 +641,22 @@ def procesar_producto(session, producto_path: Path) -> dict:
         modulos_creados += 1
 
         # Por cada sección dentro del módulo
+        secciones_existentes = get_lesson_sections(session, lesson_guid)
         for seccion, archivos_sec in estructura[modulo].items():
-            parent_guid = crear_seccion(session, lesson_guid, seccion)
-            if not parent_guid:
-                tqdm.write(f"      [ERROR] No se pudo crear sección '{seccion}'")
-                for archivo in archivos_sec:
-                    _log(modulo, seccion, archivo, "ERROR",
-                         detalle=f"Fallo al crear sección '{seccion}'")
-                continue
-            tqdm.write(f"      [+] Sección: {seccion}  [{parent_guid}]")
-            secciones_creadas += 1
+            clave = seccion.strip().lower()
+            if clave in secciones_existentes:
+                parent_guid = secciones_existentes[clave]
+                tqdm.write(f"      [SKIP] Sección ya existe: {seccion}  [{parent_guid}]")
+            else:
+                parent_guid = crear_seccion(session, lesson_guid, seccion)
+                if not parent_guid:
+                    tqdm.write(f"      [ERROR] No se pudo crear sección '{seccion}'")
+                    for archivo in archivos_sec:
+                        _log(modulo, seccion, archivo, "ERROR",
+                             detalle=f"Fallo al crear sección '{seccion}'")
+                    continue
+                tqdm.write(f"      [+] Sección: {seccion}  [{parent_guid}]")
+                secciones_creadas += 1
 
             # Agregar contenidos a la sección
             for archivo in archivos_sec:
@@ -563,6 +683,13 @@ def procesar_producto(session, producto_path: Path) -> dict:
                              content=content, detalle="PUT lesson-item falló")
 
                 time.sleep(0.15)   # evitar rate-limit
+
+        # Verificar orden de secciones dentro de este módulo
+        reordenar_secciones(session, lesson_guid)
+
+    # Verificar orden de módulos en el curso
+    print(f"  Verificando orden de módulos del curso...")
+    reordenar_modulos_curso(session, course_guid)
 
     return {
         "producto":          producto_path.name,
