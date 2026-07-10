@@ -73,6 +73,19 @@ _RETRY_DELAYS  = [3, 6, 12]
 MAX_WORKERS    = 5
 _zip_sem       = threading.Semaphore(2)
 
+# Orden deseado de secciones dentro del módulo Documentos
+_ORDEN_SECCIONES = [
+    "Documentos curriculares",
+    "Libromedia",
+    "Estrategias de lectura",
+    "Dificultades de lectoescritura",
+    "Guía metodológica",
+    "Instrumentos de evaluación",
+    "Módulo de material imprimible",
+    "Láminas didácticas",
+    "Herramientas cooperativas",
+]
+
 _YEARS_FALLBACK = {
     "00000000-0000-1000-0000-000000000039": [
         {"guid": "00000000-0000-1000-0000-000000000119", "name": "1.er grado - Primaria"},
@@ -469,6 +482,91 @@ def agregar_contenido(session, lesson_guid: str, parent_guid: str,
     return (data.get("data") or {}).get("guid") or None
 
 
+# ── Reordenar ─────────────────────────────────────────────────────────────────
+
+def reordenar_secciones(session, lesson_guid: str) -> bool:
+    """
+    Reordena las secciones del módulo según _ORDEN_SECCIONES.
+    Secciones no reconocidas van al final en el orden que ya tienen.
+    Usa PUT /api/front/lesson-items con {reorder: [{guid, order}, ...]}.
+    """
+    try:
+        data  = api_get(session, f"/api/front/lessons/{lesson_guid}/items")
+        items = (data.get("data") or {}).get("items", [])
+        secciones = [
+            ((it.get("section") or it.get("name") or "").strip(), it["guid"])
+            for it in items
+            if it.get("guid")
+        ]
+        if not secciones:
+            return True
+
+        def _orden(nom: str) -> int:
+            try:
+                return _ORDEN_SECCIONES.index(nom)
+            except ValueError:
+                return len(_ORDEN_SECCIONES)
+
+        secciones_ord = sorted(secciones, key=lambda x: _orden(x[0]))
+        reorder = [{"guid": guid, "order": i + 1}
+                   for i, (_, guid) in enumerate(secciones_ord)]
+
+        resp = api_put(session, "/api/front/lesson-items", {"reorder": reorder})
+        ok = resp.get("status") == "success"
+        if ok:
+            tqdm.write(f"  [OK] Secciones reordenadas: "
+                       f"{[n for n, _ in secciones_ord]}")
+        else:
+            tqdm.write(f"  [WARN] Reorder secciones: {resp!s:.120}")
+        return ok
+    except Exception as e:
+        tqdm.write(f"  [ERROR] reordenar_secciones: {e}")
+        return False
+
+
+def reordenar_modulos(session, course_guid: str, orden_modulos: list[str]) -> bool:
+    """
+    Reordena los módulos del curso según orden_modulos (lista de nombres en orden).
+    Módulos no reconocidos van al final.
+    Usa PUT /api/front/courses/{course_guid}/items con {reorder: [{guid, order}, ...]}.
+    """
+    if not orden_modulos:
+        return True
+    try:
+        items = get_course_items(session, course_guid)
+        modulos = [
+            (html_a_texto(it.get("lesson_name") or it.get("name") or ""), it["guid"])
+            for it in items
+            if it.get("guid")
+        ]
+        if not modulos:
+            return True
+
+        orden_lower = [n.lower() for n in orden_modulos]
+
+        def _orden(nom: str) -> int:
+            try:
+                return orden_lower.index(nom.lower())
+            except ValueError:
+                return len(orden_modulos)
+
+        modulos_ord = sorted(modulos, key=lambda x: _orden(x[0]))
+        reorder = [{"guid": guid, "order": i + 1}
+                   for i, (_, guid) in enumerate(modulos_ord)]
+
+        resp = api_put(session, f"/api/front/courses/{course_guid}/items",
+                       {"reorder": reorder})
+        ok = resp.get("status") == "success"
+        if ok:
+            tqdm.write(f"  [OK] Módulos del curso reordenados ({len(reorder)} módulos)")
+        else:
+            tqdm.write(f"  [WARN] Reorder módulos: {resp!s:.120}")
+        return ok
+    except Exception as e:
+        tqdm.write(f"  [ERROR] reordenar_modulos: {e}")
+        return False
+
+
 # ── Selección interactiva de curso ────────────────────────────────────────────
 
 def seleccionar_curso(session, producto_nombre: str) -> dict | None:
@@ -751,6 +849,10 @@ def procesar_producto(session, token: str, producto_path: Path,
                 "detalle":       detalle,
             })
             time.sleep(0.1)
+
+    # ── Fase 3: reordenar secciones dentro de "Documentos" ────────────
+    print(f"\n  Fase 3: Reordenando secciones...")
+    reordenar_secciones(session, lesson_guid)
 
     return entradas
 
