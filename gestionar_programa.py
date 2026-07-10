@@ -97,37 +97,54 @@ def get_course_items(session, course_guid: str) -> list[dict]:
     return r.json().get("data", {}).get("items", [])
 
 
-def get_lesson_items(session, lesson_guid: str) -> list[dict]:
-    """Devuelve los items (secciones + contenidos) dentro de una lección."""
+def get_lesson_items(session, lesson_guid: str, parent_guid: str | None = None) -> list[dict]:
+    """Devuelve items dentro de una lección; si se pasa parent_guid filtra por sección."""
+    params = {}
+    if parent_guid:
+        params["parent_guid"] = parent_guid
     r = session.get(f"{API_BASE}/api/front/lessons/{lesson_guid}/items",
-                    timeout=30)
+                    params=params, timeout=30)
     if r.status_code == 404:
         return []
     r.raise_for_status()
     data = r.json().get("data", {})
-    # La respuesta puede venir como lista o como dict con clave "items"
     if isinstance(data, list):
         return data
     return data.get("items", [])
 
 
+def _content_guid_from_item(it: dict) -> str:
+    cg = it.get("content_guid")
+    if not cg and isinstance(it.get("content"), dict):
+        cg = it["content"].get("guid")
+    return cg or ""
+
+
 def _fetch_lesson_items(token: str, lesson: dict) -> tuple[dict, list[dict]]:
-    """Thread-safe: obtiene los items de una lección."""
+    """Thread-safe: obtiene los items de primer nivel de una lección."""
     s = build_session(token)
     items = get_lesson_items(s, lesson["lesson_guid"])
     return lesson, items
+
+
+def _fetch_section_items(token: str, task: dict) -> tuple[dict, list[dict]]:
+    """Thread-safe: obtiene los contenidos dentro de una sección."""
+    s = build_session(token)
+    items = get_lesson_items(s, task["lesson_guid"], task["section_guid"])
+    return task, items
 
 
 # ── Parseo de la jerarquía ────────────────────────────────────────────────────
 
 def construir_filas(token: str, course_items: list[dict]) -> list[dict]:
     """
-    Recorre lecciones → secciones → contenidos y devuelve una fila por contenido.
-    Cada fila: modulo, seccion, nombre_visible, erp_id, guid_item, guid_cms, content_data
+    Recorre lecciones → secciones → contenidos (3 niveles) y devuelve una fila
+    por contenido.
+    Cada fila: modulo, seccion, nombre_visible, erp_id, guid_item, guid_cms
     """
-    # Separar lecciones (tienen lesson_guid y lesson_name)
+    # ── Nivel 1: lecciones ─────────────────────────────────────────────────
     lecciones = []
-    seen = set()
+    seen: set[str] = set()
     for it in course_items:
         lg = it.get("lesson_guid") or it.get("guid")
         if lg and lg not in seen:
@@ -139,7 +156,7 @@ def construir_filas(token: str, course_items: list[dict]) -> list[dict]:
 
     print(f"  {len(lecciones)} módulos encontrados. Obteniendo items...")
 
-    # Obtener items de cada lección en paralelo
+    # ── Nivel 2: items de cada lección (en paralelo) ───────────────────────
     lesson_items_map: dict[str, list[dict]] = {}
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         futures = {pool.submit(_fetch_lesson_items, token, lec): lec
@@ -151,47 +168,62 @@ def construir_filas(token: str, course_items: list[dict]) -> list[dict]:
             done += 1
             print(f"  {done}/{len(lecciones)} módulos obtenidos")
 
-    # Construir filas aplanadas
-    filas = []
+    # Separar secciones de contenidos directos y armar tareas para nivel 3
+    filas: list[dict] = []
+    section_tasks: list[dict] = []  # (lesson_guid, lesson_name, section_guid, section_name)
+
     for lec in lecciones:
         modulo = lec["lesson_name"]
         items  = lesson_items_map.get(lec["lesson_guid"], [])
 
-        # Identificar secciones (items sin content_guid) y contenidos (con content_guid)
-        secciones: dict[str, str] = {}   # guid_seccion → nombre_seccion
-        contenidos = []
-
         for it in items:
-            content_guid = (it.get("content_guid") or
-                            it.get("content", {}).get("guid") if isinstance(it.get("content"), dict) else None)
-            if not content_guid:
-                # Es una sección contenedora
+            cg = _content_guid_from_item(it)
+            if cg:
+                # Contenido directo bajo la lección (sin sección)
+                _agregar_fila(filas, it, modulo, "")
+            else:
+                # Es una sección — necesita un tercer nivel de fetch
                 guid_sec = it.get("guid", "")
                 nom_sec  = (it.get("section") or it.get("name") or "")
                 if guid_sec:
-                    secciones[guid_sec] = nom_sec
-            else:
-                contenidos.append(it)
+                    section_tasks.append({
+                        "lesson_guid":  lec["lesson_guid"],
+                        "lesson_name":  modulo,
+                        "section_guid": guid_sec,
+                        "section_name": nom_sec,
+                    })
 
-        for it in contenidos:
-            parent_guid  = it.get("parent_guid", "")
-            seccion_nom  = secciones.get(parent_guid, "")
-            content_obj  = it.get("content") if isinstance(it.get("content"), dict) else {}
-            erp_id       = (content_obj.get("erp_id") or
-                            it.get("erp_id") or "")
-            guid_cms     = (content_obj.get("guid") or
-                            it.get("content_guid") or "")
-
-            filas.append({
-                "modulo":         modulo,
-                "seccion":        seccion_nom,
-                "nombre_visible": it.get("name", ""),
-                "erp_id":         erp_id,
-                "guid_item":      it.get("guid", ""),
-                "guid_cms":       guid_cms,
-            })
+    # ── Nivel 3: contenidos dentro de cada sección (en paralelo) ──────────
+    if section_tasks:
+        print(f"  {len(section_tasks)} secciones encontradas. Obteniendo contenidos...")
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+            futures2 = {pool.submit(_fetch_section_items, token, task): task
+                        for task in section_tasks}
+            done2 = 0
+            for future in as_completed(futures2):
+                task, items = future.result()
+                done2 += 1
+                for it in items:
+                    cg = _content_guid_from_item(it)
+                    if cg:
+                        _agregar_fila(filas, it, task["lesson_name"], task["section_name"])
+            print(f"  {done2}/{len(section_tasks)} secciones procesadas")
 
     return filas
+
+
+def _agregar_fila(filas: list[dict], it: dict, modulo: str, seccion: str):
+    content_obj = it.get("content") if isinstance(it.get("content"), dict) else {}
+    erp_id  = (content_obj.get("erp_id") or it.get("erp_id") or "")
+    guid_cms = (_content_guid_from_item(it))
+    filas.append({
+        "modulo":         modulo,
+        "seccion":        seccion,
+        "nombre_visible": it.get("name", ""),
+        "erp_id":         erp_id,
+        "guid_item":      it.get("guid", ""),
+        "guid_cms":       guid_cms,
+    })
 
 
 # ── Excel: exportar ───────────────────────────────────────────────────────────
