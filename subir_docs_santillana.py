@@ -73,8 +73,23 @@ _RETRY_DELAYS  = [3, 6, 12]
 MAX_WORKERS    = 5
 _zip_sem       = threading.Semaphore(2)
 
-# Orden deseado de secciones dentro del módulo Documentos
+# Orden de secciones dentro de cualquier módulo
 _ORDEN_SECCIONES = [
+    "Documentos curriculares",
+    "Libromedia",
+    "Estrategias de lectura",
+    "Dificultades de lectoescritura",
+    "Guía metodológica",
+    "Instrumentos de evaluación",
+    "Módulo de material imprimible",
+    "Láminas didácticas",
+    "Herramientas cooperativas",
+    "Recursos",
+]
+
+# Orden de módulos en el curso (Documentos y derivados primero, Unidades después)
+_ORDEN_MODULOS_CURSO = [
+    "Documentos",
     "Documentos curriculares",
     "Libromedia",
     "Estrategias de lectura",
@@ -524,14 +539,12 @@ def reordenar_secciones(session, lesson_guid: str) -> bool:
         return False
 
 
-def reordenar_modulos(session, course_guid: str, orden_modulos: list[str]) -> bool:
+def reordenar_modulos(session, course_guid: str) -> bool:
     """
-    Reordena los módulos del curso según orden_modulos (lista de nombres en orden).
-    Módulos no reconocidos van al final.
+    Reordena los módulos del curso según _ORDEN_MODULOS_CURSO.
+    Los no reconocidos (Unidades, etc.) van al final ordenados numéricamente.
     Usa PUT /api/front/courses/{course_guid}/items con {reorder: [{guid, order}, ...]}.
     """
-    if not orden_modulos:
-        return True
     try:
         items = get_course_items(session, course_guid)
         modulos = [
@@ -542,13 +555,14 @@ def reordenar_modulos(session, course_guid: str, orden_modulos: list[str]) -> bo
         if not modulos:
             return True
 
-        orden_lower = [n.lower() for n in orden_modulos]
+        orden_lower = [n.lower() for n in _ORDEN_MODULOS_CURSO]
 
-        def _orden(nom: str) -> int:
+        def _orden(nom: str) -> tuple:
             try:
-                return orden_lower.index(nom.lower())
+                return (0, orden_lower.index(nom.lower()), "")
             except ValueError:
-                return len(orden_modulos)
+                m = re.search(r'\d+', nom)
+                return (1, int(m.group()) if m else 9999, nom.lower())
 
         modulos_ord = sorted(modulos, key=lambda x: _orden(x[0]))
         reorder = [{"guid": guid, "order": i + 1}
@@ -558,13 +572,37 @@ def reordenar_modulos(session, course_guid: str, orden_modulos: list[str]) -> bo
                        {"reorder": reorder})
         ok = resp.get("status") == "success"
         if ok:
-            tqdm.write(f"  [OK] Módulos del curso reordenados ({len(reorder)} módulos)")
+            tqdm.write(f"  [OK] Módulos reordenados: {[n for n, _ in modulos_ord]}")
         else:
             tqdm.write(f"  [WARN] Reorder módulos: {resp!s:.120}")
         return ok
     except Exception as e:
         tqdm.write(f"  [ERROR] reordenar_modulos: {e}")
         return False
+
+
+def reordenar_secciones_de_todos_los_modulos(session, course_guid: str):
+    """
+    Recorre todos los módulos del curso y reordena las secciones de cada uno
+    según _ORDEN_SECCIONES.
+    """
+    try:
+        items = get_course_items(session, course_guid)
+        lecciones = []
+        seen: set[str] = set()
+        for it in items:
+            lg = it.get("lesson_guid") or it.get("guid")
+            if lg and lg not in seen:
+                seen.add(lg)
+                nombre = html_a_texto(it.get("lesson_name") or it.get("name") or "")
+                lecciones.append((nombre, lg))
+
+        tqdm.write(f"  Reordenando secciones de {len(lecciones)} módulos...")
+        for nombre, lg in lecciones:
+            ok = reordenar_secciones(session, lg)
+            tqdm.write(f"    [{nombre}] {'OK' if ok else 'WARN'}")
+    except Exception as e:
+        tqdm.write(f"  [ERROR] reordenar_secciones_de_todos_los_modulos: {e}")
 
 
 # ── Selección interactiva de curso ────────────────────────────────────────────
@@ -850,9 +888,10 @@ def procesar_producto(session, token: str, producto_path: Path,
             })
             time.sleep(0.1)
 
-    # ── Fase 3: reordenar secciones dentro de "Documentos" ────────────
-    print(f"\n  Fase 3: Reordenando secciones...")
-    reordenar_secciones(session, lesson_guid)
+    # ── Fase 3: reordenar secciones de todos los módulos y módulos del curso ──
+    print(f"\n  Fase 3: Verificando orden de secciones y módulos...")
+    reordenar_secciones_de_todos_los_modulos(session, course_guid)
+    reordenar_modulos(session, course_guid)
 
     return entradas
 
