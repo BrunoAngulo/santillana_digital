@@ -52,6 +52,19 @@ CONTENT_TYPES = [
 
 CARPETAS_EXCLUIR = {"completo"}  # carpetas que no se convierten en módulo
 
+# Mapeo carpeta fuente (col F) → nombre de sección visible en el LMS
+SECCION_NOMBRE = {
+    "dif_lect":  "Dificultades de lectoescritura",
+    "doc_curr":  "Documentos curriculares",
+    "est_lect":  "Estrategias de lectura",
+    "guia_met":  "Guía metodológica",
+    "lam_didac": "Láminas didácticas",
+    "libmed":    "Libromedia",
+    "mat_imp":   "Módulo de material imprimible",
+    "mod_ie":    "Instrumentos de evaluación",
+    "senpai":    "Herramientas cooperativas",
+}
+
 
 # ── Sesión HTTP ──────────────────────────────────────────────────────────────
 
@@ -129,14 +142,15 @@ def leer_excel_producto(xlsx_path: Path) -> list[dict]:
         # cols[2] ruta_destino  — no se usa aquí
         # cols[3] tipo          — no se usa aquí
         modulo         = str(cols[4] or "").strip()   # Carpeta contenedora (módulo LMS)
-        # cols[5] carpeta_fuente — no se usa aquí
-        seccion        = str(cols[6] or "").strip()   # Name: nombre de la sección dentro del módulo
+        carpeta_fuente = str(cols[5] or "").strip()   # Código de sección (dif_lect, doc_curr, ...)
+        name_serie     = str(cols[6] or "").strip()   # Name: prefijo para nombres de contenido
+        seccion        = SECCION_NOMBRE.get(carpeta_fuente, carpeta_fuente)  # nombre visible de la sección
 
         if not nombre_archivo or not modulo:
             continue
 
         erp_id       = Path(nombre_archivo).stem
-        nombre_final = _fix_nombre(nombre_visible, nombre_archivo, seccion)
+        nombre_final = _fix_nombre(nombre_visible, nombre_archivo, name_serie)
 
         archivos.append({
             "nombre_visible": nombre_final,
