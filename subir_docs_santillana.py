@@ -508,7 +508,7 @@ def guardar_log(entradas: list[dict], log_path: Path):
     ws = wb.active
     ws.title = "Log"
 
-    headers = ["Producto", "Módulo", "Archivo", "Estado CMS",
+    headers = ["Producto", "Sección", "Archivo", "Estado CMS",
                "GUID CMS", "Estado LMS", "GUID item LMS", "Detalle"]
     for col, h in enumerate(headers, 1):
         c = ws.cell(row=1, column=col, value=h)
@@ -518,7 +518,7 @@ def guardar_log(entradas: list[dict], log_path: Path):
 
     for i, e in enumerate(entradas, 2):
         ws.cell(row=i, column=1, value=e.get("producto",      ""))
-        ws.cell(row=i, column=2, value=e.get("modulo",        ""))
+        ws.cell(row=i, column=2, value=e.get("seccion",        ""))
         ws.cell(row=i, column=3, value=e.get("archivo",       ""))
         ws.cell(row=i, column=4, value=e.get("estado_cms",    ""))
         ws.cell(row=i, column=5, value=e.get("guid_cms",      ""))
@@ -553,6 +553,14 @@ def guardar_log(entradas: list[dict], log_path: Path):
 def procesar_producto(session, token: str, producto_path: Path,
                       level_guid: str, year_guid: str,
                       disc_guid: str, idioma: str, col_guid: str) -> list[dict]:
+    """
+    Estructura LMS resultante:
+      Módulo "Documentos"
+        └── Sección "Documentos curriculares"  ← subcarpeta del producto
+              └── archivo1, archivo2 ...
+        └── Sección "Guía metodológica"
+              └── ...
+    """
     entradas: list[dict] = []
     nombre_producto = producto_path.name
 
@@ -562,17 +570,17 @@ def procesar_producto(session, token: str, producto_path: Path,
         return entradas
 
     total_archivos = sum(len(v) for v in carpetas.values())
-    print(f"  Carpetas: {list(carpetas.keys())}")
+    print(f"  Secciones: {list(carpetas.keys())}")
     print(f"  Total archivos: {total_archivos}")
 
     # ── Seleccionar curso LMS ─────────────────────────────────────────
     curso = seleccionar_curso(session, nombre_producto)
     if not curso:
-        for mod, files in carpetas.items():
+        for sec, files in carpetas.items():
             for fp in files:
                 entradas.append({
                     "producto":      nombre_producto,
-                    "modulo":        mod,
+                    "seccion":       sec,
                     "archivo":       fp.name,
                     "estado_cms":    "SIN_CURSO",
                     "guid_cms":      "",
@@ -584,30 +592,50 @@ def procesar_producto(session, token: str, producto_path: Path,
 
     course_guid = curso["guid"]
 
-    # Módulos ya existentes en el curso
+    # ── Obtener o crear el módulo "Documentos" ────────────────────────
     items_existentes   = get_course_items(session, course_guid)
     modulos_existentes = {html_a_texto(it.get("lesson_name", "")).lower(): it
                           for it in items_existentes}
 
+    if "documentos" in modulos_existentes:
+        lesson_guid = modulos_existentes["documentos"].get("lesson_guid", "")
+        tqdm.write(f"  [OK] Módulo 'Documentos' encontrado  [{lesson_guid}]")
+    else:
+        lesson_guid = crear_lesson(session, course_guid, "Documentos")
+        if lesson_guid:
+            tqdm.write(f"  [+] Módulo 'Documentos' creado  [{lesson_guid}]")
+        else:
+            print("  [ERROR] No se pudo encontrar ni crear el módulo 'Documentos'.")
+            for sec, files in carpetas.items():
+                for fp in files:
+                    entradas.append({
+                        "producto":      nombre_producto,
+                        "seccion":       sec,
+                        "archivo":       fp.name,
+                        "estado_cms":    "ERROR",
+                        "guid_cms":      "",
+                        "estado_lms":    "ERROR",
+                        "guid_item_lms": "",
+                        "detalle":       "No se encontró ni creó módulo 'Documentos'",
+                    })
+            return entradas
+
     # ── Fase 1: CMS — buscar / subir en paralelo ──────────────────────
     print(f"\n  Fase 1: CMS — buscando / subiendo {total_archivos} archivos...")
 
-    # Aplanar lista de archivos
     items_planos: list[dict] = []
-    for mod, files in carpetas.items():
+    for sec, files in carpetas.items():
         for fp in files:
-            items_planos.append({"modulo": mod, "filepath": fp})
+            items_planos.append({"seccion": sec, "filepath": fp})
 
-    cms_results: dict[Path, dict | None] = {}
+    cms_results: dict[Path, dict] = {}
 
     def _procesar_archivo(item: dict) -> tuple[Path, str, dict | None, str]:
-        fp   = item["filepath"]
-        stem = fp.stem
+        fp = item["filepath"]
         try:
-            existente = buscar_en_cms(session, stem)
+            existente = buscar_en_cms(session, fp.stem)
             if existente:
                 return fp, "ENCONTRADO", existente, ""
-            # Subir
             content = subir_al_cms(session, fp,
                                    level_guid, year_guid,
                                    disc_guid, idioma, col_guid)
@@ -623,78 +651,45 @@ def procesar_producto(session, token: str, producto_path: Path,
         for fut in as_completed(futs):
             fp, estado, content, detalle = fut.result()
             cms_results[fp] = {"estado": estado, "content": content, "detalle": detalle}
-            lbl = f"[{estado}] {fp.name}"
-            tqdm.write(f"    {lbl}")
+            tqdm.write(f"    [{estado}] {fp.name}")
             barra.update(1)
     barra.close()
 
-    # ── Fase 2: LMS — crear módulos y vincular contenidos ─────────────
-    print(f"\n  Fase 2: LMS — creando módulos y vinculando contenidos...")
+    # ── Fase 2: LMS — crear secciones dentro de "Documentos" ──────────
+    print(f"\n  Fase 2: LMS — creando secciones en módulo 'Documentos'...")
 
-    for mod, files in carpetas.items():
-        mod_lower = mod.lower()
-
-        # Obtener o crear el módulo
-        if mod_lower in modulos_existentes:
-            tqdm.write(f"    [SKIP módulo] {mod} (ya existe)")
-            lesson_guid = modulos_existentes[mod_lower].get("lesson_guid", "")
-        else:
-            lesson_guid = crear_lesson(session, course_guid, mod)
-            if lesson_guid:
-                tqdm.write(f"    [+] Módulo: {mod}  [{lesson_guid}]")
-            else:
-                tqdm.write(f"    [ERROR] No se pudo crear módulo: {mod}")
-                for fp in files:
-                    r = cms_results.get(fp, {})
-                    content = r.get("content") or {}
-                    entradas.append({
-                        "producto":      nombre_producto,
-                        "modulo":        mod,
-                        "archivo":       fp.name,
-                        "estado_cms":    r.get("estado", "ERROR"),
-                        "guid_cms":      content.get("guid", ""),
-                        "estado_lms":    "ERROR",
-                        "guid_item_lms": "",
-                        "detalle":       "No se pudo crear módulo LMS",
-                    })
-                continue
-
-        if not lesson_guid:
-            continue
-
-        # Crear sección "Recursos"
-        parent_guid = crear_seccion(session, lesson_guid, "Recursos")
+    for sec, files in carpetas.items():
+        # Una sección por subcarpeta dentro del módulo Documentos
+        parent_guid = crear_seccion(session, lesson_guid, sec)
         if not parent_guid:
-            tqdm.write(f"      [ERROR] No se pudo crear sección en '{mod}'")
+            tqdm.write(f"    [ERROR] No se pudo crear sección '{sec}'")
             for fp in files:
                 r = cms_results.get(fp, {})
-                content = r.get("content") or {}
                 entradas.append({
                     "producto":      nombre_producto,
-                    "modulo":        mod,
+                    "seccion":       sec,
                     "archivo":       fp.name,
                     "estado_cms":    r.get("estado", "ERROR"),
-                    "guid_cms":      content.get("guid", ""),
+                    "guid_cms":      (r.get("content") or {}).get("guid", ""),
                     "estado_lms":    "ERROR",
                     "guid_item_lms": "",
-                    "detalle":       "No se pudo crear sección 'Recursos'",
+                    "detalle":       f"No se pudo crear sección '{sec}'",
                 })
             continue
 
-        tqdm.write(f"      [+] Sección: Recursos  [{parent_guid}]")
+        tqdm.write(f"    [+] Sección: {sec}  [{parent_guid}]")
 
-        # Vincular archivos
         for fp in files:
-            r       = cms_results.get(fp, {})
+            r          = cms_results.get(fp, {})
             estado_cms = r.get("estado", "ERROR")
             content    = r.get("content")
             detalle    = r.get("detalle", "")
 
             if not content or not content.get("guid"):
-                tqdm.write(f"        [SKIP] {fp.name} — sin GUID CMS")
+                tqdm.write(f"      [SKIP] {fp.name} — sin GUID CMS")
                 entradas.append({
                     "producto":      nombre_producto,
-                    "modulo":        mod,
+                    "seccion":       sec,
                     "archivo":       fp.name,
                     "estado_cms":    estado_cms,
                     "guid_cms":      "",
@@ -709,16 +704,16 @@ def procesar_producto(session, token: str, producto_path: Path,
                 content, fp.stem,
             )
             if item_guid:
-                tqdm.write(f"        [+] {fp.name}")
+                tqdm.write(f"      [+] {fp.name}")
                 estado_lms = "VINCULADO"
             else:
-                tqdm.write(f"        [ERROR] {fp.name}")
+                tqdm.write(f"      [ERROR] {fp.name}")
                 estado_lms = "ERROR"
                 detalle    = "agregar_contenido falló"
 
             entradas.append({
                 "producto":      nombre_producto,
-                "modulo":        mod,
+                "seccion":       sec,
                 "archivo":       fp.name,
                 "estado_cms":    estado_cms,
                 "guid_cms":      content.get("guid", ""),

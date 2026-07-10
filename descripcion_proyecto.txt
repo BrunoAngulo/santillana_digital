@@ -163,10 +163,9 @@ QUÉ HACE:
        - Si ya existe → reutiliza su GUID.
        - Si no existe → sube el archivo al CMS con los metadatos.
     2. Selección interactiva del curso LMS para el producto.
-    3. Por cada subcarpeta (módulo):
-       - Crea un módulo LMS con el nombre de la carpeta.
-       - Crea una sección "Recursos" dentro del módulo.
-       - Vincula todos los archivos de esa carpeta.
+    3. Busca (o crea) el módulo "Documentos" en el curso LMS.
+    4. Por cada subcarpeta → crea una sección con ese nombre
+       dentro del módulo "Documentos" y vincula los archivos.
   Metadatos CMS: pide etapa, año, asignatura, idioma y colección
   una sola vez (para todos los productos) o por cada producto.
   Genera log Excel: ENCONTRADO / SUBIDO / ERROR (CMS)
