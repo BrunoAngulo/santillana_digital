@@ -405,7 +405,32 @@ def crear_lesson(session, course_guid: str, nombre: str) -> str | None:
     return d.get("lesson_guid") or d.get("guid")
 
 
-def crear_seccion(session, lesson_guid: str, nombre_seccion: str) -> str | None:
+def get_lesson_sections(session, lesson_guid: str) -> dict[str, str]:
+    """Devuelve {nombre_seccion_lower → guid} de las secciones ya existentes."""
+    try:
+        data  = api_get(session, f"/api/front/lessons/{lesson_guid}/items")
+        items = data.get("data", {}).get("items", [])
+        return {
+            (it.get("section") or "").strip().lower(): it["guid"]
+            for it in items
+            if it.get("section") and it.get("guid")
+        }
+    except Exception:
+        return {}
+
+
+def crear_seccion(session, lesson_guid: str, nombre_seccion: str,
+                  secciones_existentes: dict[str, str] | None = None) -> str | None:
+    """
+    Devuelve el guid de la sección, creándola si no existe.
+    Si secciones_existentes se pasa, evita la llamada extra a la API.
+    """
+    clave = nombre_seccion.strip().lower()
+    if secciones_existentes and clave in secciones_existentes:
+        guid = secciones_existentes[clave]
+        tqdm.write(f"      [SKIP sección] '{nombre_seccion}' ya existe  [{guid}]")
+        return guid
+
     r = session.post(f"{API_BASE}/api/front/lesson-items",
                      json={"lesson_guid": lesson_guid,
                            "section": nombre_seccion,
@@ -658,9 +683,13 @@ def procesar_producto(session, token: str, producto_path: Path,
     # ── Fase 2: LMS — crear secciones dentro de "Documentos" ──────────
     print(f"\n  Fase 2: LMS — creando secciones en módulo 'Documentos'...")
 
+    secciones_existentes = get_lesson_sections(session, lesson_guid)
+    if secciones_existentes:
+        tqdm.write(f"  Secciones ya existentes: {list(secciones_existentes.keys())}")
+
     for sec, files in carpetas.items():
         # Una sección por subcarpeta dentro del módulo Documentos
-        parent_guid = crear_seccion(session, lesson_guid, sec)
+        parent_guid = crear_seccion(session, lesson_guid, sec, secciones_existentes)
         if not parent_guid:
             tqdm.write(f"    [ERROR] No se pudo crear sección '{sec}'")
             for fp in files:
