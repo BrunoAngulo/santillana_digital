@@ -146,29 +146,41 @@ def _fix_nombre(nombre_visible: str, nombre_archivo: str, name_serie: str) -> st
     return v
 
 
-def leer_excel_producto(xlsx_path: Path) -> list[dict]:
+def leer_excel_producto(xlsx_path: Path) -> tuple[list[dict], bool]:
+    """
+    Devuelve (archivos, tiene_carpeta_docs).
+    Filas con col E == "Documentos": modulo = col F mapeado, seccion = "Recursos".
+    Resto: modulo = col E (Unidad 01…), seccion = col F mapeado.
+    tiene_carpeta_docs indica si hay que crear el módulo "Documentos" vacío.
+    """
     wb = openpyxl.load_workbook(xlsx_path)
     ws = wb.active
     archivos = []
+    tiene_carpeta_docs = False
+
     for row in ws.iter_rows(min_row=2, values_only=True):
         if not any(row):
             continue
         cols = list(row) + [None] * 8
         nombre_visible = str(cols[0] or "").strip()
         nombre_archivo = str(cols[1] or "").strip()
-        # cols[2] ruta_destino  — no se usa aquí
-        # cols[3] tipo          — no se usa aquí
-        carpeta_cont   = str(cols[4] or "").strip()   # Carpeta contenedora (Unidad 01, Documentos…)
-        carpeta_fuente = str(cols[5] or "").strip()   # Código (dif_lect, doc_curr…)
-        name_serie     = str(cols[6] or "").strip()   # Name: prefijo para nombres de contenido
-        modulo         = SECCION_NOMBRE.get(carpeta_fuente, carpeta_fuente)  # col F → módulo LMS
-        seccion        = carpeta_cont                  # col E → sección dentro del módulo
+        carpeta_cont   = str(cols[4] or "").strip()   # col E: Unidad 01 / Documentos…
+        carpeta_fuente = str(cols[5] or "").strip()   # col F: dif_lect, doc_curr…
+        name_serie     = str(cols[6] or "").strip()   # col G: prefijo para nombres
 
-        if not nombre_archivo or not modulo:
+        if not nombre_archivo or not carpeta_cont:
             continue
 
         erp_id       = Path(nombre_archivo).stem
         nombre_final = _fix_nombre(nombre_visible, nombre_archivo, name_serie)
+
+        if carpeta_cont.lower() == "documentos":
+            tiene_carpeta_docs = True
+            modulo  = SECCION_NOMBRE.get(carpeta_fuente, carpeta_fuente)
+            seccion = "Recursos"
+        else:
+            modulo  = carpeta_cont
+            seccion = SECCION_NOMBRE.get(carpeta_fuente, carpeta_fuente)
 
         archivos.append({
             "nombre_visible": nombre_final,
@@ -176,15 +188,17 @@ def leer_excel_producto(xlsx_path: Path) -> list[dict]:
             "modulo":         modulo,
             "seccion":        seccion,
         })
-    return archivos
+
+    return archivos, tiene_carpeta_docs
 
 
 def agrupar_por_modulo(archivos: list[dict]) -> dict[str, dict[str, list[dict]]]:
     """
     Devuelve {modulo → {seccion → [archivos]}}.
     Excluye módulos en CARPETAS_EXCLUIR.
-    Ordena módulos: Documentos primero, luego Unidad numericamente.
-    Las secciones mantienen el orden original del Excel.
+    Orden módulos: SECCION_NOMBRE-derivados primero (filas Documentos),
+                   luego Unidades numéricamente.
+    Orden secciones dentro de cada módulo: según posición en SECCION_NOMBRE.
     """
     estructura: dict[str, dict[str, list[dict]]] = {}
     secciones_orden: dict[str, list[str]] = {}
@@ -206,22 +220,23 @@ def agrupar_por_modulo(archivos: list[dict]) -> dict[str, dict[str, list[dict]]]
 
         estructura[modulo][seccion].append(a)
 
-    # Módulos ordenados según el orden de SECCION_NOMBRE; los no mapeados al final
+    # Módulos: SECCION_NOMBRE-derivados primero (orden del dict), luego Unidades por número
     _orden_modulos = list(SECCION_NOMBRE.values())
+    _orden_secciones = _orden_modulos  # mismas claves para secciones dentro de Unidades
 
     def sort_key_modulo(nombre: str) -> tuple:
         try:
-            return (0, _orden_modulos.index(nombre))
+            return (0, _orden_modulos.index(nombre), "")
+        except ValueError:
+            m = re.search(r'\d+', nombre)
+            return (1, int(m.group()) if m else 9999, nombre.lower())
+
+    # Secciones dentro de Unidades: según orden de SECCION_NOMBRE
+    def sort_key_seccion(nombre: str) -> tuple:
+        try:
+            return (0, _orden_secciones.index(nombre))
         except ValueError:
             return (1, nombre.lower())
-
-    # Secciones dentro de cada módulo: Documentos primero, luego Unidad por número
-    def sort_key_seccion(nombre: str) -> tuple:
-        lower = nombre.lower()
-        if "documentos" in lower:
-            return (0, 0)
-        m = re.search(r'\d+', nombre)
-        return (1, int(m.group()) if m else 999)
 
     resultado: dict[str, dict[str, list[dict]]] = {}
     for modulo in sorted(estructura.keys(), key=sort_key_modulo):
@@ -421,7 +436,7 @@ def procesar_producto(session, producto_path: Path) -> dict:
     print(f"\n{'─' * 62}")
     print(f"  Producto : {producto_path.name}")
 
-    archivos   = leer_excel_producto(xlsx)
+    archivos, tiene_carpeta_docs = leer_excel_producto(xlsx)
     estructura = agrupar_por_modulo(archivos)
     modulos    = list(estructura.keys())
 
@@ -453,6 +468,17 @@ def procesar_producto(session, producto_path: Path) -> dict:
     items_existentes   = get_course_items(session, course_guid)
     modulos_existentes = {html_a_texto(it.get("lesson_name", "")).lower()
                           for it in items_existentes}
+
+    # Crear módulo "Documentos" vacío si el Excel tiene filas con col E = Documentos
+    if tiene_carpeta_docs:
+        if "documentos" not in modulos_existentes:
+            doc_guid = crear_lesson(session, course_guid, "Documentos")
+            if doc_guid:
+                tqdm.write(f"    [+] Módulo vacío: Documentos  [{doc_guid}]")
+            else:
+                tqdm.write("    [ERROR] No se pudo crear el módulo 'Documentos'")
+        else:
+            tqdm.write("    [SKIP] Módulo 'Documentos' ya existe")
 
     modulos_creados    = 0
     modulos_salteados  = 0
