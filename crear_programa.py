@@ -24,11 +24,13 @@ Uso:
 import re
 import sys
 import time
+from datetime import datetime
 from pathlib import Path
 
 try:
     import requests
     import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment
     from tqdm import tqdm
 except ImportError:
     print("Instalando dependencias...")
@@ -37,6 +39,7 @@ except ImportError:
                            "requests", "openpyxl", "tqdm"])
     import requests
     import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment
     from tqdm import tqdm
 
 
@@ -250,7 +253,8 @@ def buscar_contenido_por_erp(session, erp_id: str) -> dict | None:
 
 
 def agregar_contenido(session, lesson_guid: str, parent_guid: str,
-                      content: dict, nombre_visible: str) -> bool:
+                      content: dict, nombre_visible: str) -> str | None:
+    """Agrega el contenido a la sección. Devuelve el item_guid creado o None si falla."""
     payload = {
         "content_guid":       content["guid"],
         "description":        "",
@@ -268,7 +272,72 @@ def agregar_contenido(session, lesson_guid: str, parent_guid: str,
         "teacher_notes":      None,
     }
     data = api_post(session, "/api/front/lesson-items", payload)
-    return bool(data.get("data", {}).get("guid"))
+    return data.get("data", {}).get("guid") or None
+
+
+# ── Log Excel ────────────────────────────────────────────────────────────────
+
+_FILL_HDR   = PatternFill("solid", fgColor="1F4E79")
+_FONT_HDR   = Font(bold=True, color="FFFFFF", size=11)
+_FILL_OK    = PatternFill("solid", fgColor="C6EFCE")
+_FILL_ERR   = PatternFill("solid", fgColor="FFC7CE")
+_FILL_MISS  = PatternFill("solid", fgColor="FFEB9C")   # amarillo: NOT FOUND
+_FILL_SKIP  = PatternFill("solid", fgColor="D9D9D9")
+
+
+def guardar_log(entradas: list[dict], log_path: Path):
+    """
+    Genera un Excel con una fila por cada contenido procesado.
+    Columnas: Producto | Módulo | Sección | ERP ID | Nombre visible |
+              Estado | GUID CMS | Nombre en CMS | GUID item LMS | Detalle
+    Colores: VERDE=CREADO, ROJO=ERROR, AMARILLO=NOT_FOUND, GRIS=SKIP
+    """
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "Log"
+
+    headers = [
+        "Producto", "Módulo", "Sección", "ERP ID", "Nombre visible",
+        "Estado", "GUID CMS", "Nombre en CMS", "GUID item LMS", "Detalle",
+    ]
+    for col, h in enumerate(headers, 1):
+        c = ws.cell(row=1, column=col, value=h)
+        c.fill = _FILL_HDR
+        c.font = _FONT_HDR
+        c.alignment = Alignment(horizontal="center")
+
+    for i, e in enumerate(entradas, 2):
+        ws.cell(row=i, column=1,  value=e.get("producto",       ""))
+        ws.cell(row=i, column=2,  value=e.get("modulo",         ""))
+        ws.cell(row=i, column=3,  value=e.get("seccion",        ""))
+        ws.cell(row=i, column=4,  value=e.get("erp_id",         ""))
+        ws.cell(row=i, column=5,  value=e.get("nombre_visible", ""))
+        ws.cell(row=i, column=6,  value=e.get("estado",         ""))
+        ws.cell(row=i, column=7,  value=e.get("guid_cms",       ""))
+        ws.cell(row=i, column=8,  value=e.get("nombre_cms",     ""))
+        ws.cell(row=i, column=9,  value=e.get("guid_item_lms",  ""))
+        ws.cell(row=i, column=10, value=e.get("detalle",        ""))
+
+        estado = e.get("estado", "")
+        if estado == "CREADO":
+            fill = _FILL_OK
+        elif estado == "NOT_FOUND":
+            fill = _FILL_MISS
+        elif estado == "SKIP":
+            fill = _FILL_SKIP
+        else:
+            fill = _FILL_ERR
+
+        for col in range(1, 11):
+            ws.cell(row=i, column=col).fill = fill
+
+    anchos = {"A": 25, "B": 30, "C": 35, "D": 30, "E": 45,
+              "F": 12, "G": 38, "H": 45, "I": 38, "J": 40}
+    for letra, ancho in anchos.items():
+        ws.column_dimensions[letra].width = ancho
+
+    wb.save(log_path)
+    print(f"  Log guardado: {log_path.resolve()}")
 
 
 # ── Selección interactiva ─────────────────────────────────────────────────────
@@ -313,7 +382,7 @@ def procesar_producto(session, producto_path: Path) -> dict:
 
     if not cursos:
         print("  [AVISO] No se encontraron cursos. Saltando.")
-        return {"producto": producto_path.name, "error": "sin curso"}
+        return {"producto": producto_path.name, "error": "sin curso", "entradas_log": []}
 
     if len(cursos) == 1:
         curso = cursos[0]
@@ -338,6 +407,21 @@ def procesar_producto(session, producto_path: Path) -> dict:
     secciones_creadas  = 0
     contenidos_ok      = 0
     contenidos_error   = 0
+    entradas_log: list[dict] = []
+
+    def _log(modulo, seccion, archivo, estado, content=None, item_guid=None, detalle=""):
+        entradas_log.append({
+            "producto":       producto_path.name,
+            "modulo":         modulo,
+            "seccion":        seccion,
+            "erp_id":         archivo.get("erp_id", "") if archivo else "",
+            "nombre_visible": archivo.get("nombre_visible", "") if archivo else "",
+            "estado":         estado,
+            "guid_cms":       content["guid"]  if content else "",
+            "nombre_cms":     content.get("name", "") if content else "",
+            "guid_item_lms":  item_guid or "",
+            "detalle":        detalle,
+        })
 
     barra = tqdm(modulos, desc=f"  {producto_path.name}", unit="módulo", ncols=80)
 
@@ -347,12 +431,19 @@ def procesar_producto(session, producto_path: Path) -> dict:
         if modulo.lower() in modulos_existentes:
             tqdm.write(f"    [SKIP] Módulo ya existe: {modulo}")
             modulos_salteados += 1
+            # Registrar todos sus contenidos como SKIP en el log
+            for seccion, archivos_sec in estructura[modulo].items():
+                for archivo in archivos_sec:
+                    _log(modulo, seccion, archivo, "SKIP", detalle="Módulo ya existía")
             continue
 
         # Crear módulo
         lesson_guid = crear_lesson(session, course_guid, modulo)
         if not lesson_guid:
             tqdm.write(f"    [ERROR] No se pudo crear módulo: {modulo}")
+            for seccion, archivos_sec in estructura[modulo].items():
+                for archivo in archivos_sec:
+                    _log(modulo, seccion, archivo, "ERROR", detalle="Fallo al crear módulo")
             continue
         tqdm.write(f"    [+] Módulo: {modulo}  [{lesson_guid}]")
         modulos_creados += 1
@@ -362,8 +453,11 @@ def procesar_producto(session, producto_path: Path) -> dict:
             parent_guid = crear_seccion(session, lesson_guid, seccion)
             if not parent_guid:
                 tqdm.write(f"      [ERROR] No se pudo crear sección '{seccion}'")
+                for archivo in archivos_sec:
+                    _log(modulo, seccion, archivo, "ERROR",
+                         detalle=f"Fallo al crear sección '{seccion}'")
                 continue
-            tqdm.write(f"      [+] Sección: {seccion}")
+            tqdm.write(f"      [+] Sección: {seccion}  [{parent_guid}]")
             secciones_creadas += 1
 
             # Agregar contenidos a la sección
@@ -372,13 +466,23 @@ def procesar_producto(session, producto_path: Path) -> dict:
                 if not content:
                     tqdm.write(f"        [NOT FOUND] {archivo['erp_id']}")
                     contenidos_error += 1
-                elif agregar_contenido(session, lesson_guid, parent_guid,
-                                       content, archivo["nombre_visible"]):
-                    tqdm.write(f"        [+] {archivo['nombre_visible']}")
-                    contenidos_ok += 1
+                    _log(modulo, seccion, archivo, "NOT_FOUND",
+                         detalle="ERP ID no encontrado en CMS")
                 else:
-                    tqdm.write(f"        [ERROR] {archivo['erp_id']}")
-                    contenidos_error += 1
+                    item_guid = agregar_contenido(
+                        session, lesson_guid, parent_guid,
+                        content, archivo["nombre_visible"],
+                    )
+                    if item_guid:
+                        tqdm.write(f"        [+] {archivo['nombre_visible']}")
+                        contenidos_ok += 1
+                        _log(modulo, seccion, archivo, "CREADO",
+                             content=content, item_guid=item_guid)
+                    else:
+                        tqdm.write(f"        [ERROR] {archivo['erp_id']}")
+                        contenidos_error += 1
+                        _log(modulo, seccion, archivo, "ERROR",
+                             content=content, detalle="PUT lesson-item falló")
 
                 time.sleep(0.15)   # evitar rate-limit
 
@@ -390,6 +494,7 @@ def procesar_producto(session, producto_path: Path) -> dict:
         "secciones_creadas": secciones_creadas,
         "contenidos_ok":     contenidos_ok,
         "contenidos_error":  contenidos_error,
+        "entradas_log":      entradas_log,
     }
 
 
@@ -432,6 +537,17 @@ def main():
         productos = [productos[i] for i in nums if 0 <= i < len(productos)]
 
     resultados = [procesar_producto(session, p) for p in productos]
+
+    # ── Log Excel ────────────────────────────────────────────────────
+    todas_entradas = []
+    for r in resultados:
+        todas_entradas.extend(r.get("entradas_log", []))
+
+    if todas_entradas:
+        ts       = datetime.now().strftime("%Y%m%d_%H%M%S")
+        log_path = base_path / f"log_programa_{ts}.xlsx"
+        print()
+        guardar_log(todas_entradas, log_path)
 
     # ── Resumen final ────────────────────────────────────────────────
     print(f"\n{'=' * 62}")
