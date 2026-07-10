@@ -254,8 +254,8 @@ def buscar_en_cms(session, stem: str) -> dict | None:
     contents = (data.get("data") or {}).get("contents", [])
     stem_l = stem.lower()
     for c in contents:
-        if (c.get("erp_id", "").lower() == stem_l or
-                c.get("name", "").lower() == stem_l):
+        if ((c.get("erp_id") or "").lower() == stem_l or
+                (c.get("name") or "").lower() == stem_l):
             return c
     return None
 
