@@ -90,7 +90,26 @@ USO:
   python crear_programa.py "C:\...\SUBIDAS\PRIM"
 
 ───────────────────────────────────────────────────────────────
-5. mapear_santillana.py
+5. gestionar_programa.py
+───────────────────────────────────────────────────────────────
+QUÉ HACE:
+  Gestiona los contenidos vinculados a un programa (curso) del LMS.
+  Modo listar (sin argumento):
+    - Busca el curso interactivamente
+    - Lista todos los módulos → secciones → contenidos vinculados
+    - Genera un Excel con: Módulo, Sección, Nombre visible,
+      ERP ID, GUID item LMS, GUID CMS
+  Modo actualizar (con Excel editado):
+    - Lee el Excel y detecta cambios en "Nombre visible"
+    - PUT para actualizar solo el nombre de cada item en el LMS
+    - Genera log Excel: ACTUALIZADO / SIN_CAMBIO / ERROR
+
+USO:
+  python gestionar_programa.py                     (listar)
+  python gestionar_programa.py items_Curso_*.xlsx  (actualizar)
+
+───────────────────────────────────────────────────────────────
+6. mapear_santillana.py
 ───────────────────────────────────────────────────────────────
 QUÉ HACE:
   Mapea la estructura remota de Santillana Digital (SantiVaContigoDocs)
