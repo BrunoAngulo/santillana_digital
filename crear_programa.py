@@ -239,8 +239,7 @@ def crear_seccion(session, lesson_guid: str, nombre_seccion: str) -> str | None:
     nombre_seccion = nombre_seccion.strip() or "Recursos"
     payload = {
         "lesson_guid":       lesson_guid,
-        "name":              nombre_seccion,
-        "section":           "Recursos",
+        "section":           nombre_seccion,
         "section_type_guid": "default",
     }
     r = session.post(f"{API_BASE}/api/front/lesson-items", json=payload, timeout=30)
