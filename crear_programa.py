@@ -221,14 +221,25 @@ def crear_lesson(session, course_guid: str, nombre_modulo: str) -> str | None:
 
 
 def crear_seccion(session, lesson_guid: str, nombre_seccion: str) -> str | None:
-    """Crea una sección con el nombre dado dentro de la lección. Devuelve su guid (parent_guid)."""
+    """Crea una sección dentro de la lección. Devuelve su guid (parent_guid)."""
+    nombre_seccion = nombre_seccion.strip() or "Recursos"
     payload = {
         "lesson_guid":       lesson_guid,
-        "section":           nombre_seccion,
+        "name":              nombre_seccion,
+        "section":           "Recursos",
         "section_type_guid": "default",
     }
-    data = api_post(session, "/api/front/lesson-items", payload)
-    return data.get("data", {}).get("guid")
+    r = session.post(f"{API_BASE}/api/front/lesson-items", json=payload, timeout=30)
+    try:
+        r.raise_for_status()
+    except requests.HTTPError as e:
+        tqdm.write(f"      [ERROR HTTP] crear_seccion: {e} — {r.text[:200]}")
+        return None
+    data = r.json()
+    guid = (data.get("data") or {}).get("guid")
+    if not guid:
+        tqdm.write(f"      [WARN] crear_seccion sin guid — resp: {str(data)[:200]}")
+    return guid
 
 
 # ── API: contenidos CMS ───────────────────────────────────────────────────────
