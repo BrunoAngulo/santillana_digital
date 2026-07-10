@@ -85,21 +85,38 @@ def build_session(token: str) -> requests.Session:
     return s
 
 
+_RETRY_STATUS = {502, 503, 504}
+_RETRY_DELAYS = [3, 6, 12]   # segundos entre reintentos
+
+
+def _request_with_retry(fn, *args, **kwargs):
+    """Ejecuta fn(*args, **kwargs) reintentando hasta 3 veces en errores 5xx transitorios."""
+    for intento, delay in enumerate([0] + _RETRY_DELAYS, 1):
+        if delay:
+            time.sleep(delay)
+        try:
+            r = fn(*args, **kwargs)
+            if r.status_code in _RETRY_STATUS:
+                tqdm.write(f"  [RETRY {intento}/4] {r.status_code} en {r.url} — reintentando en {_RETRY_DELAYS[intento - 1]}s...")
+                continue
+            r.raise_for_status()
+            return r
+        except requests.ConnectionError as e:
+            if intento <= len(_RETRY_DELAYS):
+                tqdm.write(f"  [RETRY {intento}/4] ConnectionError — reintentando...")
+                continue
+            raise
+    r.raise_for_status()
+    return r
+
+
 def api_get(session, path: str, params=None):
-    r = session.get(f"{API_BASE}{path}", params=params, timeout=30)
-    try:
-        r.raise_for_status()
-    except requests.HTTPError as e:
-        raise requests.HTTPError(f"{e} — {r.text[:300]}", response=r) from None
+    r = _request_with_retry(session.get, f"{API_BASE}{path}", params=params, timeout=30)
     return r.json()
 
 
 def api_post(session, path: str, payload: dict):
-    r = session.post(f"{API_BASE}{path}", json=payload, timeout=30)
-    try:
-        r.raise_for_status()
-    except requests.HTTPError as e:
-        raise requests.HTTPError(f"{e} — {r.text[:300]}", response=r) from None
+    r = _request_with_retry(session.post, f"{API_BASE}{path}", json=payload, timeout=30)
     return r.json()
 
 
@@ -265,8 +282,8 @@ def buscar_contenido_por_erp(session, erp_id: str) -> dict | None:
     for t in CONTENT_TYPES:
         params.append(("type[]", t))
 
-    r = session.get(f"{API_BASE}/api/cms/contents", params=params, timeout=30)
-    r.raise_for_status()
+    r = _request_with_retry(session.get, f"{API_BASE}/api/cms/contents",
+                            params=params, timeout=30)
     contents = r.json().get("data", {}).get("contents", [])
 
     # Coincidencia exacta primero
