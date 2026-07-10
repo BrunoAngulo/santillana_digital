@@ -158,10 +158,11 @@ def leer_excel_producto(xlsx_path: Path) -> list[dict]:
         nombre_archivo = str(cols[1] or "").strip()
         # cols[2] ruta_destino  — no se usa aquí
         # cols[3] tipo          — no se usa aquí
-        modulo         = str(cols[4] or "").strip()   # Carpeta contenedora (módulo LMS)
-        carpeta_fuente = str(cols[5] or "").strip()   # Código de sección (dif_lect, doc_curr, ...)
+        carpeta_cont   = str(cols[4] or "").strip()   # Carpeta contenedora (Unidad 01, Documentos…)
+        carpeta_fuente = str(cols[5] or "").strip()   # Código (dif_lect, doc_curr…)
         name_serie     = str(cols[6] or "").strip()   # Name: prefijo para nombres de contenido
-        seccion        = SECCION_NOMBRE.get(carpeta_fuente, carpeta_fuente)  # nombre visible de la sección
+        modulo         = SECCION_NOMBRE.get(carpeta_fuente, carpeta_fuente)  # col F → módulo LMS
+        seccion        = carpeta_cont                  # col E → sección dentro del módulo
 
         if not nombre_archivo or not modulo:
             continue
@@ -205,7 +206,17 @@ def agrupar_por_modulo(archivos: list[dict]) -> dict[str, dict[str, list[dict]]]
 
         estructura[modulo][seccion].append(a)
 
+    # Módulos ordenados según el orden de SECCION_NOMBRE; los no mapeados al final
+    _orden_modulos = list(SECCION_NOMBRE.values())
+
     def sort_key_modulo(nombre: str) -> tuple:
+        try:
+            return (0, _orden_modulos.index(nombre))
+        except ValueError:
+            return (1, nombre.lower())
+
+    # Secciones dentro de cada módulo: Documentos primero, luego Unidad por número
+    def sort_key_seccion(nombre: str) -> tuple:
         lower = nombre.lower()
         if "documentos" in lower:
             return (0, 0)
@@ -216,7 +227,7 @@ def agrupar_por_modulo(archivos: list[dict]) -> dict[str, dict[str, list[dict]]]
     for modulo in sorted(estructura.keys(), key=sort_key_modulo):
         resultado[modulo] = {
             sec: estructura[modulo][sec]
-            for sec in secciones_orden[modulo]
+            for sec in sorted(secciones_orden[modulo], key=sort_key_seccion)
         }
 
     return resultado
